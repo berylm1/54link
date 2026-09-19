@@ -23,8 +23,13 @@ platforms built for African markets (Nigeria first), published at
 ```bash
 python3 update_data.py     # optional: refresh repo data from GitHub
 python3 build_site.py      # regenerate site/index.html + site/platforms/*.html
-python3 publish.py         # upload to here.now
+python3 publish.py         # incremental publish to here.now
+python3 publish.py --verify   # publish, then HEAD-check every file is live
 ```
+
+`publish.py` is **incremental**: it sends each file's SHA-256, and here.now skips any
+file whose content already matches what is live. A one-page change uploads one file
+(~13 s) instead of the whole 596 MB site (~8 min).
 
 ## Demo videos
 

@@ -145,6 +145,7 @@ uncovered = [r for r in repos if r['name'] not in covered]
 # per-platform demo videos (recorded via OpenScreen, hosted in /videos/)
 VIDEOS = {
     'Meridian TaxTech': ('/videos/meridian-demo.mp4', 'A recorded walkthrough of this platform\'s detail page and the live 54link site.'),
+    'NDSEP / NGApp': ('/videos/ndsep-demo.mp4', 'Recorded walkthrough of the live NDSEP platform at ndsep.newfire.app — the National Data Sovereignty Enforcement Platform. Captured in demo mode (no credentials required), touring the government executive dashboard and all 18 core-platform sections: Discovery Engine, Data Catalog, Compliance Engine, SIEM & Audit, Network DPI, Network Intelligence, NOC Dashboard, Threat Intelligence, SOCint CTI Hub, Maritime Intel, Wazuh SIEM, SIGINT Correlation, Estorides Graph, AI NOC Agent, BGP Routes, Arkime PCAP and Platform Intelligence.'),
     'Lanai': ('/videos/lanai-full-walkthrough.mp4', 'Full walkthrough of the deployed Lanai Lifestyle portal at lanai.newfire.app — logged in as an advisor, testing every service in the menu: dashboard, morning briefing, revenue analytics, clients, members, travel requests, the AI proposal engine, client intelligence, Virtuoso recommendations, the confirmation re-brander, suppliers, WhatsApp and unified inboxes, task templates, invoicing, NPS & feedback, member portal, CRM sync, and settings.'),
 }
 
@@ -290,11 +291,12 @@ index = f'''<!DOCTYPE html>
 
 <section id="videos">
   <h2>Video demos</h2>
-  <p class="sectsub">Short walkthroughs of the deployed dev environments — coming as each platform ships its first deployment. Videos will be recorded with Openscreen and embedded on each platform's detail page.</p>
+  <p class="sectsub">Walkthroughs of the deployed platforms — recorded from the live dev environments. Each video also sits on its platform's detail page.</p>
   <div class="videos">
-    <div class="video-card"><div class="ph">Video placeholder — Meridian TaxTech dev walkthrough</div><div class="body"><h3>Meridian TaxTech</h3><p><a href="/{detail_pages['Meridian TaxTech']}">Open the platform page →</a></p></div></div>
-    <div class="video-card"><div class="ph">Video placeholder — Blue Economy Platform walkthrough</div><div class="body"><h3>Blue Economy Platform</h3><p><a href="/{detail_pages['Blue Economy Platform']}">Open the platform page →</a></p></div></div>
-    <div class="video-card"><div class="ph">Video placeholder — NDSEP walkthrough</div><div class="body"><h3>NDSEP</h3><p><a href="/{detail_pages['NDSEP / NGApp']}">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">HealthPoint — full walkthrough</div><div class="body"><h3>HealthPoint</h3><p>NSA/IDR dispute resolution platform, logged in as Platform Admin.</p><p><a href="/{detail_pages['Healthpoint']}">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">NDSEP — demo-mode walkthrough</div><div class="body"><h3>NDSEP</h3><p>National Data Sovereignty Enforcement Platform — 18 operational sections.</p><p><a href="/{detail_pages['NDSEP / NGApp']}">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">Lanai — advisor portal walkthrough</div><div class="body"><h3>Lanai</h3><p>Luxury travel concierge advisor portal, every service in the menu.</p><p><a href="/{detail_pages['Lanai']}">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">Meridian TaxTech — walkthrough</div><div class="body"><h3>Meridian TaxTech</h3><p>Nigerian NRS unified tax platform.</p><p><a href="/{detail_pages['Meridian TaxTech']}">Open the platform page →</a></p></div></div>
   </div>
 </section>
 
