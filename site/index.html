@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>54link — Africa's Platform Compiler · Nigeria First</title><style>
+  :root { --bg:#0a0e14; --card:#111826; --fg:#e8eef5; --muted:#8b98a5; --accent:#2dd4a7; --accent2:#f5b942; --border:#1e2937; }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--fg); font:16px/1.65 -apple-system,'Segoe UI',Roboto,sans-serif; }
+  a { color:var(--accent); }
+  nav { position:sticky; top:0; z-index:50; background:rgba(10,14,20,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+  nav .in { max-width:1100px; margin:0 auto; padding:12px 24px; display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  nav a { color:var(--muted); text-decoration:none; font-size:.92rem; }
+  nav a:hover { color:var(--accent); }
+  nav .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--fg); text-decoration:none; }
+  nav .brand b { color:var(--accent); }
+  .africa { width:30px; height:30px; }
+  .nav-logo { width:26px; height:26px; flex-shrink:0; display:block; }
+  .hero-logo { width:64px; height:64px; }
+  header.hero { max-width:1100px; margin:0 auto; padding:56px 24px 40px; }
+  .eyebrow { color:var(--accent2); text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; font-weight:700; }
+  h1 { font-size:2.6rem; line-height:1.12; letter-spacing:-.02em; margin:14px 0 18px; }
+  h1 b { color:var(--accent); }
+  .hero p.lead { color:#c3cedb; max-width:780px; font-size:1.08rem; }
+  .stats { display:flex; gap:32px; margin-top:32px; flex-wrap:wrap; }
+  .stat { border-left:3px solid var(--accent); padding-left:14px; }
+  .stat b { font-size:1.7rem; display:block; }
+  .stat span { color:var(--muted); font-size:.85rem; }
+  section { max-width:1100px; margin:0 auto; padding:44px 24px; }
+  section > h2 { font-size:1.7rem; margin-bottom:8px; letter-spacing:-.01em; }
+  section > p.sectsub { color:var(--muted); margin-bottom:28px; max-width:720px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(480px,1fr)); gap:20px; }
+  @media (max-width:560px) { .grid { grid-template-columns:1fr; } }
+  /* platform search */
+  .searchwrap { position:relative; margin:0 0 26px; max-width:560px; }
+  .searchwrap input { width:100%; background:#0c1420; border:1px solid var(--border); border-radius:12px; padding:14px 90px 14px 44px; color:var(--fg); font-size:1rem; }
+  .searchwrap input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(45,212,167,.12); }
+  .searchwrap input::placeholder { color:#5c6b7a; }
+  .searchwrap .mag { position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+  .searchwrap .count { position:absolute; right:48px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:.82rem; }
+  .searchwrap .clear { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--muted); cursor:pointer; font-size:1rem; display:none; padding:4px 6px; line-height:1; }
+  .searchwrap .clear:hover { color:var(--accent); }
+  .nohits { display:none; color:var(--muted); padding:26px 0; font-size:.95rem; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; display:flex; flex-direction:column; }
+  .card.small { padding:20px; }
+  .card h2 { font-size:1.22rem; margin-bottom:10px; letter-spacing:-.01em; }
+  .card h2 a { color:var(--fg); text-decoration:none; }
+  .card h2 a:hover { color:var(--accent); }
+  .card h3 { font-size:.75rem; text-transform:uppercase; letter-spacing:.09em; color:var(--accent); margin:18px 0 8px; }
+  .arch { color:var(--muted); font-size:.9rem; }
+  .overview { margin-top:10px; }
+  .problem { color:#c8d3dd; }
+  .card ul { padding-left:20px; color:#c8d3dd; }
+  .card li { margin:3px 0; }
+  .repos { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; }
+  .repos h3 { width:100%; margin:0 0 2px; }
+  .repo { display:inline-flex; gap:6px; align-items:center; background:#0c1420; border:1px solid var(--border); border-radius:999px; padding:4px 12px; font-size:.8rem; color:var(--fg); text-decoration:none; }
+  .repo:hover { border-color:var(--accent); }
+  .repo .lang { color:var(--muted); font-size:.7rem; }
+  .cardlink { margin-top:auto; padding-top:18px; }
+  .cardlink a { display:inline-block; background:var(--accent); color:#06251c; font-weight:700; text-decoration:none; border-radius:10px; padding:10px 20px; font-size:.9rem; }
+  .cardlink a:hover { filter:brightness(1.1); }
+  .devbadge { margin-top:14px; font-size:.78rem; color:var(--accent2); border-top:1px dashed var(--border); padding-top:10px; }
+  .videos { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:20px; }
+  .video-card { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+  .video-card .ph { aspect-ratio:16/9; background:linear-gradient(135deg,#0e1826,#13202f); display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.9rem; text-align:center; padding:20px; }
+  .video-card .body { padding:16px 18px; }
+  .video-card h3 { font-size:1rem; margin-bottom:6px; }
+  .video-card p { color:var(--muted); font-size:.88rem; }
+  .video-frame { position:relative; padding-top:56.25%; background:#0e1826; border-radius:14px; overflow:hidden; border:1px solid var(--border); }
+  .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-frame .no-video { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.95rem; text-align:center; padding:24px; }
+  .reg { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:32px; max-width:640px; }
+  .reg label { display:block; font-size:.85rem; color:var(--muted); margin:14px 0 6px; }
+  .reg input { width:100%; background:#0c1420; border:1px solid var(--border); border-radius:10px; padding:12px 14px; color:var(--fg); font-size:1rem; }
+  .reg input:focus { outline:none; border-color:var(--accent); }
+  .reg button { margin-top:20px; background:var(--accent); color:#06251c; font-weight:700; border:none; border-radius:10px; padding:13px 26px; font-size:1rem; cursor:pointer; }
+  .reg button:hover { filter:brightness(1.1); }
+  .reg .msg { margin-top:14px; font-size:.92rem; min-height:1.4em; }
+  .reg .msg.ok { color:var(--accent); }
+  .reg .msg.err { color:#f87171; }
+  .dl-note { color:var(--muted); font-size:.85rem; margin-top:10px; }
+  /* detail page */
+  .detail { max-width:900px; margin:0 auto; padding:40px 24px 60px; }
+  .detail h1 { font-size:2.2rem; margin:10px 0 16px; }
+  .detail .meta { color:var(--muted); font-size:.92rem; margin-bottom:24px; }
+  .detail section { padding:20px 0; max-width:none; }
+  .detail h2 { font-size:1.25rem; color:var(--accent); margin:26px 0 10px; letter-spacing:0; }
+  .detail p { margin:8px 0; }
+  .detail ul { padding-left:22px; margin:8px 0; }
+  .detail li { margin:5px 0; }
+  ol.steps { counter-reset:step; list-style:none; padding:0; }
+  ol.steps li { position:relative; padding:14px 0 14px 56px; border-bottom:1px dashed var(--border); }
+  ol.steps li:before { counter-increment:step; content:counter(step); position:absolute; left:0; top:12px; width:36px; height:36px; border-radius:50%; background:#0c1420; border:2px solid var(--accent); color:var(--accent); display:flex; align-items:center; justify-content:center; font-weight:800; }
+  .repos-list { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .repos-list a { display:flex; justify-content:space-between; align-items:center; background:#0c1420; border:1px solid var(--border); border-radius:10px; padding:10px 16px; text-decoration:none; color:var(--fg); font-size:.92rem; }
+  .repos-list a:hover { border-color:var(--accent); }
+  .repos-list .lang { color:var(--muted); font-size:.75rem; }
+  .crumbs { font-size:.85rem; color:var(--muted); }
+  .crumbs a { color:var(--muted); text-decoration:none; }
+  .crumbs a:hover { color:var(--accent); }
+  footer { border-top:1px solid var(--border); margin-top:40px; }
+  footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
+</style></head>
+<body>
+<nav><div class="in">
+  <a class="brand" href="/index.html"><svg viewBox="0 0 200 200" class="africa nav-logo" role="img" aria-label="Africa">
+  <circle cx="100" cy="100" r="94" fill="none" stroke="#2dd4a7" stroke-width="4"/>
+  <g transform="translate(100,100) scale(0.66) translate(-102,-100)">
+    <path fill="#2dd4a7" d="M58 42C68 35 80 32 92 32C106 32 120 35 130 41C135 44 137 47 138 51C140 58 141 66 142 74C152 70 162 70 168 74C172 77 172 82 168 86C162 91 154 94 148 97C143 100 140 106 138 113C135 122 133 130 130 138C127 146 123 153 117 159C112 164 106 167 102 164C98 161 96 155 94 149C91 141 88 134 84 128C80 121 76 116 72 113C70 111 69 109 70 107C74 105 80 106 84 105C86 105 87 104 86 102C78 100 68 99 58 98C50 97 44 95 40 91C35 86 33 79 34 72C35 66 38 61 42 55C46 49 52 45 58 42Z"/>
+    <path fill="#2dd4a7" d="M146 120C150 116 154 120 152 130C150 140 146 146 144 142C142 136 143 124 146 120Z"/>
+  </g>
+</svg><span><b>54</b>link</span></a>
+  <a href="/index.html#platforms">Platforms</a>
+  <a href="/index.html#dev">Dev Environments</a>
+  <a href="/index.html#videos">Video Demos</a>
+  <a href="/index.html#register">Get the Brochure</a>
+</div></nav>
+<header class="hero">
+  <svg viewBox="0 0 200 200" class="africa hero-logo" role="img" aria-label="Africa">
+  <circle cx="100" cy="100" r="94" fill="none" stroke="#2dd4a7" stroke-width="4"/>
+  <g transform="translate(100,100) scale(0.66) translate(-102,-100)">
+    <path fill="#2dd4a7" d="M58 42C68 35 80 32 92 32C106 32 120 35 130 41C135 44 137 47 138 51C140 58 141 66 142 74C152 70 162 70 168 74C172 77 172 82 168 86C162 91 154 94 148 97C143 100 140 106 138 113C135 122 133 130 130 138C127 146 123 153 117 159C112 164 106 167 102 164C98 161 96 155 94 149C91 141 88 134 84 128C80 121 76 116 72 113C70 111 69 109 70 107C74 105 80 106 84 105C86 105 87 104 86 102C78 100 68 99 58 98C50 97 44 95 40 91C35 86 33 79 34 72C35 66 38 61 42 55C46 49 52 45 58 42Z"/>
+    <path fill="#2dd4a7" d="M146 120C150 116 154 120 152 130C150 140 146 146 144 142C142 136 143 124 146 120Z"/>
+  </g>
+</svg>
+  <p class="eyebrow" style="margin-top:18px">Work for work · Across Africa · Nigeria first</p>
+  <h1><b>54link</b> compiles, deploys, and showcases Africa's operational platforms.</h1>
+  <p class="lead">54link is a technology company that brings together a compiled portfolio of production-grade platforms — tax, trade, maritime, health, payments, energy, governance — built for African markets. Every platform is deployed in a live dev environment, documented in full, and demonstrated on video. Nigeria is the first use case; the blueprint scales across all 54.</p>
+  <div class="stats">
+    <div class="stat"><b>67</b><span>repositories compiled</span></div>
+    <div class="stat"><b>35</b><span>platforms documented</span></div>
+    <div class="stat"><b>1 → 54</b><span>Nigeria first, then the continent</span></div>
+  </div>
+</header>
+
+<section id="platforms">
+  <h2>The compiled portfolio</h2>
+  <p class="sectsub">Every platform in the 54link portfolio. Search by name, sector, technology or capability — then click any platform for its full detail page with the demo video.</p>
+  <div class="searchwrap">
+    <span class="mag" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></span>
+    <input id="psearch" type="search" placeholder="Search platforms — tax, maritime, health, payments…" autocomplete="off" aria-label="Search platforms">
+    <span class="count" id="pcount"></span>
+    <button class="clear" id="pclear" type="button" aria-label="Clear search">✕</button>
+  </div>
+  <div class="grid" id="platformgrid">
+    <article class="card" data-search="ndsep — national data sovereignty enforcement platform typescript · full-stack, regulator-grade platform (ndpc-facing) nigeria&#x27;s regulatory-grade platform for data protection compliance, breach management, and sector oversight under the nigeria data protection act 2023. built for the nigeria data protection commission (ndpc). includes real-time compliance dashboards cutting across finance, health, and education sectors, plus healthpoint for healthcare-institution data security using machine learning. nigeria&#x27;s ndpa 2023 created obligations but no unified enforcement tooling — ndsep gives the regulator a single platform to register, monitor, and enforce data-protection compliance nationwide. compliance management under ndpa 2023 breach management and reporting pipelines sector oversight with real-time dashboards (finance, health, education) ml-driven data security for healthcare (healthpoint) ndsep ngapp">
+      <h2><a href="/platforms/ndsep--ngapp.html">NDSEP — National Data Sovereignty Enforcement Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript · full-stack, regulator-grade platform (NDPC-facing)</p>
+      <p class="overview">Nigeria&#x27;s regulatory-grade platform for data protection compliance, breach management, and sector oversight under the Nigeria Data Protection Act 2023. Built for the Nigeria Data Protection Commission (NDPC). Includes real-time compliance dashboards cutting across finance, health, and education sectors, plus Healthpoint for healthcare-institution data security using machine learning.</p>
+      <h3>Key features</h3><ul><li>Compliance management under NDPA 2023</li><li>Breach management and reporting pipelines</li><li>Sector oversight with real-time dashboards (finance, health, education)</li><li>ML-driven data security for healthcare (Healthpoint)</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigeria&#x27;s NDPA 2023 created obligations but no unified enforcement tooling — NDSEP gives the regulator a single platform to register, monitor, and enforce data-protection compliance nationwide.</p>
+      <div class="repos"><h3>Repositories (2)</h3><a class="repo" href="https://github.com/munisp/ndsep" target="_blank" rel="noopener">ndsep<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/NGApp" target="_blank" rel="noopener">NGApp<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/ndsep--ngapp.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="meridian taxtech — nigerian nrs unified tax platform go + python · monorepo core, microservice planes, signed yaml rule packs, tigerbeetle ledger the unified tax platform for nigeria&#x27;s nigeria revenue service (nrs): a shared platform core (middleware spine, rule-pack registry, tin graph, feature store, tigerbeetle ledger services), a compliance plane (e-invoicing t1/t2/t3, pos-vat t6, wht t7, tp/cbcr t8, etr t9, carf/vasp t10), a sovereign gov enclave (nrs analytics t4, jrb harmonisation t11, institutional case management t13, customs rails t15), and an inclusion plane (informal-sector onboarding t5, presumptive tax t12, taxpayer education t14 with agent app, ussd and white-labeling). nigerian tax administration is fragmented across legacy systems and excludes the informal economy — meridian unifies compliance, sovereignty, and inclusion into one platform the nrs can operate. e-invoicing and mbs pre-clearance rev360 reconciliation workbench sovereignty boundary — gov enclave deployed separately signed versioned rule packs (rp-*) for vat baskets, presumptive bands, etr formulas ussd + agent app for informal-sector inclusion meridian-core-platform meridian-compliance-suite meridian-gov-enclave meridian-inclusion-suite meridian-rule-packs">
+      <h2><a href="/platforms/meridian-taxtech.html">Meridian TaxTech — Nigerian NRS Unified Tax Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go + Python · monorepo core, microservice planes, signed YAML rule packs, TigerBeetle ledger</p>
+      <p class="overview">The unified tax platform for Nigeria&#x27;s Nigeria Revenue Service (NRS): a shared platform core (middleware spine, rule-pack registry, TIN graph, feature store, TigerBeetle ledger services), a compliance plane (e-invoicing T1/T2/T3, POS-VAT T6, WHT T7, TP/CbCR T8, ETR T9, CARF/VASP T10), a sovereign gov enclave (NRS analytics T4, JRB harmonisation T11, institutional case management T13, customs rails T15), and an inclusion plane (informal-sector onboarding T5, presumptive tax T12, taxpayer education T14 with agent app, USSD and white-labeling).</p>
+      <h3>Key features</h3><ul><li>E-invoicing and MBS pre-clearance</li><li>Rev360 reconciliation workbench</li><li>Sovereignty boundary — gov enclave deployed separately</li><li>Signed versioned rule packs (rp-*) for VAT baskets, presumptive bands, ETR formulas</li><li>…and 1 more — see the platform page</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigerian tax administration is fragmented across legacy systems and excludes the informal economy — Meridian unifies compliance, sovereignty, and inclusion into one platform the NRS can operate.</p>
+      <div class="repos"><h3>Repositories (5)</h3><a class="repo" href="https://github.com/munisp/meridian-core-platform" target="_blank" rel="noopener">meridian-core-platform<span class="lang">Go</span></a><a class="repo" href="https://github.com/munisp/meridian-compliance-suite" target="_blank" rel="noopener">meridian-compliance-suite<span class="lang">Go</span></a><a class="repo" href="https://github.com/munisp/meridian-gov-enclave" target="_blank" rel="noopener">meridian-gov-enclave<span class="lang">Python</span></a><a class="repo" href="https://github.com/munisp/meridian-inclusion-suite" target="_blank" rel="noopener">meridian-inclusion-suite<span class="lang">Go</span></a><a class="repo" href="https://github.com/munisp/meridian-rule-packs" target="_blank" rel="noopener">meridian-rule-packs<span class="lang">Python</span></a></div>
+      <div class="cardlink"><a href="/platforms/meridian-taxtech.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="blue economy platform — nigerian maritime ppp go, python, rust, typescript · delta lake lakehouse, tigerbeetle ledger, mojaloop fspiop, keycloak, kafka, hybrid kubernetes gitops, yolox onnx computer vision the ministry&#x27;s unified blue economy platform — a ppp spanning npa, nimasa, niwa, fmmbe and cbn. 24 repositories cover the full stack: governance and adrs, sovereign vessel tracking (ais/gt06 ingestion, postgis hot path), immutable maritime evidence with transactional outbox, marine insurance (deterministic rating, maker-checker bind/claims), ferry e-ticketing with nimasa passenger manifests, fisheries traceability with cold-chain iot, port-call and ecallup 2.0 truck booking, excise tax stamps, waterway-safety telemetry in rust, cv vessel detection, a governed lakehouse, and tradenet-style agency sandboxes (ncs b&#x27;odogwu, cbn tms, nepc, nis, port health, npa e-sen). nigeria&#x27;s maritime domain runs on paper and siloed agency systems — the platform digitises trade, safety, insurance, and compliance across every agency on one sovereign, auditable foundation. sovereign multi-tier vessel tracking hot path immutable maritime evidence + kafka outbox deterministic marine insurance engine with vc 2.0 policies cvff loan applications via beneficiary portal fish/aquaculture traceability from catch to export cryptographically signed telemetry devices hybrid k8s gitops with policy-as-code blueeconomy blueeconomy-administration-service blueeconomy-agency-sandbox blueeconomy-beneficiary-portal blueeconomy-contracts blueeconomy-credential-verification blueeconomy-cv-service blueeconomy-data-platform blueeconomy-developer-platform blueeconomy-ferry-ticketing blueeconomy-financial-controls blueeconomy-fisheries-traceability blueeconomy-geo-service blueeconomy-insurance blueeconomy-maritime-evidence blueeconomy-maritime-intelligence blueeconomy-ministry-portal blueeconomy-ml-stack blueeconomy-platform-gitops blueeconomy-port-interoperability blueeconomy-security-operations blueeconomy-tax-stamps blueeconomy-traceability blueeconomy-waterway-safety">
+      <h2><a href="/platforms/blue-economy-platform.html">Blue Economy Platform — Nigerian Maritime PPP</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go, Python, Rust, TypeScript · Delta Lake lakehouse, TigerBeetle ledger, Mojaloop FSPIOP, Keycloak, Kafka, hybrid Kubernetes GitOps, YOLOX ONNX computer vision</p>
+      <p class="overview">The Ministry&#x27;s Unified Blue Economy Platform — a PPP spanning NPA, NIMASA, NIWA, FMMBE and CBN. 24 repositories cover the full stack: governance and ADRs, sovereign vessel tracking (AIS/GT06 ingestion, PostGIS hot path), immutable maritime evidence with transactional outbox, marine insurance (deterministic rating, maker-checker bind/claims), ferry e-ticketing with NIMASA passenger manifests, fisheries traceability with cold-chain IoT, port-call and eCallUp 2.0 truck booking, excise tax stamps, waterway-safety telemetry in Rust, CV vessel detection, a governed lakehouse, and TradeNet-style agency sandboxes (NCS B&#x27;Odogwu, CBN TMS, NEPC, NIS, Port Health, NPA e-SEN).</p>
+      <h3>Key features</h3><ul><li>Sovereign multi-tier vessel tracking hot path</li><li>Immutable maritime evidence + Kafka outbox</li><li>Deterministic marine insurance engine with VC 2.0 policies</li><li>CVFF loan applications via beneficiary portal</li><li>…and 3 more — see the platform page</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigeria&#x27;s maritime domain runs on paper and siloed agency systems — the platform digitises trade, safety, insurance, and compliance across every agency on one sovereign, auditable foundation.</p>
+      <div class="repos"><h3>Repositories (24)</h3><a class="repo" href="https://github.com/munisp/blueeconomy" target="_blank" rel="noopener">blueeconomy<span class="lang">Shell</span></a><a class="repo" href="https://github.com/munisp/blueeconomy-administration-service" target="_blank" rel="noopener">blueeconomy-administration-service<span class="lang">Go</span></a><a class="repo" href="https://github.com/munisp/blueeconomy-agency-sandbox" target="_blank" rel="noopener">blueeconomy-agency-sandbox<span class="lang">Go</span></a><a class="repo" href="https://github.com/munisp/blueeconomy-beneficiary-portal" target="_blank" rel="noopener">blueeconomy-beneficiary-portal<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/blueeconomy-contracts" target="_blank" rel="noopener">blueeconomy-contracts<span class="lang">Python</span></a><a class="repo" href="https://github.com/munisp/blueeconomy-credential-verification" target="_blank" rel="noopener">blueeconomy-credential-verification<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/blue-economy-platform.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="umojaflowos — cross-border b2b payment orchestration typescript · enterprise control plane an enterprise control plane for africa-linked cross-border b2b payment orchestration across nigeria (ngn), kenya (kes), and south africa (zar). it coordinates regulated counterparties rather than replacing them. cross-border b2b payments in africa are slow, opaque, and compliance-heavy — umojaflowos orchestrates the regulated players instead of bypassing them, making corridors reliable. multi-currency corridors: ngn, kes, zar regulated-counterparty coordination model enterprise-grade orchestration layer umojaflowos">
+      <h2><a href="/platforms/umojaflowos.html">UmojaFlowOS — Cross-Border B2B Payment Orchestration</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript · enterprise control plane</p>
+      <p class="overview">An enterprise control plane for Africa-linked cross-border B2B payment orchestration across Nigeria (NGN), Kenya (KES), and South Africa (ZAR). It coordinates regulated counterparties rather than replacing them.</p>
+      <h3>Key features</h3><ul><li>Multi-currency corridors: NGN, KES, ZAR</li><li>Regulated-counterparty coordination model</li><li>Enterprise-grade orchestration layer</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Cross-border B2B payments in Africa are slow, opaque, and compliance-heavy — UmojaFlowOS orchestrates the regulated players instead of bypassing them, making corridors reliable.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/UmojaFlowOS" target="_blank" rel="noopener">UmojaFlowOS<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/umojaflowos.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="agricplatform — nigeria farmer platform next.js role-aware pwa · nestjs services · angular underpinnings · open-meteo api unified implementation of the nigeria farmer platform prd v3.3 for nyfn: a role-aware progressive web app for farmers with field data collection and location-based weather forecasting via the open-source open-meteo api. nigerian farmers lack structured digital tooling for data, advisory, and market access — this platform gives extension programs a single role-aware surface. role-aware pwa (farmer/agent/admin views) field data collection open-meteo weather forecasts by location nestjs application layer agricplatform farmer-data-collection">
+      <h2><a href="/platforms/agricplatform.html">AgricPlatform — Nigeria Farmer Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Next.js role-aware PWA · NestJS services · Angular underpinnings · Open-Meteo API</p>
+      <p class="overview">Unified implementation of the Nigeria Farmer Platform PRD v3.3 for NYFN: a role-aware progressive web app for farmers with field data collection and location-based weather forecasting via the open-source Open-Meteo API.</p>
+      <h3>Key features</h3><ul><li>Role-aware PWA (farmer/agent/admin views)</li><li>Field data collection</li><li>Open-Meteo weather forecasts by location</li><li>NestJS application layer</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigerian farmers lack structured digital tooling for data, advisory, and market access — this platform gives extension programs a single role-aware surface.</p>
+      <div class="repos"><h3>Repositories (2)</h3><a class="repo" href="https://github.com/munisp/AgricPlatform" target="_blank" rel="noopener">AgricPlatform<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/farmer-data-collection" target="_blank" rel="noopener">farmer-data-collection<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/agricplatform.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="nexcomm — african agricultural commodity exchange react 19 + typescript + trpc + postgresql · 20 microservices · flutter + react native mobile · ussd/whatsapp/telegram channels a full-stack, production-ready commodity exchange platform for african agricultural markets. a matching engine and settlement engine ensure the accuracy and integrity of the markets shown to users, with whatsapp, telegram, and ussd as communication and access channels. african agricultural markets are informal and price-opaque — nexcomm gives them a real exchange with engineered settlement guarantees and channels farmers actually use. matching engine + settlement engine 20-microservice architecture ussd / whatsapp / telegram access flutter + react native mobile apps nexcomm">
+      <h2><a href="/platforms/nexcomm-exchange.html">Nexcomm — African Agricultural Commodity Exchange</a></h2>
+      <p class="arch"><strong>Architecture:</strong> React 19 + TypeScript + tRPC + PostgreSQL · 20 microservices · Flutter + React Native mobile · USSD/WhatsApp/Telegram channels</p>
+      <p class="overview">A full-stack, production-ready commodity exchange platform for African agricultural markets. A matching engine and settlement engine ensure the accuracy and integrity of the markets shown to users, with WhatsApp, Telegram, and USSD as communication and access channels.</p>
+      <h3>Key features</h3><ul><li>Matching engine + settlement engine</li><li>20-microservice architecture</li><li>USSD / WhatsApp / Telegram access</li><li>Flutter + React Native mobile apps</li></ul>
+      <h3>Problem it solves</h3><p class="problem">African agricultural markets are informal and price-opaque — Nexcomm gives them a real exchange with engineered settlement guarantees and channels farmers actually use.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/nexcomm" target="_blank" rel="noopener">nexcomm<span class="lang">Makefile</span></a></div>
+      <div class="cardlink"><a href="/platforms/nexcomm-exchange.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="bis — compliance intelligence platform full-stack · compliance intelligence for aml/cft a production-ready compliance intelligence platform for nigerian financial institutions and law-enforcement agencies, built for aml/cft operations. nigerian institutions must fight financial crime with fragmented tooling — bis consolidates compliance intelligence into one operational platform. aml/cft workflows for fis and law enforcement intelligence gathering and case management production-ready full-stack implementation bis">
+      <h2><a href="/platforms/bis.html">BIS — Compliance Intelligence Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Full-stack · compliance intelligence for AML/CFT</p>
+      <p class="overview">A production-ready compliance intelligence platform for Nigerian financial institutions and law-enforcement agencies, built for AML/CFT operations.</p>
+      <h3>Key features</h3><ul><li>AML/CFT workflows for FIs and law enforcement</li><li>Intelligence gathering and case management</li><li>Production-ready full-stack implementation</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigerian institutions must fight financial crime with fragmented tooling — BIS consolidates compliance intelligence into one operational platform.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/bis" target="_blank" rel="noopener">bis<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/bis.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="unified sos — subnational digital governance &amp; revenue python · multi-tenant infrastructure nigeria&#x27;s first unified, multi-tenant digital governance and automated revenue infrastructure for subnational governments — one common operating core, six pilot states, and thirty ranked technology-ppp opportunities. each nigerian state rebuilds the same digital-governance stack from scratch — unified sos lets them share one hardened core and focus on revenue outcomes. multi-tenant state deployments from one core automated revenue infrastructure ranked technology-ppp opportunity pipeline unified-sos">
+      <h2><a href="/platforms/unified-sos.html">Unified SOS — Subnational Digital Governance &amp; Revenue</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Python · multi-tenant infrastructure</p>
+      <p class="overview">Nigeria&#x27;s first unified, multi-tenant digital governance and automated revenue infrastructure for subnational governments — one common operating core, six pilot states, and thirty ranked Technology-PPP opportunities.</p>
+      <h3>Key features</h3><ul><li>Multi-tenant state deployments from one core</li><li>Automated revenue infrastructure</li><li>Ranked Technology-PPP opportunity pipeline</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Each Nigerian state rebuilds the same digital-governance stack from scratch — Unified SOS lets them share one hardened core and focus on revenue outcomes.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/unified-sos" target="_blank" rel="noopener">unified-sos<span class="lang">Python</span></a></div>
+      <div class="cardlink"><a href="/platforms/unified-sos.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="vpp — open source virtual power plant platform typescript · mit-licensed, device-protocol-native an open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity. distributed energy assets (solar, batteries, evs) sit idle and uncoordinated — vpp aggregates them into a dispatchable, tradable power plant. der registration and forecasting native device-protocol control energy trading on aggregated capacity vpp">
+      <h2><a href="/platforms/vpp.html">VPP — Open Source Virtual Power Plant Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript · MIT-licensed, device-protocol-native</p>
+      <p class="overview">An open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity.</p>
+      <h3>Key features</h3><ul><li>DER registration and forecasting</li><li>Native device-protocol control</li><li>Energy trading on aggregated capacity</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Distributed energy assets (solar, batteries, EVs) sit idle and uncoordinated — VPP aggregates them into a dispatchable, tradable power plant.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/vpp" target="_blank" rel="noopener">vpp<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/vpp.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="fraudfusion — multi-service fraud prevention go, python, rust, typescript, react native · prometheus + alertmanager, signed hmac release-gate metrics a multi-service fraud prevention platform spanning five language stacks, with prometheus and alertmanager observability and a signed hmac release-gate metric producer for trustworthy operational metrics. payment platforms in emerging markets face layered fraud — fraudfusion provides a modular detection stack that scales across services. polyglot microservices (go/python/rust/ts/react native) prometheus + alertmanager monitoring signed hmac release-gate metrics fraudfusion">
+      <h2><a href="/platforms/fraudfusion.html">FraudFusion — Multi-Service Fraud Prevention</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go, Python, Rust, TypeScript, React Native · Prometheus + Alertmanager, signed HMAC release-gate metrics</p>
+      <p class="overview">A multi-service fraud prevention platform spanning five language stacks, with Prometheus and Alertmanager observability and a signed HMAC release-gate metric producer for trustworthy operational metrics.</p>
+      <h3>Key features</h3><ul><li>Polyglot microservices (Go/Python/Rust/TS/React Native)</li><li>Prometheus + Alertmanager monitoring</li><li>Signed HMAC release-gate metrics</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Payment platforms in emerging markets face layered fraud — FraudFusion provides a modular detection stack that scales across services.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/fraudfusion" target="_blank" rel="noopener">fraudfusion<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/fraudfusion.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="healthlink — healthcare data linkage polyglot · governance-first reference implementation a runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an hcup nrd pilot specification. health records for the same patient live in disconnected systems — healthlink links them safely under explicit governance rules. governance-first patient-record linkage service contracts and pilot specification included runnable reference implementation datalinkage">
+      <h2><a href="/platforms/healthlink--datalinkage.html">HealthLink — Healthcare Data Linkage</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Polyglot · governance-first reference implementation</p>
+      <p class="overview">A runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an HCUP NRD pilot specification.</p>
+      <h3>Key features</h3><ul><li>Governance-first patient-record linkage</li><li>Service contracts and pilot specification included</li><li>Runnable reference implementation</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Health records for the same patient live in disconnected systems — HealthLink links them safely under explicit governance rules.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/datalinkage" target="_blank" rel="noopener">datalinkage<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/healthlink--datalinkage.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="crush — healthcare fraud, waste &amp; abuse operations go · kubernetes-native an open-source, kubernetes-native platform foundation for defensible healthcare fraud, waste, abuse, and coding-integrity operations, implementing a safe executable vertical slice from canonical specifications. healthcare fraud investigations fail on defensibility — crush provides an auditable, reproducible operations foundation. k8s-native fw&amp;a operations defensible audit trail focus canonical-spec vertical slice cmscrush">
+      <h2><a href="/platforms/crush-cmscrush.html">CRUSH — Healthcare Fraud, Waste &amp; Abuse Operations</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go · Kubernetes-native</p>
+      <p class="overview">An open-source, Kubernetes-native platform foundation for defensible healthcare fraud, waste, abuse, and coding-integrity operations, implementing a safe executable vertical slice from canonical specifications.</p>
+      <h3>Key features</h3><ul><li>K8s-native FW&amp;A operations</li><li>Defensible audit trail focus</li><li>Canonical-spec vertical slice</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Healthcare fraud investigations fail on defensibility — CRUSH provides an auditable, reproducible operations foundation.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/cmscrush" target="_blank" rel="noopener">cmscrush<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/crush-cmscrush.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="h2fleet — hydrogen bus fleet platform go · 20 capability modules in 4 domains one platform for a city&#x27;s fleet of 50 hydrogen buses. instead of building 20 separate apps, h2fleet implements 20 capability modules in 4 domains on a single platform. hydrogen transit fleets need refuelling, maintenance, and operations software that vendors sell as 20 disconnected apps — h2fleet unifies them. 20 modular capabilities, 4 domains single platform for a 50-bus fleet domain-driven module boundaries hydrogentransport">
+      <h2><a href="/platforms/hydrogen-transport-h2fleet.html">H2Fleet — Hydrogen Bus Fleet Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go · 20 capability modules in 4 domains</p>
+      <p class="overview">One platform for a city&#x27;s fleet of 50 hydrogen buses. Instead of building 20 separate apps, H2Fleet implements 20 capability modules in 4 domains on a single platform.</p>
+      <h3>Key features</h3><ul><li>20 modular capabilities, 4 domains</li><li>Single platform for a 50-bus fleet</li><li>Domain-driven module boundaries</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Hydrogen transit fleets need refuelling, maintenance, and operations software that vendors sell as 20 disconnected apps — H2Fleet unifies them.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/hydrogenTransport" target="_blank" rel="noopener">hydrogenTransport<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/hydrogen-transport-h2fleet.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="inec — election management system full-stack · production-grade, under active development a production-grade, full-stack election management system built for nigeria&#x27;s electoral infrastructure; some components are production-ready while others are in progress. election administration in nigeria needs transparent, auditable technology — this system targets that operational core. full election lifecycle management built for nigerian electoral infrastructure production-grade engineering standards inec">
+      <h2><a href="/platforms/inec-election-platform.html">INEC — Election Management System</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Full-stack · production-grade, under active development</p>
+      <p class="overview">A production-grade, full-stack election management system built for Nigeria&#x27;s electoral infrastructure; some components are production-ready while others are in progress.</p>
+      <h3>Key features</h3><ul><li>Full election lifecycle management</li><li>Built for Nigerian electoral infrastructure</li><li>Production-grade engineering standards</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Election administration in Nigeria needs transparent, auditable technology — this system targets that operational core.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/inec" target="_blank" rel="noopener">inec<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/inec-election-platform.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="mineralvision — mineral exploration &amp; compliance python · satellite analytics the premiere platform for mineral exploration, discovery, and compliance — unifying the full exploration lifecycle from satellite anomaly detection through compliance. mineral exploration is data-rich but tool-poor — mineralvision consolidates discovery signals and compliance into one platform. satellite anomaly detection full exploration lifecycle coverage compliance workflow integration mineralvision">
+      <h2><a href="/platforms/mineralvision.html">MineralVision — Mineral Exploration &amp; Compliance</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Python · satellite analytics</p>
+      <p class="overview">The premiere platform for mineral exploration, discovery, and compliance — unifying the full exploration lifecycle from satellite anomaly detection through compliance.</p>
+      <h3>Key features</h3><ul><li>Satellite anomaly detection</li><li>Full exploration lifecycle coverage</li><li>Compliance workflow integration</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Mineral exploration is data-rich but tool-poor — MineralVision consolidates discovery signals and compliance into one platform.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/mineralvision" target="_blank" rel="noopener">mineralvision<span class="lang">Python</span></a></div>
+      <div class="cardlink"><a href="/platforms/mineralvision.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="nextgen insr — nigerian insurance technology platform typescript · production-grade full value chain a comprehensive, production-grade insurtech platform for the nigerian market covering the full insurance value chain: policy administration, claims adjudication, agent network management, and kyc/aml compliance. nigerian insurers run fragmented legacy systems — nextgen insr provides one modern platform for the entire value chain. policy administration claims adjudication agent network management kyc/aml compliance nextgen-insr nextgeninsr">
+      <h2><a href="/platforms/nextgen-insr.html">NextGen INSR — Nigerian Insurance Technology Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript · production-grade full value chain</p>
+      <p class="overview">A comprehensive, production-grade insurtech platform for the Nigerian market covering the full insurance value chain: policy administration, claims adjudication, agent network management, and KYC/AML compliance.</p>
+      <h3>Key features</h3><ul><li>Policy administration</li><li>Claims adjudication</li><li>Agent network management</li><li>KYC/AML compliance</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Nigerian insurers run fragmented legacy systems — NextGen INSR provides one modern platform for the entire value chain.</p>
+      <div class="repos"><h3>Repositories (2)</h3><a class="repo" href="https://github.com/munisp/nextgen-insr" target="_blank" rel="noopener">nextgen-insr<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/nextgeninsr" target="_blank" rel="noopener">nextgeninsr<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/nextgen-insr.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="payment switch onboarding platform typescript + go · onboarding portal for payment networks a comprehensive onboarding platform for integrating financial institutions, payment service providers, merchants, and businesses into a payment switch network. the portal guides participants through the entire integration process. payment switch onboarding is manual and slow — this portal standardises and accelerates participant integration. participant onboarding (fis, psps, merchants) payment switch network integration crm-as-a-service back office paygate paymentswitch crmaas">
+      <h2><a href="/platforms/paygate--paymentswitch--crmaas.html">Payment Switch Onboarding Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript + Go · onboarding portal for payment networks</p>
+      <p class="overview">A comprehensive onboarding platform for integrating financial institutions, payment service providers, merchants, and businesses into a payment switch network. The portal guides participants through the entire integration process.</p>
+      <h3>Key features</h3><ul><li>Participant onboarding (FIs, PSPs, merchants)</li><li>Payment switch network integration</li><li>CRM-as-a-service back office</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Payment switch onboarding is manual and slow — this portal standardises and accelerates participant integration.</p>
+      <div class="repos"><h3>Repositories (3)</h3><a class="repo" href="https://github.com/munisp/paygate" target="_blank" rel="noopener">paygate<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/paymentswitch" target="_blank" rel="noopener">paymentswitch<span class="lang">TypeScript</span></a><a class="repo" href="https://github.com/munisp/crmaas" target="_blank" rel="noopener">crmaas<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/paygate--paymentswitch--crmaas.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="remitflow — cross-border remittance platform polyglot microservices + pwa · digitalocean kubernetes, apisix gateway, dapr sidecars, permify authorization a polyglot microservices backend for a cross-border remittance and banking platform with a pwa frontend, deployed on digitalocean kubernetes behind an apisix gateway, with dapr sidecars and permify for fine-grained authorization. remittance platforms need cheap, compliant, multi-corridor rails — remitflow provides the microservice backbone for that. apisix gateway + dapr sidecars permify fine-grained authorization pwa frontend kubernetes deployment remitflow">
+      <h2><a href="/platforms/remitflow.html">RemitFlow — Cross-Border Remittance Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Polyglot microservices + PWA · DigitalOcean Kubernetes, APISIX gateway, Dapr sidecars, Permify authorization</p>
+      <p class="overview">A polyglot microservices backend for a cross-border remittance and banking platform with a PWA frontend, deployed on DigitalOcean Kubernetes behind an APISIX gateway, with Dapr sidecars and Permify for fine-grained authorization.</p>
+      <h3>Key features</h3><ul><li>APISIX gateway + Dapr sidecars</li><li>Permify fine-grained authorization</li><li>PWA frontend</li><li>Kubernetes deployment</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Remittance platforms need cheap, compliant, multi-corridor rails — RemitFlow provides the microservice backbone for that.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/remitflow" target="_blank" rel="noopener">remitflow<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/remitflow.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="taxstamp — excise stamp issuance &amp; verification python · double-entry ledger, maker-checker workflow excise tax-stamp issuance, settlement, and field verification: order intake, maker-checker approval, exact-amount payment matching, double-entry posting, resumable serial issuance, and field verification tooling. excise stamp regimes leak revenue to counterfeits and poor accounting — taxstamp adds cryptographic-grade issuance and verification. maker-checker approvals exact-amount payment matching double-entry posting resumable serial issuance + field verification taxstamp">
+      <h2><a href="/platforms/taxstamp.html">TaxStamp — Excise Stamp Issuance &amp; Verification</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Python · double-entry ledger, maker-checker workflow</p>
+      <p class="overview">Excise tax-stamp issuance, settlement, and field verification: order intake, maker-checker approval, exact-amount payment matching, double-entry posting, resumable serial issuance, and field verification tooling.</p>
+      <h3>Key features</h3><ul><li>Maker-checker approvals</li><li>Exact-amount payment matching</li><li>Double-entry posting</li><li>Resumable serial issuance + field verification</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Excise stamp regimes leak revenue to counterfeits and poor accounting — TaxStamp adds cryptographic-grade issuance and verification.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/taxstamp" target="_blank" rel="noopener">taxstamp<span class="lang">Python</span></a></div>
+      <div class="cardlink"><a href="/platforms/taxstamp.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="tourismpay — multi-currency tourism payments full-stack pwa · multi-currency wallets, qr payments a full-stack tourism payment pwa for african markets with multi-currency wallets, qr payments, merchant onboarding, and compliance features. tourists in african markets face fragmented payments — tourismpay gives merchants one compliant, multi-currency acceptance surface. multi-currency wallets qr payments merchant onboarding compliance built in tourismpay">
+      <h2><a href="/platforms/tourismpay.html">TourismPay — Multi-Currency Tourism Payments</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Full-stack PWA · multi-currency wallets, QR payments</p>
+      <p class="overview">A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.</p>
+      <h3>Key features</h3><ul><li>Multi-currency wallets</li><li>QR payments</li><li>Merchant onboarding</li><li>Compliance built in</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/tourismpay" target="_blank" rel="noopener">tourismpay<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/tourismpay.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="lanai — luxury travel concierge platform react + vite · twenty crm backend · python/flask ai microservices a full-stack advisor portal and client-facing portal for lanai lifestyle, a luxury travel concierge company, with an ai-powered microservice suite on top of twenty crm. luxury concierge businesses juggle clients across chat and spreadsheets — lanai centralises advisory and client experience with ai assistance. advisor + client dual portal twenty crm integration python/flask ai microservices lanai">
+      <h2><a href="/platforms/lanai.html">Lanai — Luxury Travel Concierge Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> React + Vite · Twenty CRM backend · Python/Flask AI microservices</p>
+      <p class="overview">A full-stack advisor portal and client-facing portal for Lanai Lifestyle, a luxury travel concierge company, with an AI-powered microservice suite on top of Twenty CRM.</p>
+      <h3>Key features</h3><ul><li>Advisor + client dual portal</li><li>Twenty CRM integration</li><li>Python/Flask AI microservices</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Luxury concierge businesses juggle clients across chat and spreadsheets — Lanai centralises advisory and client experience with AI assistance.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/lanai" target="_blank" rel="noopener">lanai<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/lanai.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="agora — open-source ai receptionist saas go · multi-tenant · kafka event-driven a fully open-source, multi-tenant ai receptionist / front-desk saas: every appointment, call, and front-desk interaction is handled by ai agents with kafka-driven eventing (internal modules retain the opendesk identifier). small businesses lose bookings to missed calls — agora gives every business an always-on ai front desk. multi-tenant saas ai receptionist across calls and bookings kafka event architecture agora">
+      <h2><a href="/platforms/agora-opendesk.html">Agora — Open-Source AI Receptionist SaaS</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Go · multi-tenant · Kafka event-driven</p>
+      <p class="overview">A fully open-source, multi-tenant AI receptionist / front-desk SaaS: every appointment, call, and front-desk interaction is handled by AI agents with Kafka-driven eventing (internal modules retain the opendesk identifier).</p>
+      <h3>Key features</h3><ul><li>Multi-tenant SaaS</li><li>AI receptionist across calls and bookings</li><li>Kafka event architecture</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Small businesses lose bookings to missed calls — Agora gives every business an always-on AI front desk.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/agora" target="_blank" rel="noopener">agora<span class="lang">Go</span></a></div>
+      <div class="cardlink"><a href="/platforms/agora-opendesk.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="singlewindow — trade facilitation portal typescript a single-window trade facilitation portal, part of the newfire platform portfolio (updated recently; active development). traders submit the same data to multiple nigerian agencies — a single window collapses those touchpoints into one. single-window trade submissions portal-based agency interaction singlewindow">
+      <h2><a href="/platforms/singlewindow.html">Singlewindow — Trade Facilitation Portal</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">A single-window trade facilitation portal, part of the Newfire platform portfolio (updated recently; active development).</p>
+      <h3>Key features</h3><ul><li>Single-window trade submissions</li><li>Portal-based agency interaction</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Traders submit the same data to multiple Nigerian agencies — a single window collapses those touchpoints into one.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/singlewindow" target="_blank" rel="noopener">singlewindow<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/singlewindow.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="healthpoint — healthcare data security react + express + trpc · ml-assisted a platform for ensuring data security for healthcare institutions, utilizing machine-learning algorithms. built on a react + express + trpc stack with end-to-end typed contracts and wired oauth. healthcare institutions handle sensitive data with weak security tooling — healthpoint adds ml-backed protection. ml-driven security monitoring trpc end-to-end typed contracts oauth wired in healthpoint">
+      <h2><a href="/platforms/healthpoint.html">Healthpoint — Healthcare Data Security</a></h2>
+      <p class="arch"><strong>Architecture:</strong> React + Express + tRPC · ML-assisted</p>
+      <p class="overview">A platform for ensuring data security for healthcare institutions, utilizing machine-learning algorithms. Built on a React + Express + tRPC stack with end-to-end typed contracts and wired OAuth.</p>
+      <h3>Key features</h3><ul><li>ML-driven security monitoring</li><li>tRPC end-to-end typed contracts</li><li>OAuth wired in</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Healthcare institutions handle sensitive data with weak security tooling — Healthpoint adds ML-backed protection.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/healthpoint" target="_blank" rel="noopener">healthpoint<span class="lang">JavaScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/healthpoint.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="newfire — ai homelab platform minisforum x1 pro 370 control plane + nvidia dgx spark gpu compute a two-machine ai homelab hosting the newfire ai platform: local llms, agent orchestrators, and tenant-aware apis paired across a control plane and gpu compute node. owning your ai stack avoids subscription lock-in — newfire is the reference implementation of that self-hosted infrastructure. local llm hosting agent orchestration tenant-aware api layer newfire">
+      <h2><a href="/platforms/newfire.html">NewFire — AI Homelab Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Minisforum X1 Pro 370 control plane + NVIDIA DGX Spark GPU compute</p>
+      <p class="overview">A two-machine AI homelab hosting the NewFire AI platform: local LLMs, agent orchestrators, and tenant-aware APIs paired across a control plane and GPU compute node.</p>
+      <h3>Key features</h3><ul><li>Local LLM hosting</li><li>Agent orchestration</li><li>Tenant-aware API layer</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Owning your AI stack avoids subscription lock-in — NewFire is the reference implementation of that self-hosted infrastructure.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/newfire" target="_blank" rel="noopener">newfire<span class="lang"></span></a></div>
+      <div class="cardlink"><a href="/platforms/newfire.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="nrs data analytics platform analytics platform for the nigeria revenue service data analytics platform supporting the nrs tax administration analytics workstream (companion to the meridian taxtech gov enclave). tax authorities need consolidated analytics to target compliance — this platform delivers that analytical layer. revenue analytics tax administration reporting nrsdataanalyticsplatform">
+      <h2><a href="/platforms/nrs-data-analytics-platform.html">NRS Data Analytics Platform</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Analytics platform for the Nigeria Revenue Service</p>
+      <p class="overview">Data analytics platform supporting the NRS tax administration analytics workstream (companion to the Meridian TaxTech gov enclave).</p>
+      <h3>Key features</h3><ul><li>Revenue analytics</li><li>Tax administration reporting</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Tax authorities need consolidated analytics to target compliance — this platform delivers that analytical layer.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/NRSDataAnalyticsPlatform" target="_blank" rel="noopener">NRSDataAnalyticsPlatform<span class="lang"></span></a></div>
+      <div class="cardlink"><a href="/platforms/nrs-data-analytics-platform.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="politicalintelligence — political analytics pwa typescript pwa · generated media assets a political intelligence pwa with generated media assets (auth topology, pwa icons, og cover via a pillow asset script). political campaigns need structured intelligence tooling — this provides a mobile-first analytics surface. pwa installability asset-generation pipeline politicalintelligence">
+      <h2><a href="/platforms/politicalintelligence.html">PoliticalIntelligence — Political Analytics PWA</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript PWA · generated media assets</p>
+      <p class="overview">A political intelligence PWA with generated media assets (auth topology, PWA icons, OG cover via a Pillow asset script).</p>
+      <h3>Key features</h3><ul><li>PWA installability</li><li>Asset-generation pipeline</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Political campaigns need structured intelligence tooling — this provides a mobile-first analytics surface.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/PoliticalIntelligence" target="_blank" rel="noopener">PoliticalIntelligence<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/politicalintelligence.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="corebanking typescript core-banking platform component in the newfire portfolio. modern banking products need flexible core rails — this explores that layer. banking core services corebanking">
+      <h2><a href="/platforms/corebanking.html">CoreBanking</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Core-banking platform component in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Banking core services</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Modern banking products need flexible core rails — this explores that layer.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/corebanking" target="_blank" rel="noopener">corebanking<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/corebanking.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="agentbanking typescript agent-network banking platform component in the newfire portfolio. agent banking extends financial access to unbanked areas — this supports that agent network. agent banking workflows agentbanking">
+      <h2><a href="/platforms/agentbanking.html">AgentBanking</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Agent-network banking platform component in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Agent banking workflows</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Agent banking extends financial access to unbanked areas — this supports that agent network.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/agentbanking" target="_blank" rel="noopener">agentbanking<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/agentbanking.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="landmanagement typescript land management platform component in the newfire portfolio. land administration is paper-bound — this digitises records and transactions. land records management landmanagement">
+      <h2><a href="/platforms/landmanagement.html">LandManagement</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Land management platform component in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Land records management</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Land administration is paper-bound — this digitises records and transactions.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/landmanagement" target="_blank" rel="noopener">landmanagement<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/landmanagement.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="realestate typescript real-estate platform component in the newfire portfolio. real-estate transactions need transparent digital rails. property listings and workflows realestate">
+      <h2><a href="/platforms/realestate.html">Realestate</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Real-estate platform component in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Property listings and workflows</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Real-estate transactions need transparent digital rails.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/realestate" target="_blank" rel="noopener">realestate<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/realestate.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="nexthub typescript hub platform component in the newfire portfolio. connective tissue for the platform portfolio&#x27;s services. hub services nexthub">
+      <h2><a href="/platforms/nexthub.html">Nexthub</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Hub platform component in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Hub services</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Connective tissue for the platform portfolio&#x27;s services.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/nexthub" target="_blank" rel="noopener">nexthub<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/nexthub.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="sonalysis analytics analytics product in the newfire portfolio. decision-makers need consolidated analytics. analytics dashboards sonalysis">
+      <h2><a href="/platforms/sonalysis.html">Sonalysis</a></h2>
+      <p class="arch"><strong>Architecture:</strong> Analytics</p>
+      <p class="overview">Analytics product in the Newfire portfolio.</p>
+      <h3>Key features</h3><ul><li>Analytics dashboards</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Decision-makers need consolidated analytics.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/sonalysis" target="_blank" rel="noopener">sonalysis<span class="lang"></span></a></div>
+      <div class="cardlink"><a href="/platforms/sonalysis.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="whatsappcommerce typescript commerce platform running on whatsapp as the primary channel. in african markets whatsapp is the storefront — this meets commerce where users already are. whatsapp-native commerce whatsappcommerce">
+      <h2><a href="/platforms/whatsappcommerce.html">WhatsAppCommerce</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript</p>
+      <p class="overview">Commerce platform running on WhatsApp as the primary channel.</p>
+      <h3>Key features</h3><ul><li>WhatsApp-native commerce</li></ul>
+      <h3>Problem it solves</h3><p class="problem">In African markets WhatsApp IS the storefront — this meets commerce where users already are.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/whatsappCommerce" target="_blank" rel="noopener">whatsappCommerce<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/whatsappcommerce.html">Explore platform →</a></div>
+    </article>
+    <article class="card" data-search="deliveryplatform — switchos multi-vertical delivery commerce typescript monorepo (client / server / mobile / services) · drizzle orm + postgresql · vite · pnpm workspaces · playwright + vitest an operator-centric, multi-vertical delivery commerce and operations platform. switchos spans merchant operations, consumer ordering, courier and dispatch workflows, payments and payouts, loyalty and campaigns, geospatial routing and growth analytics — a broad commerce-and-operations control plane rather than a single-vertical delivery app. delivery commerce in african markets is fragmented across disconnected merchant, courier and payment tools — switchos gives operators one integrated control plane across multiple verticals. merchant hub and merchant commerce operations consumer ordering and checkout flows courier / driver dispatch and courier radar payments, payouts, referral and loyalty geospatial routing and vertical templates trust, experiments, campaigns and growth analytics deliveryplatform">
+      <h2><a href="/platforms/deliveryplatform-switchos.html">DeliveryPlatform — SwitchOS Multi-Vertical Delivery Commerce</a></h2>
+      <p class="arch"><strong>Architecture:</strong> TypeScript monorepo (client / server / mobile / services) · Drizzle ORM + PostgreSQL · Vite · pnpm workspaces · Playwright + Vitest</p>
+      <p class="overview">An operator-centric, multi-vertical delivery commerce and operations platform. SwitchOS spans merchant operations, consumer ordering, courier and dispatch workflows, payments and payouts, loyalty and campaigns, geospatial routing and growth analytics — a broad commerce-and-operations control plane rather than a single-vertical delivery app.</p>
+      <h3>Key features</h3><ul><li>Merchant hub and merchant commerce operations</li><li>Consumer ordering and checkout flows</li><li>Courier / driver dispatch and courier radar</li><li>Payments, payouts, referral and loyalty</li><li>…and 2 more — see the platform page</li></ul>
+      <h3>Problem it solves</h3><p class="problem">Delivery commerce in African markets is fragmented across disconnected merchant, courier and payment tools — SwitchOS gives operators one integrated control plane across multiple verticals.</p>
+      <div class="repos"><h3>Repositories (1)</h3><a class="repo" href="https://github.com/munisp/DeliveryPlatform" target="_blank" rel="noopener">DeliveryPlatform<span class="lang">TypeScript</span></a></div>
+      <div class="cardlink"><a href="/platforms/deliveryplatform-switchos.html">Explore platform →</a></div>
+    </article></div>
+  <p class="nohits" id="pnohits">No platforms match that search. Try a sector (tax, maritime, health), a technology (Go, Python, Rust), or a platform name.</p>
+  <h2 style="margin:56px 0 20px;font-size:1.4rem">More repositories (0)</h2>
+  <div class="grid"></div>
+</section>
+
+<section id="dev">
+  <h2>Dev environments</h2>
+  <p class="sectsub">Each flagship platform runs in a dedicated development environment on our infrastructure (Kubernetes + hybrid GitOps), wired to real government-agency sandboxes where available — so partners can exercise real workflows, not slideware. Each platform's detail page shows its roadmap status.</p>
+</section>
+
+<section id="videos">
+  <h2>Video demos</h2>
+  <p class="sectsub">Short walkthroughs of the deployed dev environments — coming as each platform ships its first deployment. Videos will be recorded with Openscreen and embedded on each platform's detail page.</p>
+  <div class="videos">
+    <div class="video-card"><div class="ph">Video placeholder — Meridian TaxTech dev walkthrough</div><div class="body"><h3>Meridian TaxTech</h3><p><a href="/platforms/meridian-taxtech.html">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">Video placeholder — Blue Economy Platform walkthrough</div><div class="body"><h3>Blue Economy Platform</h3><p><a href="/platforms/blue-economy-platform.html">Open the platform page →</a></p></div></div>
+    <div class="video-card"><div class="ph">Video placeholder — NDSEP walkthrough</div><div class="body"><h3>NDSEP</h3><p><a href="/platforms/ndsep--ngapp.html">Open the platform page →</a></p></div></div>
+  </div>
+</section>
+
+<section id="register">
+  <h2>Get the 54link brochure</h2>
+  <p class="sectsub">Register to download the full brochure: platform plans, deployment roadmap, and partnership models.</p>
+  <div class="reg">
+    <form id="regform">
+      <label for="r-name">Full name</label>
+      <input id="r-name" required autocomplete="name" placeholder="Ada Obi">
+      <label for="r-email">Work email</label>
+      <input id="r-email" type="email" required autocomplete="email" placeholder="ada@agency.gov.ng">
+      <label for="r-org">Organisation</label>
+      <input id="r-org" autocomplete="organization" placeholder="Federal Ministry / agency / company">
+      <label for="r-interest">Primary interest</label>
+      <input id="r-interest" placeholder="e.g. Tax modernisation, maritime, payments">
+      <button type="submit">Register &amp; download brochure</button>
+      <p class="msg" id="regmsg"></p>
+      <p class="dl-note">Registration gives you the current brochure (PDF) and notifications as dev environments and videos go live.</p>
+    </form>
+  </div>
+</section>
+
+<footer><div class="in">
+  <strong>54link</strong> · Africa's platform compiler · Nigeria first, then all 54.<br>
+  {nr} repositories · {np} platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
+</div></footer>
+<script>
+/* ---- platform search ---- */
+(function () {
+  const input = document.getElementById('psearch');
+  const grid = document.getElementById('platformgrid');
+  const countEl = document.getElementById('pcount');
+  const clearBtn = document.getElementById('pclear');
+  const noHits = document.getElementById('pnohits');
+  if (!input || !grid) return;
+  const cards = Array.from(grid.querySelectorAll('.card'));
+  const total = cards.length;
+  function apply() {
+    const q = input.value.trim().toLowerCase();
+    const terms = q.split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach(function (c) {
+      const hay = (c.getAttribute('data-search') || c.innerText || '').toLowerCase();
+      const hit = terms.every(function (t) { return hay.indexOf(t) !== -1; });
+      c.style.display = hit ? '' : 'none';
+      if (hit) shown++;
+    });
+    if (!q) {
+      countEl.textContent = total + ' platforms';
+      clearBtn.style.display = 'none';
+    } else {
+      countEl.textContent = shown + ' of ' + total;
+      clearBtn.style.display = 'block';
+    }
+    noHits.style.display = (q && shown === 0) ? 'block' : 'none';
+  }
+  input.addEventListener('input', apply);
+  clearBtn.addEventListener('click', function () { input.value = ''; input.focus(); apply(); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; apply(); }
+    if (e.key === 'Enter') {
+      const first = cards.find(function (c) { return c.style.display !== 'none'; });
+      const link = first && first.querySelector('h2 a');
+      if (link) link.click();
+    }
+  });
+  // focus search with "/" key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== input) { e.preventDefault(); input.focus(); }
+  });
+  apply();
+})();
+
+const ENDPOINT = './.herenow/data/registrations';
+document.getElementById('regform').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('regmsg');
+  const btn = e.target.querySelector('button');
+  btn.disabled = true; btn.textContent = 'Registering…';
+  const record = {
+    name: document.getElementById('r-name').value.trim(),
+    email: document.getElementById('r-email').value.trim(),
+    organisation: document.getElementById('r-org').value.trim(),
+    interest: document.getElementById('r-interest').value.trim()
+  };
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'Idempotency-Key': crypto.randomUUID() },
+      body: JSON.stringify(record)
+    });
+    if (!res.ok) throw new Error('status ' + res.status);
+    msg.className = 'msg ok';
+    msg.textContent = 'Registered — your brochure download is starting.';
+    setTimeout(() => window.open('/brochure.pdf', '_blank'), 900);
+    e.target.reset();
+  } catch (err) {
+    msg.className = 'msg err';
+    msg.textContent = 'Registration failed — please try again or email us directly.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Register & download brochure';
+  }
+});
+</script>
+</body></html>

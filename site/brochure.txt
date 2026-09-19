@@ -1,0 +1,61 @@
+54link — Platform Brochure (DRAFT v0.1)
+========================================
+
+54link compiles, deploys, and showcases Africa's operational platforms.
+Nigeria is the first use case; the blueprint scales across all 54 countries.
+
+THE PORTFOLIO
+-------------
+34 platforms compiled from 66 public repositories:
+
+ 1. NDSEP / NGApp — National Data Sovereignty Enforcement Platform (NDPA 2023)
+ 2. Meridian TaxTech — Nigerian NRS unified tax platform (compliance, gov enclave, inclusion)
+ 3. Blue Economy Platform — Nigerian maritime PPP (24 services: tracking, insurance, ticketing, traceability)
+ 4. UmojaFlowOS — Cross-border B2B payment orchestration (NGN/KES/ZAR)
+ 5. AgricPlatform — Nigeria Farmer Platform (NYFN PRD v3.3)
+ 6. Nexcomm Exchange — African agricultural commodity exchange
+ 7. BIS — AML/CFT compliance intelligence
+ 8. Unified SOS — Subnational digital governance & revenue (6 pilot states)
+ 9. VPP — Open-source virtual power plant
+10. FraudFusion — Multi-service fraud prevention
+11. NextGen INSR — Nigerian insurtech (full value chain)
+12. Payment Switch Onboarding (paygate / paymentswitch / crmaas)
+13. RemitFlow — Cross-border remittance microservices
+14. TaxStamp — Excise stamp issuance & verification
+15. TourismPay — Multi-currency tourism payments
+16. HealthLink — Healthcare data linkage
+17. CRUSH — Healthcare fraud/waste/abuse operations
+18. H2Fleet — Hydrogen bus fleet platform
+19. INEC — Election management system
+20. MineralVision — Mineral exploration & compliance
+21. Lanai — Luxury travel concierge
+22. Agora — Open-source AI receptionist SaaS
+23. Singlewindow — Trade facilitation portal
+24. Healthpoint — Healthcare data security (ML)
+... plus 11 additional repositories in the portfolio.
+
+CORE STACK
+----------
+Go · Python · Rust · TypeScript
+Postgres (pgvector) · Redis/Dragonfly · Kafka · Temporal · Keycloak
+TigerBeetle ledger · Mojaloop FSPIOP · APISIX · OpenAppSec WAF
+Docker · Kubernetes (hybrid GitOps) · GitHub Actions CI/CD
+
+DEPLOYMENT MODEL
+----------------
+Phase 1 — Dev environments on 54link infrastructure (Kubernetes), wired to
+          government-agency sandboxes (NCS B'Odogwu, CBN TMS, NEPC, NIS).
+Phase 2 — Video walkthroughs published per platform as deployments ship.
+Phase 3 — Staging → production for Nigerian agency partners.
+Phase 4 — Replicate the playbook across additional African markets.
+
+PARTNERSHIP MODELS
+------------------
+- Government: sovereign deployments, agency sandbox integration, capacity building
+- Enterprise: platform licensing, integration engineering, managed operations
+- Developers: open-source contribution, ecosystem tooling, paid build work
+
+CONTACT
+-------
+Beryl Malomo — Newfire Platform
+https://54link.54link.here.now/

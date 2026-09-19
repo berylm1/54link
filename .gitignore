@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# here.now local state (contains claim tokens)
+.herenow/
+
+# Demo videos — exceed GitHub's 100MB per-file limit; served from the published site
+site/videos/
+*.mp4
+*.openscreen
+
+# OS
+.DS_Store
