@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VPP — Open Source Virtual Power Plant Platform · 54link</title><style>
+<title>Social Protection Platform — Beneficiary Lifecycle Orchestration · 54link</title><style>
   :root {
     --bg:#0a0d12; --card:#121a24; --fg:#eef3f8; --muted:#93a0ad; --border:#22303f;
     --gold:#f0b429; --green:#22a34a; --red:#d92d20; --blue:#2f6fed; --orange:#f97316;
@@ -173,16 +173,16 @@
 </div></nav>
 <div class="detail">
   <p class="crumbs"><a href="/index.html">← Back to all platforms</a></p>
-  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">VPP — Open Source Virtual Power Plant Platform</h1>
+  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">Social Protection Platform — Beneficiary Lifecycle Orchestration</h1>
   <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
   <h2>What it is</h2>
-  <p>An open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity.</p>
+  <p>An enterprise admin portal for national social protection programmes, orchestrating beneficiary lifecycle workflows end to end. Twenty functional pages cover beneficiary and programme management, transaction monitoring, disbursements, KYC verification, documents, organisations, roles and audit, with a workflow designer, custom dashboards, an integration marketplace and AI insights. A ten-component middleware layer (Temporal, Kafka, Dapr, Fluvio, Keycloak, Permify, Redis) drives 15 orchestrated workflows across 139 steps, feeding a lakehouse built on Delta Lake, Apache Spark, Flink, DataFusion, Ray and Sedona for geospatial analytics.</p>
   <h2>The problem we're solving</h2>
-  <p>Distributed energy assets (solar, batteries, EVs) sit idle and uncoordinated — VPP aggregates them into a dispatchable, tradable power plant.</p>
+  <p>Social protection programmes disburse to millions of beneficiaries through fragmented systems, which invites leakage, duplicate payments and untraceable grievances. This platform puts enrolment, verification, payment and grievance handling on one accountable, auditable spine — with the data platform underneath to detect fraud and measure delivery.</p>
   <h2>Architecture</h2>
-  <p>TypeScript · MIT-licensed, device-protocol-native</p>
+  <p>TypeScript monorepo · Temporal + Kafka middleware · Delta Lake / Spark / Flink lakehouse · Keycloak &amp; Permify</p>
   <h2>Key capabilities</h2>
-  <ul><li>DER registration and forecasting</li><li>Native device-protocol control</li><li>Energy trading on aggregated capacity</li></ul>
+  <ul><li>Beneficiary &amp; programme management</li><li>Disbursements and transaction monitoring</li><li>KYC verification and document management</li><li>Workflow designer (15 workflows, 139 steps)</li><li>Event streaming: Kafka, Fluvio, Dapr</li><li>Temporal orchestration with retry policies</li><li>Keycloak identity + Permify authorisation</li><li>Delta Lake / Spark / Flink lakehouse</li><li>Geospatial analytics with Apache Sedona</li><li>AI insights and advanced reporting</li></ul>
   
     <h2>Roadmap — the steps we're taking</h2>
     <ol class="steps">
@@ -193,13 +193,10 @@
       <li><strong>Continental rollout.</strong> The blueprint is replicated to additional African markets, localized per country.</li>
     </ol>
   <h2>Demo video</h2>
-  <p style="color:var(--muted)">Walkthrough of the deployed VPP Platform at vpp.newfire.app — the Virtual Power Plant control plane, signed in as an administrator. Live telemetry on the dashboard (2.53 MW current power, 1.82 GWh metered energy, 49.98 Hz grid frequency, 11147 V / 230 A electrical readings), 34 registered assets, active power trading, billing and alerts, plus the Energy &amp; Insights, Market, Money, Grid Operations, Operations Centre, Community, Tools &amp; Account and Administration sections.</p>
-  <div class="video-frame"><video controls preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;">
-    <source src="/videos/vpp-demo.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video></div>
+  <p style="color:var(--muted)">A recorded walkthrough of this platform's dev environment will appear here — so you can see the application in action before engaging. Recorded and embedded once the deployment ships.</p>
+  <div class="video-frame"><div class="no-video">Demo video coming — recorded from the live dev environment once this platform's deployment completes.</div></div>
   <h2>Source repositories (1)</h2>
-  <div class="repos-list"><a href="https://github.com/munisp/vpp" target="_blank" rel="noopener"><span>vpp</span><span class="lang">TypeScript</span></a></div>
+  <div class="repos-list"><a href="https://github.com/munisp/socialservices" target="_blank" rel="noopener"><span>socialservices</span><span class="lang">TypeScript</span></a></div>
   <p style="margin-top:26px"><a href="/index.html#register" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
 </div>
 <footer><div class="in">

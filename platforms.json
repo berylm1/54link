@@ -1,523 +1,544 @@
 {
-  "NDSEP / NGApp": {
-    "repos": [
-      "ndsep",
-      "NGApp"
-    ],
-    "title": "NDSEP \u2014 National Data Sovereignty Enforcement Platform",
-    "arch": "TypeScript \u00b7 full-stack, regulator-grade platform (NDPC-facing)",
-    "overview": "Nigeria's regulatory-grade platform for data protection compliance, breach management, and sector oversight under the Nigeria Data Protection Act 2023. Built for the Nigeria Data Protection Commission (NDPC). Includes real-time compliance dashboards cutting across finance, health, and education sectors, plus Healthpoint for healthcare-institution data security using machine learning.",
-    "features": [
-      "Compliance management under NDPA 2023",
-      "Breach management and reporting pipelines",
-      "Sector oversight with real-time dashboards (finance, health, education)",
-      "ML-driven data security for healthcare (Healthpoint)"
-    ],
-    "problem": "Nigeria's NDPA 2023 created obligations but no unified enforcement tooling \u2014 NDSEP gives the regulator a single platform to register, monitor, and enforce data-protection compliance nationwide."
-  },
-  "Meridian TaxTech": {
-    "repos": [
-      "meridian-core-platform",
-      "meridian-compliance-suite",
-      "meridian-gov-enclave",
-      "meridian-inclusion-suite",
-      "meridian-rule-packs"
-    ],
-    "title": "Meridian TaxTech \u2014 Nigerian NRS Unified Tax Platform",
-    "arch": "Go + Python \u00b7 monorepo core, microservice planes, signed YAML rule packs, TigerBeetle ledger",
-    "overview": "The unified tax platform for Nigeria's Nigeria Revenue Service (NRS): a shared platform core (middleware spine, rule-pack registry, TIN graph, feature store, TigerBeetle ledger services), a compliance plane (e-invoicing T1/T2/T3, POS-VAT T6, WHT T7, TP/CbCR T8, ETR T9, CARF/VASP T10), a sovereign gov enclave (NRS analytics T4, JRB harmonisation T11, institutional case management T13, customs rails T15), and an inclusion plane (informal-sector onboarding T5, presumptive tax T12, taxpayer education T14 with agent app, USSD and white-labeling).",
-    "features": [
-      "E-invoicing and MBS pre-clearance",
-      "Rev360 reconciliation workbench",
-      "Sovereignty boundary \u2014 gov enclave deployed separately",
-      "Signed versioned rule packs (rp-*) for VAT baskets, presumptive bands, ETR formulas",
-      "USSD + agent app for informal-sector inclusion"
-    ],
-    "problem": "Nigerian tax administration is fragmented across legacy systems and excludes the informal economy \u2014 Meridian unifies compliance, sovereignty, and inclusion into one platform the NRS can operate."
-  },
-  "Blue Economy Platform": {
-    "repos": [
-      "blueeconomy",
-      "blueeconomy-administration-service",
-      "blueeconomy-agency-sandbox",
-      "blueeconomy-beneficiary-portal",
-      "blueeconomy-contracts",
-      "blueeconomy-credential-verification",
-      "blueeconomy-cv-service",
-      "blueeconomy-data-platform",
-      "blueeconomy-developer-platform",
-      "blueeconomy-ferry-ticketing",
-      "blueeconomy-financial-controls",
-      "blueeconomy-fisheries-traceability",
-      "blueeconomy-geo-service",
-      "blueeconomy-insurance",
-      "blueeconomy-maritime-evidence",
-      "blueeconomy-maritime-intelligence",
-      "blueeconomy-ministry-portal",
-      "blueeconomy-ml-stack",
-      "blueeconomy-platform-gitops",
-      "blueeconomy-port-interoperability",
-      "blueeconomy-security-operations",
-      "blueeconomy-tax-stamps",
-      "blueeconomy-traceability",
-      "blueeconomy-waterway-safety"
-    ],
-    "title": "Blue Economy Platform \u2014 Nigerian Maritime PPP",
-    "arch": "Go, Python, Rust, TypeScript \u00b7 Delta Lake lakehouse, TigerBeetle ledger, Mojaloop FSPIOP, Keycloak, Kafka, hybrid Kubernetes GitOps, YOLOX ONNX computer vision",
-    "overview": "The Ministry's Unified Blue Economy Platform \u2014 a PPP spanning NPA, NIMASA, NIWA, FMMBE and CBN. 24 repositories cover the full stack: governance and ADRs, sovereign vessel tracking (AIS/GT06 ingestion, PostGIS hot path), immutable maritime evidence with transactional outbox, marine insurance (deterministic rating, maker-checker bind/claims), ferry e-ticketing with NIMASA passenger manifests, fisheries traceability with cold-chain IoT, port-call and eCallUp 2.0 truck booking, excise tax stamps, waterway-safety telemetry in Rust, CV vessel detection, a governed lakehouse, and TradeNet-style agency sandboxes (NCS B'Odogwu, CBN TMS, NEPC, NIS, Port Health, NPA e-SEN).",
-    "features": [
-      "Sovereign multi-tier vessel tracking hot path",
-      "Immutable maritime evidence + Kafka outbox",
-      "Deterministic marine insurance engine with VC 2.0 policies",
-      "CVFF loan applications via beneficiary portal",
-      "FISh/aquaculture traceability from catch to export",
-      "Cryptographically signed telemetry devices",
-      "Hybrid K8s GitOps with policy-as-code"
-    ],
-    "problem": "Nigeria's maritime domain runs on paper and siloed agency systems \u2014 the platform digitises trade, safety, insurance, and compliance across every agency on one sovereign, auditable foundation."
-  },
-  "UmojaFlowOS": {
-    "repos": [
-      "UmojaFlowOS"
-    ],
-    "title": "UmojaFlowOS \u2014 Cross-Border B2B Payment Orchestration",
-    "arch": "TypeScript \u00b7 enterprise control plane",
-    "overview": "An enterprise control plane for Africa-linked cross-border B2B payment orchestration across Nigeria (NGN), Kenya (KES), and South Africa (ZAR). It coordinates regulated counterparties rather than replacing them.",
-    "features": [
-      "Multi-currency corridors: NGN, KES, ZAR",
-      "Regulated-counterparty coordination model",
-      "Enterprise-grade orchestration layer"
-    ],
-    "problem": "Cross-border B2B payments in Africa are slow, opaque, and compliance-heavy \u2014 UmojaFlowOS orchestrates the regulated players instead of bypassing them, making corridors reliable."
-  },
-  "AgricPlatform": {
-    "repos": [
-      "AgricPlatform",
-      "farmer-data-collection"
-    ],
-    "title": "AgricPlatform \u2014 Nigeria Farmer Platform",
-    "arch": "Next.js role-aware PWA \u00b7 NestJS services \u00b7 Angular underpinnings \u00b7 Open-Meteo API",
-    "overview": "Unified implementation of the Nigeria Farmer Platform PRD v3.3 for NYFN: a role-aware progressive web app for farmers with field data collection and location-based weather forecasting via the open-source Open-Meteo API.",
-    "features": [
-      "Role-aware PWA (farmer/agent/admin views)",
-      "Field data collection",
-      "Open-Meteo weather forecasts by location",
-      "NestJS application layer"
-    ],
-    "problem": "Nigerian farmers lack structured digital tooling for data, advisory, and market access \u2014 this platform gives extension programs a single role-aware surface."
-  },
-  "Nexcomm Exchange": {
-    "repos": [
-      "nexcomm"
-    ],
-    "title": "Nexcomm \u2014 African Agricultural Commodity Exchange",
-    "arch": "React 19 + TypeScript + tRPC + PostgreSQL \u00b7 20 microservices \u00b7 Flutter + React Native mobile \u00b7 USSD/WhatsApp/Telegram channels",
-    "overview": "A full-stack, production-ready commodity exchange platform for African agricultural markets. A matching engine and settlement engine ensure the accuracy and integrity of the markets shown to users, with WhatsApp, Telegram, and USSD as communication and access channels.",
-    "features": [
-      "Matching engine + settlement engine",
-      "20-microservice architecture",
-      "USSD / WhatsApp / Telegram access",
-      "Flutter + React Native mobile apps"
-    ],
-    "problem": "African agricultural markets are informal and price-opaque \u2014 Nexcomm gives them a real exchange with engineered settlement guarantees and channels farmers actually use."
-  },
-  "BIS": {
-    "repos": [
-      "bis"
-    ],
-    "title": "BIS \u2014 Compliance Intelligence Platform",
-    "arch": "Full-stack \u00b7 compliance intelligence for AML/CFT",
-    "overview": "A production-ready compliance intelligence platform for Nigerian financial institutions and law-enforcement agencies, built for AML/CFT operations.",
-    "features": [
-      "AML/CFT workflows for FIs and law enforcement",
-      "Intelligence gathering and case management",
-      "Production-ready full-stack implementation"
-    ],
-    "problem": "Nigerian institutions must fight financial crime with fragmented tooling \u2014 BIS consolidates compliance intelligence into one operational platform."
-  },
-  "Unified SOS": {
-    "repos": [
-      "unified-sos"
-    ],
-    "title": "Unified SOS \u2014 Subnational Digital Governance & Revenue",
-    "arch": "Python \u00b7 multi-tenant infrastructure",
-    "overview": "Nigeria's first unified, multi-tenant digital governance and automated revenue infrastructure for subnational governments \u2014 one common operating core, six pilot states, and thirty ranked Technology-PPP opportunities.",
-    "features": [
-      "Multi-tenant state deployments from one core",
-      "Automated revenue infrastructure",
-      "Ranked Technology-PPP opportunity pipeline"
-    ],
-    "problem": "Each Nigerian state rebuilds the same digital-governance stack from scratch \u2014 Unified SOS lets them share one hardened core and focus on revenue outcomes."
-  },
-  "VPP": {
-    "repos": [
-      "vpp"
-    ],
-    "title": "VPP \u2014 Open Source Virtual Power Plant Platform",
-    "arch": "TypeScript \u00b7 MIT-licensed, device-protocol-native",
-    "overview": "An open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity.",
-    "features": [
-      "DER registration and forecasting",
-      "Native device-protocol control",
-      "Energy trading on aggregated capacity"
-    ],
-    "problem": "Distributed energy assets (solar, batteries, EVs) sit idle and uncoordinated \u2014 VPP aggregates them into a dispatchable, tradable power plant."
-  },
-  "FraudFusion": {
-    "repos": [
-      "fraudfusion"
-    ],
-    "title": "FraudFusion \u2014 Multi-Service Fraud Prevention",
-    "arch": "Go, Python, Rust, TypeScript, React Native \u00b7 Prometheus + Alertmanager, signed HMAC release-gate metrics",
-    "overview": "A multi-service fraud prevention platform spanning five language stacks, with Prometheus and Alertmanager observability and a signed HMAC release-gate metric producer for trustworthy operational metrics.",
-    "features": [
-      "Polyglot microservices (Go/Python/Rust/TS/React Native)",
-      "Prometheus + Alertmanager monitoring",
-      "Signed HMAC release-gate metrics"
-    ],
-    "problem": "Payment platforms in emerging markets face layered fraud \u2014 FraudFusion provides a modular detection stack that scales across services."
-  },
-  "HealthLink / datalinkage": {
-    "repos": [
-      "datalinkage"
-    ],
-    "title": "HealthLink \u2014 Healthcare Data Linkage",
-    "arch": "Polyglot \u00b7 governance-first reference implementation",
-    "overview": "A runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an HCUP NRD pilot specification.",
-    "features": [
-      "Governance-first patient-record linkage",
-      "Service contracts and pilot specification included",
-      "Runnable reference implementation"
-    ],
-    "problem": "Health records for the same patient live in disconnected systems \u2014 HealthLink links them safely under explicit governance rules."
-  },
-  "CRUSH (cmscrush)": {
-    "repos": [
-      "cmscrush"
-    ],
-    "title": "CRUSH \u2014 Healthcare Fraud, Waste & Abuse Operations",
-    "arch": "Go \u00b7 Kubernetes-native",
-    "overview": "An open-source, Kubernetes-native platform foundation for defensible healthcare fraud, waste, abuse, and coding-integrity operations, implementing a safe executable vertical slice from canonical specifications.",
-    "features": [
-      "K8s-native FW&A operations",
-      "Defensible audit trail focus",
-      "Canonical-spec vertical slice"
-    ],
-    "problem": "Healthcare fraud investigations fail on defensibility \u2014 CRUSH provides an auditable, reproducible operations foundation."
-  },
-  "Hydrogen Transport (H2Fleet)": {
-    "repos": [
-      "hydrogenTransport"
-    ],
-    "title": "H2Fleet \u2014 Hydrogen Bus Fleet Platform",
-    "arch": "Go \u00b7 20 capability modules in 4 domains",
-    "overview": "One platform for a city's fleet of 50 hydrogen buses. Instead of building 20 separate apps, H2Fleet implements 20 capability modules in 4 domains on a single platform.",
-    "features": [
-      "20 modular capabilities, 4 domains",
-      "Single platform for a 50-bus fleet",
-      "Domain-driven module boundaries"
-    ],
-    "problem": "Hydrogen transit fleets need refuelling, maintenance, and operations software that vendors sell as 20 disconnected apps \u2014 H2Fleet unifies them."
-  },
-  "INEC Election Platform": {
-    "repos": [
-      "inec"
-    ],
-    "title": "INEC \u2014 Election Management System",
-    "arch": "Full-stack \u00b7 production-grade, under active development",
-    "overview": "A production-grade, full-stack election management system built for Nigeria's electoral infrastructure; some components are production-ready while others are in progress.",
-    "features": [
-      "Full election lifecycle management",
-      "Built for Nigerian electoral infrastructure",
-      "Production-grade engineering standards"
-    ],
-    "problem": "Election administration in Nigeria needs transparent, auditable technology \u2014 this system targets that operational core."
-  },
-  "MineralVision": {
-    "repos": [
-      "mineralvision"
-    ],
-    "title": "MineralVision \u2014 Mineral Exploration & Compliance",
-    "arch": "Python \u00b7 satellite analytics",
-    "overview": "The premiere platform for mineral exploration, discovery, and compliance \u2014 unifying the full exploration lifecycle from satellite anomaly detection through compliance.",
-    "features": [
-      "Satellite anomaly detection",
-      "Full exploration lifecycle coverage",
-      "Compliance workflow integration"
-    ],
-    "problem": "Mineral exploration is data-rich but tool-poor \u2014 MineralVision consolidates discovery signals and compliance into one platform."
-  },
-  "NextGen INSR": {
-    "repos": [
-      "nextgen-insr",
-      "nextgeninsr"
-    ],
-    "title": "NextGen INSR \u2014 Nigerian Insurance Technology Platform",
-    "arch": "TypeScript \u00b7 production-grade full value chain",
-    "overview": "A comprehensive, production-grade insurtech platform for the Nigerian market covering the full insurance value chain: policy administration, claims adjudication, agent network management, and KYC/AML compliance.",
-    "features": [
-      "Policy administration",
-      "Claims adjudication",
-      "Agent network management",
-      "KYC/AML compliance"
-    ],
-    "problem": "Nigerian insurers run fragmented legacy systems \u2014 NextGen INSR provides one modern platform for the entire value chain."
-  },
-  "PayGate / PaymentSwitch / CRMaaS": {
-    "repos": [
-      "paygate",
-      "paymentswitch",
-      "crmaas"
-    ],
-    "title": "Payment Switch Onboarding Platform",
-    "arch": "TypeScript + Go \u00b7 onboarding portal for payment networks",
-    "overview": "A comprehensive onboarding platform for integrating financial institutions, payment service providers, merchants, and businesses into a payment switch network. The portal guides participants through the entire integration process.",
-    "features": [
-      "Participant onboarding (FIs, PSPs, merchants)",
-      "Payment switch network integration",
-      "CRM-as-a-service back office"
-    ],
-    "problem": "Payment switch onboarding is manual and slow \u2014 this portal standardises and accelerates participant integration."
-  },
-  "RemitFlow": {
-    "repos": [
-      "remitflow"
-    ],
-    "title": "RemitFlow \u2014 Cross-Border Remittance Platform",
-    "arch": "Polyglot microservices + PWA \u00b7 DigitalOcean Kubernetes, APISIX gateway, Dapr sidecars, Permify authorization",
-    "overview": "A polyglot microservices backend for a cross-border remittance and banking platform with a PWA frontend, deployed on DigitalOcean Kubernetes behind an APISIX gateway, with Dapr sidecars and Permify for fine-grained authorization.",
-    "features": [
-      "APISIX gateway + Dapr sidecars",
-      "Permify fine-grained authorization",
-      "PWA frontend",
-      "Kubernetes deployment"
-    ],
-    "problem": "Remittance platforms need cheap, compliant, multi-corridor rails \u2014 RemitFlow provides the microservice backbone for that."
-  },
-  "TaxStamp": {
-    "repos": [
-      "taxstamp"
-    ],
-    "title": "TaxStamp \u2014 Excise Stamp Issuance & Verification",
-    "arch": "Python \u00b7 double-entry ledger, maker-checker workflow",
-    "overview": "Excise tax-stamp issuance, settlement, and field verification: order intake, maker-checker approval, exact-amount payment matching, double-entry posting, resumable serial issuance, and field verification tooling.",
-    "features": [
-      "Maker-checker approvals",
-      "Exact-amount payment matching",
-      "Double-entry posting",
-      "Resumable serial issuance + field verification"
-    ],
-    "problem": "Excise stamp regimes leak revenue to counterfeits and poor accounting \u2014 TaxStamp adds cryptographic-grade issuance and verification."
-  },
-  "TourismPay": {
-    "repos": [
-      "tourismpay"
-    ],
-    "title": "TourismPay \u2014 Multi-Currency Tourism Payments",
-    "arch": "Full-stack PWA \u00b7 multi-currency wallets, QR payments",
-    "overview": "A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.",
-    "features": [
-      "Multi-currency wallets",
-      "QR payments",
-      "Merchant onboarding",
-      "Compliance built in"
-    ],
-    "problem": "Tourists in African markets face fragmented payments \u2014 TourismPay gives merchants one compliant, multi-currency acceptance surface."
-  },
-  "Lanai": {
-    "repos": [
-      "lanai"
-    ],
-    "title": "Lanai \u2014 Luxury Travel Concierge Platform",
-    "arch": "React + Vite \u00b7 Twenty CRM backend \u00b7 Python/Flask AI microservices",
-    "overview": "A full-stack advisor portal and client-facing portal for Lanai Lifestyle, a luxury travel concierge company, with an AI-powered microservice suite on top of Twenty CRM.",
-    "features": [
-      "Advisor + client dual portal",
-      "Twenty CRM integration",
-      "Python/Flask AI microservices"
-    ],
-    "problem": "Luxury concierge businesses juggle clients across chat and spreadsheets \u2014 Lanai centralises advisory and client experience with AI assistance."
-  },
-  "Agora (OpenDesk)": {
-    "repos": [
-      "agora"
-    ],
-    "title": "Agora \u2014 Open-Source AI Receptionist SaaS",
-    "arch": "Go \u00b7 multi-tenant \u00b7 Kafka event-driven",
-    "overview": "A fully open-source, multi-tenant AI receptionist / front-desk SaaS: every appointment, call, and front-desk interaction is handled by AI agents with Kafka-driven eventing (internal modules retain the opendesk identifier).",
-    "features": [
-      "Multi-tenant SaaS",
-      "AI receptionist across calls and bookings",
-      "Kafka event architecture"
-    ],
-    "problem": "Small businesses lose bookings to missed calls \u2014 Agora gives every business an always-on AI front desk."
-  },
-  "Singlewindow": {
-    "repos": [
-      "singlewindow"
-    ],
-    "title": "Singlewindow \u2014 Trade Facilitation Portal",
-    "arch": "TypeScript",
-    "overview": "A single-window trade facilitation portal, part of the Newfire platform portfolio (updated recently; active development).",
-    "features": [
-      "Single-window trade submissions",
-      "Portal-based agency interaction"
-    ],
-    "problem": "Traders submit the same data to multiple Nigerian agencies \u2014 a single window collapses those touchpoints into one."
-  },
-  "Healthpoint": {
-    "repos": [
-      "healthpoint"
-    ],
-    "title": "Healthpoint \u2014 Healthcare Data Security",
-    "arch": "React + Express + tRPC \u00b7 ML-assisted",
-    "overview": "A platform for ensuring data security for healthcare institutions, utilizing machine-learning algorithms. Built on a React + Express + tRPC stack with end-to-end typed contracts and wired OAuth.",
-    "features": [
-      "ML-driven security monitoring",
-      "tRPC end-to-end typed contracts",
-      "OAuth wired in"
-    ],
-    "problem": "Healthcare institutions handle sensitive data with weak security tooling \u2014 Healthpoint adds ML-backed protection."
-  },
-  "Newfire": {
-    "repos": [
-      "newfire"
-    ],
-    "title": "NewFire \u2014 AI Homelab Platform",
-    "arch": "Minisforum X1 Pro 370 control plane + NVIDIA DGX Spark GPU compute",
-    "overview": "A two-machine AI homelab hosting the NewFire AI platform: local LLMs, agent orchestrators, and tenant-aware APIs paired across a control plane and GPU compute node.",
-    "features": [
-      "Local LLM hosting",
-      "Agent orchestration",
-      "Tenant-aware API layer"
-    ],
-    "problem": "Owning your AI stack avoids subscription lock-in \u2014 NewFire is the reference implementation of that self-hosted infrastructure."
-  },
-  "NRS Data Analytics Platform": {
-    "repos": [
-      "NRSDataAnalyticsPlatform"
-    ],
-    "title": "NRS Data Analytics Platform",
-    "arch": "Analytics platform for the Nigeria Revenue Service",
-    "overview": "Data analytics platform supporting the NRS tax administration analytics workstream (companion to the Meridian TaxTech gov enclave).",
-    "features": [
-      "Revenue analytics",
-      "Tax administration reporting"
-    ],
-    "problem": "Tax authorities need consolidated analytics to target compliance \u2014 this platform delivers that analytical layer."
-  },
-  "PoliticalIntelligence": {
-    "repos": [
-      "PoliticalIntelligence"
-    ],
-    "title": "PoliticalIntelligence \u2014 Political Analytics PWA",
-    "arch": "TypeScript PWA \u00b7 generated media assets",
-    "overview": "A political intelligence PWA with generated media assets (auth topology, PWA icons, OG cover via a Pillow asset script).",
-    "features": [
-      "PWA installability",
-      "Asset-generation pipeline"
-    ],
-    "problem": "Political campaigns need structured intelligence tooling \u2014 this provides a mobile-first analytics surface."
-  },
-  "CoreBanking": {
-    "repos": [
-      "corebanking"
-    ],
-    "title": "CoreBanking",
-    "arch": "TypeScript",
-    "overview": "Core-banking platform component in the Newfire portfolio.",
-    "features": [
-      "Banking core services"
-    ],
-    "problem": "Modern banking products need flexible core rails \u2014 this explores that layer."
-  },
-  "AgentBanking": {
-    "repos": [
-      "agentbanking"
-    ],
-    "title": "AgentBanking",
-    "arch": "TypeScript",
-    "overview": "Agent-network banking platform component in the Newfire portfolio.",
-    "features": [
-      "Agent banking workflows"
-    ],
-    "problem": "Agent banking extends financial access to unbanked areas \u2014 this supports that agent network."
-  },
-  "LandManagement": {
-    "repos": [
-      "landmanagement"
-    ],
-    "title": "LandManagement",
-    "arch": "TypeScript",
-    "overview": "Land management platform component in the Newfire portfolio.",
-    "features": [
-      "Land records management"
-    ],
-    "problem": "Land administration is paper-bound \u2014 this digitises records and transactions."
-  },
-  "Realestate": {
-    "repos": [
-      "realestate"
-    ],
-    "title": "Realestate",
-    "arch": "TypeScript",
-    "overview": "Real-estate platform component in the Newfire portfolio.",
-    "features": [
-      "Property listings and workflows"
-    ],
-    "problem": "Real-estate transactions need transparent digital rails."
-  },
-  "Nexthub": {
-    "repos": [
-      "nexthub"
-    ],
-    "title": "Nexthub",
-    "arch": "TypeScript",
-    "overview": "Hub platform component in the Newfire portfolio.",
-    "features": [
-      "Hub services"
-    ],
-    "problem": "Connective tissue for the platform portfolio's services."
-  },
-  "Sonalysis": {
-    "repos": [
-      "sonalysis"
-    ],
-    "title": "Sonalysis",
-    "arch": "Analytics",
-    "overview": "Analytics product in the Newfire portfolio.",
-    "features": [
-      "Analytics dashboards"
-    ],
-    "problem": "Decision-makers need consolidated analytics."
-  },
-  "WhatsAppCommerce": {
-    "repos": [
-      "whatsappCommerce"
-    ],
-    "title": "WhatsAppCommerce",
-    "arch": "TypeScript",
-    "overview": "Commerce platform running on WhatsApp as the primary channel.",
-    "features": [
-      "WhatsApp-native commerce"
-    ],
-    "problem": "In African markets WhatsApp IS the storefront \u2014 this meets commerce where users already are."
-  },
-  "DeliveryPlatform (SwitchOS)": {
-    "repos": [
-      "DeliveryPlatform"
-    ],
-    "title": "DeliveryPlatform \u2014 SwitchOS Multi-Vertical Delivery Commerce",
-    "arch": "TypeScript monorepo (client / server / mobile / services) \u00b7 Drizzle ORM + PostgreSQL \u00b7 Vite \u00b7 pnpm workspaces \u00b7 Playwright + Vitest",
-    "overview": "An operator-centric, multi-vertical delivery commerce and operations platform. SwitchOS spans merchant operations, consumer ordering, courier and dispatch workflows, payments and payouts, loyalty and campaigns, geospatial routing and growth analytics \u2014 a broad commerce-and-operations control plane rather than a single-vertical delivery app.",
-    "features": [
-      "Merchant hub and merchant commerce operations",
-      "Consumer ordering and checkout flows",
-      "Courier / driver dispatch and courier radar",
-      "Payments, payouts, referral and loyalty",
-      "Geospatial routing and vertical templates",
-      "Trust, experiments, campaigns and growth analytics"
-    ],
-    "problem": "Delivery commerce in African markets is fragmented across disconnected merchant, courier and payment tools \u2014 SwitchOS gives operators one integrated control plane across multiple verticals."
-  }
+ "NDSEP / NGApp": {
+  "repos": [
+   "ndsep",
+   "NGApp"
+  ],
+  "title": "NDSEP — National Data Sovereignty Enforcement Platform",
+  "arch": "TypeScript · full-stack, regulator-grade platform (NDPC-facing)",
+  "overview": "Nigeria's regulatory-grade platform for data protection compliance, breach management, and sector oversight under the Nigeria Data Protection Act 2023. Built for the Nigeria Data Protection Commission (NDPC). Includes real-time compliance dashboards cutting across finance, health, and education sectors, plus Healthpoint for healthcare-institution data security using machine learning.",
+  "features": [
+   "Compliance management under NDPA 2023",
+   "Breach management and reporting pipelines",
+   "Sector oversight with real-time dashboards (finance, health, education)",
+   "ML-driven data security for healthcare (Healthpoint)"
+  ],
+  "problem": "Nigeria's NDPA 2023 created obligations but no unified enforcement tooling — NDSEP gives the regulator a single platform to register, monitor, and enforce data-protection compliance nationwide."
+ },
+ "Meridian TaxTech": {
+  "repos": [
+   "meridian-core-platform",
+   "meridian-compliance-suite",
+   "meridian-gov-enclave",
+   "meridian-inclusion-suite",
+   "meridian-rule-packs"
+  ],
+  "title": "Meridian TaxTech — Nigerian NRS Unified Tax Platform",
+  "arch": "Go + Python · monorepo core, microservice planes, signed YAML rule packs, TigerBeetle ledger",
+  "overview": "The unified tax platform for Nigeria's Nigeria Revenue Service (NRS): a shared platform core (middleware spine, rule-pack registry, TIN graph, feature store, TigerBeetle ledger services), a compliance plane (e-invoicing T1/T2/T3, POS-VAT T6, WHT T7, TP/CbCR T8, ETR T9, CARF/VASP T10), a sovereign gov enclave (NRS analytics T4, JRB harmonisation T11, institutional case management T13, customs rails T15), and an inclusion plane (informal-sector onboarding T5, presumptive tax T12, taxpayer education T14 with agent app, USSD and white-labeling).",
+  "features": [
+   "E-invoicing and MBS pre-clearance",
+   "Rev360 reconciliation workbench",
+   "Sovereignty boundary — gov enclave deployed separately",
+   "Signed versioned rule packs (rp-*) for VAT baskets, presumptive bands, ETR formulas",
+   "USSD + agent app for informal-sector inclusion"
+  ],
+  "problem": "Nigerian tax administration is fragmented across legacy systems and excludes the informal economy — Meridian unifies compliance, sovereignty, and inclusion into one platform the NRS can operate."
+ },
+ "Blue Economy Platform": {
+  "repos": [
+   "blueeconomy",
+   "blueeconomy-administration-service",
+   "blueeconomy-agency-sandbox",
+   "blueeconomy-beneficiary-portal",
+   "blueeconomy-contracts",
+   "blueeconomy-credential-verification",
+   "blueeconomy-cv-service",
+   "blueeconomy-data-platform",
+   "blueeconomy-developer-platform",
+   "blueeconomy-ferry-ticketing",
+   "blueeconomy-financial-controls",
+   "blueeconomy-fisheries-traceability",
+   "blueeconomy-geo-service",
+   "blueeconomy-insurance",
+   "blueeconomy-maritime-evidence",
+   "blueeconomy-maritime-intelligence",
+   "blueeconomy-ministry-portal",
+   "blueeconomy-ml-stack",
+   "blueeconomy-platform-gitops",
+   "blueeconomy-port-interoperability",
+   "blueeconomy-security-operations",
+   "blueeconomy-tax-stamps",
+   "blueeconomy-traceability",
+   "blueeconomy-waterway-safety"
+  ],
+  "title": "Blue Economy Platform — Nigerian Maritime PPP",
+  "arch": "Go, Python, Rust, TypeScript · Delta Lake lakehouse, TigerBeetle ledger, Mojaloop FSPIOP, Keycloak, Kafka, hybrid Kubernetes GitOps, YOLOX ONNX computer vision",
+  "overview": "The Ministry's Unified Blue Economy Platform — a PPP spanning NPA, NIMASA, NIWA, FMMBE and CBN. 24 repositories cover the full stack: governance and ADRs, sovereign vessel tracking (AIS/GT06 ingestion, PostGIS hot path), immutable maritime evidence with transactional outbox, marine insurance (deterministic rating, maker-checker bind/claims), ferry e-ticketing with NIMASA passenger manifests, fisheries traceability with cold-chain IoT, port-call and eCallUp 2.0 truck booking, excise tax stamps, waterway-safety telemetry in Rust, CV vessel detection, a governed lakehouse, and TradeNet-style agency sandboxes (NCS B'Odogwu, CBN TMS, NEPC, NIS, Port Health, NPA e-SEN).",
+  "features": [
+   "Sovereign multi-tier vessel tracking hot path",
+   "Immutable maritime evidence + Kafka outbox",
+   "Deterministic marine insurance engine with VC 2.0 policies",
+   "CVFF loan applications via beneficiary portal",
+   "FISh/aquaculture traceability from catch to export",
+   "Cryptographically signed telemetry devices",
+   "Hybrid K8s GitOps with policy-as-code"
+  ],
+  "problem": "Nigeria's maritime domain runs on paper and siloed agency systems — the platform digitises trade, safety, insurance, and compliance across every agency on one sovereign, auditable foundation."
+ },
+ "UmojaFlowOS": {
+  "repos": [
+   "UmojaFlowOS"
+  ],
+  "title": "UmojaFlowOS — Cross-Border B2B Payment Orchestration",
+  "arch": "TypeScript · enterprise control plane",
+  "overview": "An enterprise control plane for Africa-linked cross-border B2B payment orchestration across Nigeria (NGN), Kenya (KES), and South Africa (ZAR). It coordinates regulated counterparties rather than replacing them.",
+  "features": [
+   "Multi-currency corridors: NGN, KES, ZAR",
+   "Regulated-counterparty coordination model",
+   "Enterprise-grade orchestration layer"
+  ],
+  "problem": "Cross-border B2B payments in Africa are slow, opaque, and compliance-heavy — UmojaFlowOS orchestrates the regulated players instead of bypassing them, making corridors reliable."
+ },
+ "AgricPlatform": {
+  "repos": [
+   "AgricPlatform",
+   "farmer-data-collection"
+  ],
+  "title": "AgricPlatform — Nigeria Farmer Platform",
+  "arch": "Next.js role-aware PWA · NestJS services · Angular underpinnings · Open-Meteo API",
+  "overview": "Unified implementation of the Nigeria Farmer Platform PRD v3.3 for NYFN: a role-aware progressive web app for farmers with field data collection and location-based weather forecasting via the open-source Open-Meteo API.",
+  "features": [
+   "Role-aware PWA (farmer/agent/admin views)",
+   "Field data collection",
+   "Open-Meteo weather forecasts by location",
+   "NestJS application layer"
+  ],
+  "problem": "Nigerian farmers lack structured digital tooling for data, advisory, and market access — this platform gives extension programs a single role-aware surface."
+ },
+ "Nexcomm Exchange": {
+  "repos": [
+   "nexcomm"
+  ],
+  "title": "Nexcomm — African Agricultural Commodity Exchange",
+  "arch": "React 19 + TypeScript + tRPC + PostgreSQL · 20 microservices · Flutter + React Native mobile · USSD/WhatsApp/Telegram channels",
+  "overview": "A full-stack, production-ready commodity exchange platform for African agricultural markets. A matching engine and settlement engine ensure the accuracy and integrity of the markets shown to users, with WhatsApp, Telegram, and USSD as communication and access channels.",
+  "features": [
+   "Matching engine + settlement engine",
+   "20-microservice architecture",
+   "USSD / WhatsApp / Telegram access",
+   "Flutter + React Native mobile apps"
+  ],
+  "problem": "African agricultural markets are informal and price-opaque — Nexcomm gives them a real exchange with engineered settlement guarantees and channels farmers actually use."
+ },
+ "BIS": {
+  "repos": [
+   "bis"
+  ],
+  "title": "BIS — Compliance Intelligence Platform",
+  "arch": "Full-stack · compliance intelligence for AML/CFT",
+  "overview": "A production-ready compliance intelligence platform for Nigerian financial institutions and law-enforcement agencies, built for AML/CFT operations.",
+  "features": [
+   "AML/CFT workflows for FIs and law enforcement",
+   "Intelligence gathering and case management",
+   "Production-ready full-stack implementation"
+  ],
+  "problem": "Nigerian institutions must fight financial crime with fragmented tooling — BIS consolidates compliance intelligence into one operational platform."
+ },
+ "Unified SOS": {
+  "repos": [
+   "unified-sos"
+  ],
+  "title": "Unified SOS — Subnational Digital Governance & Revenue",
+  "arch": "Python · multi-tenant infrastructure",
+  "overview": "Nigeria's first unified, multi-tenant digital governance and automated revenue infrastructure for subnational governments — one common operating core, six pilot states, and thirty ranked Technology-PPP opportunities.",
+  "features": [
+   "Multi-tenant state deployments from one core",
+   "Automated revenue infrastructure",
+   "Ranked Technology-PPP opportunity pipeline"
+  ],
+  "problem": "Each Nigerian state rebuilds the same digital-governance stack from scratch — Unified SOS lets them share one hardened core and focus on revenue outcomes."
+ },
+ "VPP": {
+  "repos": [
+   "vpp"
+  ],
+  "title": "VPP — Open Source Virtual Power Plant Platform",
+  "arch": "TypeScript · MIT-licensed, device-protocol-native",
+  "overview": "An open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity.",
+  "features": [
+   "DER registration and forecasting",
+   "Native device-protocol control",
+   "Energy trading on aggregated capacity"
+  ],
+  "problem": "Distributed energy assets (solar, batteries, EVs) sit idle and uncoordinated — VPP aggregates them into a dispatchable, tradable power plant."
+ },
+ "FraudFusion": {
+  "repos": [
+   "fraudfusion"
+  ],
+  "title": "FraudFusion — Multi-Service Fraud Prevention",
+  "arch": "Go, Python, Rust, TypeScript, React Native · Prometheus + Alertmanager, signed HMAC release-gate metrics",
+  "overview": "A multi-service fraud prevention platform spanning five language stacks, with Prometheus and Alertmanager observability and a signed HMAC release-gate metric producer for trustworthy operational metrics.",
+  "features": [
+   "Polyglot microservices (Go/Python/Rust/TS/React Native)",
+   "Prometheus + Alertmanager monitoring",
+   "Signed HMAC release-gate metrics"
+  ],
+  "problem": "Payment platforms in emerging markets face layered fraud — FraudFusion provides a modular detection stack that scales across services."
+ },
+ "HealthLink / datalinkage": {
+  "repos": [
+   "datalinkage"
+  ],
+  "title": "HealthLink — Healthcare Data Linkage",
+  "arch": "Polyglot · governance-first reference implementation",
+  "overview": "A runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an HCUP NRD pilot specification.",
+  "features": [
+   "Governance-first patient-record linkage",
+   "Service contracts and pilot specification included",
+   "Runnable reference implementation"
+  ],
+  "problem": "Health records for the same patient live in disconnected systems — HealthLink links them safely under explicit governance rules."
+ },
+ "CRUSH (cmscrush)": {
+  "repos": [
+   "cmscrush"
+  ],
+  "title": "CRUSH — Healthcare Fraud, Waste & Abuse Operations",
+  "arch": "Go · Kubernetes-native",
+  "overview": "An open-source, Kubernetes-native platform foundation for defensible healthcare fraud, waste, abuse, and coding-integrity operations, implementing a safe executable vertical slice from canonical specifications.",
+  "features": [
+   "K8s-native FW&A operations",
+   "Defensible audit trail focus",
+   "Canonical-spec vertical slice"
+  ],
+  "problem": "Healthcare fraud investigations fail on defensibility — CRUSH provides an auditable, reproducible operations foundation."
+ },
+ "Hydrogen Transport (H2Fleet)": {
+  "repos": [
+   "hydrogenTransport"
+  ],
+  "title": "H2Fleet — Hydrogen Bus Fleet Platform",
+  "arch": "Go · 20 capability modules in 4 domains",
+  "overview": "One platform for a city's fleet of 50 hydrogen buses. Instead of building 20 separate apps, H2Fleet implements 20 capability modules in 4 domains on a single platform.",
+  "features": [
+   "20 modular capabilities, 4 domains",
+   "Single platform for a 50-bus fleet",
+   "Domain-driven module boundaries"
+  ],
+  "problem": "Hydrogen transit fleets need refuelling, maintenance, and operations software that vendors sell as 20 disconnected apps — H2Fleet unifies them."
+ },
+ "INEC Election Platform": {
+  "repos": [
+   "inec"
+  ],
+  "title": "INEC — Election Management System",
+  "arch": "Full-stack · production-grade, under active development",
+  "overview": "A production-grade, full-stack election management system built for Nigeria's electoral infrastructure; some components are production-ready while others are in progress.",
+  "features": [
+   "Full election lifecycle management",
+   "Built for Nigerian electoral infrastructure",
+   "Production-grade engineering standards"
+  ],
+  "problem": "Election administration in Nigeria needs transparent, auditable technology — this system targets that operational core."
+ },
+ "MineralVision": {
+  "repos": [
+   "mineralvision"
+  ],
+  "title": "MineralVision — Mineral Exploration & Compliance",
+  "arch": "Python · satellite analytics",
+  "overview": "The premiere platform for mineral exploration, discovery, and compliance — unifying the full exploration lifecycle from satellite anomaly detection through compliance.",
+  "features": [
+   "Satellite anomaly detection",
+   "Full exploration lifecycle coverage",
+   "Compliance workflow integration"
+  ],
+  "problem": "Mineral exploration is data-rich but tool-poor — MineralVision consolidates discovery signals and compliance into one platform."
+ },
+ "NextGen INSR": {
+  "repos": [
+   "nextgen-insr",
+   "nextgeninsr"
+  ],
+  "title": "NextGen INSR — Nigerian Insurance Technology Platform",
+  "arch": "TypeScript · production-grade full value chain",
+  "overview": "A comprehensive, production-grade insurtech platform for the Nigerian market covering the full insurance value chain: policy administration, claims adjudication, agent network management, and KYC/AML compliance.",
+  "features": [
+   "Policy administration",
+   "Claims adjudication",
+   "Agent network management",
+   "KYC/AML compliance"
+  ],
+  "problem": "Nigerian insurers run fragmented legacy systems — NextGen INSR provides one modern platform for the entire value chain."
+ },
+ "PayGate / PaymentSwitch / CRMaaS": {
+  "repos": [
+   "paygate",
+   "paymentswitch",
+   "crmaas"
+  ],
+  "title": "Payment Switch Onboarding Platform",
+  "arch": "TypeScript + Go · onboarding portal for payment networks",
+  "overview": "A comprehensive onboarding platform for integrating financial institutions, payment service providers, merchants, and businesses into a payment switch network. The portal guides participants through the entire integration process.",
+  "features": [
+   "Participant onboarding (FIs, PSPs, merchants)",
+   "Payment switch network integration",
+   "CRM-as-a-service back office"
+  ],
+  "problem": "Payment switch onboarding is manual and slow — this portal standardises and accelerates participant integration."
+ },
+ "RemitFlow": {
+  "repos": [
+   "remitflow"
+  ],
+  "title": "RemitFlow — Cross-Border Remittance Platform",
+  "arch": "Polyglot microservices + PWA · DigitalOcean Kubernetes, APISIX gateway, Dapr sidecars, Permify authorization",
+  "overview": "A polyglot microservices backend for a cross-border remittance and banking platform with a PWA frontend, deployed on DigitalOcean Kubernetes behind an APISIX gateway, with Dapr sidecars and Permify for fine-grained authorization.",
+  "features": [
+   "APISIX gateway + Dapr sidecars",
+   "Permify fine-grained authorization",
+   "PWA frontend",
+   "Kubernetes deployment"
+  ],
+  "problem": "Remittance platforms need cheap, compliant, multi-corridor rails — RemitFlow provides the microservice backbone for that."
+ },
+ "TaxStamp": {
+  "repos": [
+   "taxstamp"
+  ],
+  "title": "TaxStamp — Excise Stamp Issuance & Verification",
+  "arch": "Python · double-entry ledger, maker-checker workflow",
+  "overview": "Excise tax-stamp issuance, settlement, and field verification: order intake, maker-checker approval, exact-amount payment matching, double-entry posting, resumable serial issuance, and field verification tooling.",
+  "features": [
+   "Maker-checker approvals",
+   "Exact-amount payment matching",
+   "Double-entry posting",
+   "Resumable serial issuance + field verification"
+  ],
+  "problem": "Excise stamp regimes leak revenue to counterfeits and poor accounting — TaxStamp adds cryptographic-grade issuance and verification."
+ },
+ "TourismPay": {
+  "repos": [
+   "tourismpay"
+  ],
+  "title": "TourismPay — Multi-Currency Tourism Payments",
+  "arch": "Full-stack PWA · multi-currency wallets, QR payments",
+  "overview": "A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.",
+  "features": [
+   "Multi-currency wallets",
+   "QR payments",
+   "Merchant onboarding",
+   "Compliance built in"
+  ],
+  "problem": "Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface."
+ },
+ "Lanai": {
+  "repos": [
+   "lanai"
+  ],
+  "title": "Lanai — Luxury Travel Concierge Platform",
+  "arch": "React + Vite · Twenty CRM backend · Python/Flask AI microservices",
+  "overview": "A full-stack advisor portal and client-facing portal for Lanai Lifestyle, a luxury travel concierge company, with an AI-powered microservice suite on top of Twenty CRM.",
+  "features": [
+   "Advisor + client dual portal",
+   "Twenty CRM integration",
+   "Python/Flask AI microservices"
+  ],
+  "problem": "Luxury concierge businesses juggle clients across chat and spreadsheets — Lanai centralises advisory and client experience with AI assistance."
+ },
+ "Agora (OpenDesk)": {
+  "repos": [
+   "agora"
+  ],
+  "title": "Agora — Open-Source AI Receptionist SaaS",
+  "arch": "Go · multi-tenant · Kafka event-driven",
+  "overview": "A fully open-source, multi-tenant AI receptionist / front-desk SaaS: every appointment, call, and front-desk interaction is handled by AI agents with Kafka-driven eventing (internal modules retain the opendesk identifier).",
+  "features": [
+   "Multi-tenant SaaS",
+   "AI receptionist across calls and bookings",
+   "Kafka event architecture"
+  ],
+  "problem": "Small businesses lose bookings to missed calls — Agora gives every business an always-on AI front desk."
+ },
+ "Singlewindow": {
+  "repos": [
+   "singlewindow"
+  ],
+  "title": "Singlewindow — Trade Facilitation Portal",
+  "arch": "TypeScript",
+  "overview": "A single-window trade facilitation portal, part of the Newfire platform portfolio (updated recently; active development).",
+  "features": [
+   "Single-window trade submissions",
+   "Portal-based agency interaction"
+  ],
+  "problem": "Traders submit the same data to multiple Nigerian agencies — a single window collapses those touchpoints into one."
+ },
+ "Healthpoint": {
+  "repos": [
+   "healthpoint"
+  ],
+  "title": "Healthpoint — Healthcare Data Security",
+  "arch": "React + Express + tRPC · ML-assisted",
+  "overview": "A platform for ensuring data security for healthcare institutions, utilizing machine-learning algorithms. Built on a React + Express + tRPC stack with end-to-end typed contracts and wired OAuth.",
+  "features": [
+   "ML-driven security monitoring",
+   "tRPC end-to-end typed contracts",
+   "OAuth wired in"
+  ],
+  "problem": "Healthcare institutions handle sensitive data with weak security tooling — Healthpoint adds ML-backed protection."
+ },
+ "Newfire": {
+  "repos": [
+   "newfire"
+  ],
+  "title": "NewFire — AI Homelab Platform",
+  "arch": "Minisforum X1 Pro 370 control plane + NVIDIA DGX Spark GPU compute",
+  "overview": "A two-machine AI homelab hosting the NewFire AI platform: local LLMs, agent orchestrators, and tenant-aware APIs paired across a control plane and GPU compute node.",
+  "features": [
+   "Local LLM hosting",
+   "Agent orchestration",
+   "Tenant-aware API layer"
+  ],
+  "problem": "Owning your AI stack avoids subscription lock-in — NewFire is the reference implementation of that self-hosted infrastructure."
+ },
+ "NRS Data Analytics Platform": {
+  "repos": [
+   "NRSDataAnalyticsPlatform"
+  ],
+  "title": "NRS Data Analytics Platform",
+  "arch": "Analytics platform for the Nigeria Revenue Service",
+  "overview": "Data analytics platform supporting the NRS tax administration analytics workstream (companion to the Meridian TaxTech gov enclave).",
+  "features": [
+   "Revenue analytics",
+   "Tax administration reporting"
+  ],
+  "problem": "Tax authorities need consolidated analytics to target compliance — this platform delivers that analytical layer."
+ },
+ "PoliticalIntelligence": {
+  "repos": [
+   "PoliticalIntelligence"
+  ],
+  "title": "PoliticalIntelligence — Political Analytics PWA",
+  "arch": "TypeScript PWA · generated media assets",
+  "overview": "A political intelligence PWA with generated media assets (auth topology, PWA icons, OG cover via a Pillow asset script).",
+  "features": [
+   "PWA installability",
+   "Asset-generation pipeline"
+  ],
+  "problem": "Political campaigns need structured intelligence tooling — this provides a mobile-first analytics surface."
+ },
+ "CoreBanking": {
+  "repos": [
+   "corebanking"
+  ],
+  "title": "CoreBanking",
+  "arch": "TypeScript",
+  "overview": "Core-banking platform component in the Newfire portfolio.",
+  "features": [
+   "Banking core services"
+  ],
+  "problem": "Modern banking products need flexible core rails — this explores that layer."
+ },
+ "AgentBanking": {
+  "repos": [
+   "agentbanking"
+  ],
+  "title": "AgentBanking",
+  "arch": "TypeScript",
+  "overview": "Agent-network banking platform component in the Newfire portfolio.",
+  "features": [
+   "Agent banking workflows"
+  ],
+  "problem": "Agent banking extends financial access to unbanked areas — this supports that agent network."
+ },
+ "LandManagement": {
+  "repos": [
+   "landmanagement"
+  ],
+  "title": "LandManagement",
+  "arch": "TypeScript",
+  "overview": "Land management platform component in the Newfire portfolio.",
+  "features": [
+   "Land records management"
+  ],
+  "problem": "Land administration is paper-bound — this digitises records and transactions."
+ },
+ "Realestate": {
+  "repos": [
+   "realestate"
+  ],
+  "title": "Realestate",
+  "arch": "TypeScript",
+  "overview": "Real-estate platform component in the Newfire portfolio.",
+  "features": [
+   "Property listings and workflows"
+  ],
+  "problem": "Real-estate transactions need transparent digital rails."
+ },
+ "Nexthub": {
+  "repos": [
+   "nexthub"
+  ],
+  "title": "Nexthub",
+  "arch": "TypeScript",
+  "overview": "Hub platform component in the Newfire portfolio.",
+  "features": [
+   "Hub services"
+  ],
+  "problem": "Connective tissue for the platform portfolio's services."
+ },
+ "Sonalysis": {
+  "repos": [
+   "sonalysis"
+  ],
+  "title": "Sonalysis",
+  "arch": "Analytics",
+  "overview": "Analytics product in the Newfire portfolio.",
+  "features": [
+   "Analytics dashboards"
+  ],
+  "problem": "Decision-makers need consolidated analytics."
+ },
+ "WhatsAppCommerce": {
+  "repos": [
+   "whatsappCommerce"
+  ],
+  "title": "WhatsAppCommerce",
+  "arch": "TypeScript",
+  "overview": "Commerce platform running on WhatsApp as the primary channel.",
+  "features": [
+   "WhatsApp-native commerce"
+  ],
+  "problem": "In African markets WhatsApp IS the storefront — this meets commerce where users already are."
+ },
+ "DeliveryPlatform (SwitchOS)": {
+  "repos": [
+   "DeliveryPlatform"
+  ],
+  "title": "DeliveryPlatform — SwitchOS Multi-Vertical Delivery Commerce",
+  "arch": "TypeScript monorepo (client / server / mobile / services) · Drizzle ORM + PostgreSQL · Vite · pnpm workspaces · Playwright + Vitest",
+  "overview": "An operator-centric, multi-vertical delivery commerce and operations platform. SwitchOS spans merchant operations, consumer ordering, courier and dispatch workflows, payments and payouts, loyalty and campaigns, geospatial routing and growth analytics — a broad commerce-and-operations control plane rather than a single-vertical delivery app.",
+  "features": [
+   "Merchant hub and merchant commerce operations",
+   "Consumer ordering and checkout flows",
+   "Courier / driver dispatch and courier radar",
+   "Payments, payouts, referral and loyalty",
+   "Geospatial routing and vertical templates",
+   "Trust, experiments, campaigns and growth analytics"
+  ],
+  "problem": "Delivery commerce in African markets is fragmented across disconnected merchant, courier and payment tools — SwitchOS gives operators one integrated control plane across multiple verticals."
+ },
+ "Social Protection Platform": {
+  "repos": [
+   "socialservices"
+  ],
+  "title": "Social Protection Platform — Beneficiary Lifecycle Orchestration",
+  "arch": "TypeScript monorepo · Temporal + Kafka middleware · Delta Lake / Spark / Flink lakehouse · Keycloak & Permify",
+  "overview": "An enterprise admin portal for national social protection programmes, orchestrating beneficiary lifecycle workflows end to end. Twenty functional pages cover beneficiary and programme management, transaction monitoring, disbursements, KYC verification, documents, organisations, roles and audit, with a workflow designer, custom dashboards, an integration marketplace and AI insights. A ten-component middleware layer (Temporal, Kafka, Dapr, Fluvio, Keycloak, Permify, Redis) drives 15 orchestrated workflows across 139 steps, feeding a lakehouse built on Delta Lake, Apache Spark, Flink, DataFusion, Ray and Sedona for geospatial analytics.",
+  "features": [
+   "Beneficiary & programme management",
+   "Disbursements and transaction monitoring",
+   "KYC verification and document management",
+   "Workflow designer (15 workflows, 139 steps)",
+   "Event streaming: Kafka, Fluvio, Dapr",
+   "Temporal orchestration with retry policies",
+   "Keycloak identity + Permify authorisation",
+   "Delta Lake / Spark / Flink lakehouse",
+   "Geospatial analytics with Apache Sedona",
+   "AI insights and advanced reporting"
+  ],
+  "problem": "Social protection programmes disburse to millions of beneficiaries through fragmented systems, which invites leakage, duplicate payments and untraceable grievances. This platform puts enrolment, verification, payment and grievance handling on one accountable, auditable spine — with the data platform underneath to detect fraud and measure delivery."
+ }
 }

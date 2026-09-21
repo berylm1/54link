@@ -1,237 +1,204 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>brochure</title>
-  <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-</head>
+<html lang="en"><head><meta charset="utf-8">
+<title>54link — Platform Brochure</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font: 11.5px/1.55 -apple-system, 'Helvetica Neue', Arial, sans-serif; color: #14181d; margin: 0; }
+  .cover { page-break-after: always; padding-top: 26mm; text-align: center; }
+  .cover img { width: 132px; height: 132px; border-radius: 22px; }
+  .cover h1 { font-size: 34px; margin: 20px 0 4px; letter-spacing: -.5px; }
+  .cover h1 b { color: #c8901a; }
+  .cover .sub { font-size: 15px; color: #4a5560; margin-bottom: 26px; }
+  .cover .rule { height: 5px; width: 190px; margin: 0 auto 26px;
+      background: linear-gradient(90deg,#d92d20,#f0b429,#22a34a,#2f6fed,#f97316); border-radius: 3px; }
+  .cover .stats { display: flex; justify-content: center; gap: 34px; margin: 30px 0 34px; }
+  .cover .stat b { display: block; font-size: 26px; }
+  .cover .stat span { font-size: 10.5px; color: #5a6672; text-transform: uppercase; letter-spacing: .08em; }
+  .cover .s1 b { color: #c8901a; } .cover .s2 b { color: #1c8b3f; } .cover .s3 b { color: #b8241a; }
+  .cover .foot { color: #6b7683; font-size: 10.5px; }
+  h2 { font-size: 17px; margin: 0 0 6px; padding-left: 12px; position: relative; }
+  h2:before { content:''; position:absolute; left:0; top:.15em; bottom:.15em; width:5px; border-radius:3px;
+      background: linear-gradient(180deg,#d92d20,#f0b429,#22a34a,#2f6fed,#f97316); }
+  .sectsub { color: #5a6672; margin: 0 0 16px; padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 10.5px; margin-bottom: 18px; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid #e2e6ea; vertical-align: top; }
+  th { background: #f6f7f9; font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; color: #6b7683; }
+  td.dim { color: #5a6672; }
+  .ok { color: #1c8b3f; font-weight: 600; }
+  .pblock { page-break-inside: avoid; border: 1px solid #e2e6ea; border-radius: 8px; padding: 13px 15px; margin-bottom: 13px; }
+  .pblock h3 { font-size: 13.5px; margin: 0 0 4px; }
+  .tag { font-size: 10px; color: #5a6672; margin: 0 0 8px; }
+  .blurb { margin: 0 0 8px; }
+  .arch { margin: 0 0 6px; color: #333c45; }
+  .overview { margin: 0 0 8px; color: #333c45; }
+  .lbl { font-size: 9.5px; text-transform: uppercase; letter-spacing: .07em; color: #c8901a; margin: 9px 0 4px; font-weight: 700; }
+  .feats { margin: 0 0 4px; padding-left: 17px; color: #333c45; }
+  .feats li { margin: 1px 0; }
+  .repos { font-size: 10px; color: #5a6672; margin: 8px 0 0; }
+  .pagebreak { page-break-before: always; }
+  footer { margin-top: 22px; padding-top: 10px; border-top: 3px solid #c8901a; color: #6b7683; font-size: 10px; }
+</style></head>
 <body>
-<h1 id="link-platform-brochure-draft-v0.1">54link — Platform Brochure
-(DRAFT v0.1)</h1>
-<p>54link compiles, deploys, and showcases Africa’s operational
-platforms. Nigeria is the first use case; the blueprint scales across
-all 54 countries.</p>
-<h2 id="the-portfolio">THE PORTFOLIO</h2>
-<p>34 platforms compiled from 66 public repositories:</p>
-<ol type="1">
-<li>NDSEP / NGApp — National Data Sovereignty Enforcement Platform (NDPA
-2023)</li>
-<li>Meridian TaxTech — Nigerian NRS unified tax platform (compliance,
-gov enclave, inclusion)</li>
-<li>Blue Economy Platform — Nigerian maritime PPP (24 services:
-tracking, insurance, ticketing, traceability)</li>
-<li>UmojaFlowOS — Cross-border B2B payment orchestration
-(NGN/KES/ZAR)</li>
-<li>AgricPlatform — Nigeria Farmer Platform (NYFN PRD v3.3)</li>
-<li>Nexcomm Exchange — African agricultural commodity exchange</li>
-<li>BIS — AML/CFT compliance intelligence</li>
-<li>Unified SOS — Subnational digital governance &amp; revenue (6 pilot
-states)</li>
-<li>VPP — Open-source virtual power plant</li>
-<li>FraudFusion — Multi-service fraud prevention</li>
-<li>NextGen INSR — Nigerian insurtech (full value chain)</li>
-<li>Payment Switch Onboarding (paygate / paymentswitch / crmaas)</li>
-<li>RemitFlow — Cross-border remittance microservices</li>
-<li>TaxStamp — Excise stamp issuance &amp; verification</li>
-<li>TourismPay — Multi-currency tourism payments</li>
-<li>HealthLink — Healthcare data linkage</li>
-<li>CRUSH — Healthcare fraud/waste/abuse operations</li>
-<li>H2Fleet — Hydrogen bus fleet platform</li>
-<li>INEC — Election management system</li>
-<li>MineralVision — Mineral exploration &amp; compliance</li>
-<li>Lanai — Luxury travel concierge</li>
-<li>Agora — Open-source AI receptionist SaaS</li>
-<li>Singlewindow — Trade facilitation portal</li>
-<li>Healthpoint — Healthcare data security (ML) … plus 11 additional
-repositories in the portfolio.</li>
-</ol>
-<h2 id="core-stack">CORE STACK</h2>
-<p>Go · Python · Rust · TypeScript Postgres (pgvector) · Redis/Dragonfly
-· Kafka · Temporal · Keycloak TigerBeetle ledger · Mojaloop FSPIOP ·
-APISIX · OpenAppSec WAF Docker · Kubernetes (hybrid GitOps) · GitHub
-Actions CI/CD</p>
-<h2 id="deployment-model">DEPLOYMENT MODEL</h2>
-<p>Phase 1 — Dev environments on 54link infrastructure (Kubernetes),
-wired to government-agency sandboxes (NCS B’Odogwu, CBN TMS, NEPC, NIS).
-Phase 2 — Video walkthroughs published per platform as deployments ship.
-Phase 3 — Staging → production for Nigerian agency partners. Phase 4 —
-Replicate the playbook across additional African markets.</p>
-<h2 id="partnership-models">PARTNERSHIP MODELS</h2>
-<ul>
-<li>Government: sovereign deployments, agency sandbox integration,
-capacity building</li>
-<li>Enterprise: platform licensing, integration engineering, managed
-operations</li>
-<li>Developers: open-source contribution, ecosystem tooling, paid build
-work</li>
+
+<div class="cover">
+  <img src="assets/54link-logo.png" alt="54link">
+  <h1><b>54</b>link</h1>
+  <div class="sub">Platform Brochure &nbsp;·&nbsp; Secured &amp; Demonstrated Deployments</div>
+  <div class="rule"></div>
+  <div class="stats">
+    <div class="stat s1"><b>68</b><span>Repositories compiled</span></div>
+    <div class="stat s2"><b>36</b><span>Platforms documented</span></div>
+    <div class="stat s3"><b>8</b><span>Secured &amp; on video</span></div>
+  </div>
+  <div class="foot">
+    54link compiles, deploys and showcases Africa's operational platforms — Nigeria first, then all 54.<br>
+    Prepared 21 September 2026
+  </div>
+</div>
+
+<h2>About 54link</h2>
+<p class="sectsub">What this document covers</p>
+<p>54link is a technology company that brings together a compiled portfolio of production-grade platforms —
+tax, trade, maritime, health, payments, energy and governance — built for African markets. Every platform is
+deployed into a live environment, documented in full, and demonstrated on video. Nigeria is the first use case;
+the blueprint scales across all 54.</p>
+<p style="margin-top:9px">This brochure covers the platforms we have <b>secured</b>: deployments that are live right now,
+verified working, and captured end to end on video. They are the reference deployments we can put in front of a
+partner today. The remaining platforms in the compiled portfolio are listed at the end.</p>
+
+<h2 style="margin-top:20px">Secured platforms at a glance</h2>
+<p class="sectsub">Deployed, verified, recorded</p>
+<table>
+  <thead><tr><th>Platform</th><th>Status</th><th>Video</th><th>Live environment</th></tr></thead>
+  <tbody>
+  <tr><td><b>Healthpoint</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">healthpoint.newfire.app</td></tr><tr><td><b>Lanai</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">lanai.newfire.app</td></tr><tr><td><b>Meridian TaxTech</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">meridian.newfire.app</td></tr><tr><td><b>NDSEP / NGApp</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">ndsep.newfire.app</td></tr><tr><td><b>INEC Election Platform</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">campaign-inec-servers.newfire.app</td></tr><tr><td><b>TourismPay</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">tourismpay-servers.newfire.app</td></tr><tr><td><b>UmojaFlowOS</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">umoja.newfire.app</td></tr><tr><td><b>VPP</b></td><td class="ok">Deployed</td><td class="ok">Recorded</td><td class="dim">vpp.newfire.app</td></tr>
+  </tbody>
+</table>
+
+<div class="pagebreak"></div>
+<h2>Secured platforms in detail</h2>
+<p class="sectsub">Architecture, capability and the problem each one solves</p>
+
+    <div class="pblock">
+      <h3>Healthpoint — Healthcare Data Security</h3>
+      <p class="tag">Live: <b>healthpoint.newfire.app</b> &nbsp;·&nbsp; Video: <b>healthpoint-walkthrough.mp4</b></p>
+      <p class="blurb">Health information exchange and dispute resolution — deployed and demonstrated with a full logged-in walkthrough.</p>
+      <p class="arch"><b>Architecture.</b> React + Express + tRPC · ML-assisted</p>
+      <p class="overview">A platform for ensuring data security for healthcare institutions, utilizing machine-learning algorithms. Built on a React + Express + tRPC stack with end-to-end typed contracts and wired OAuth.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>ML-driven security monitoring</li><li>tRPC end-to-end typed contracts</li><li>OAuth wired in</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Healthcare institutions handle sensitive data with weak security tooling — Healthpoint adds ML-backed protection.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/healthpoint</p>
+    </div>
+    <div class="pblock">
+      <h3>Lanai — Luxury Travel Concierge Platform</h3>
+      <p class="tag">Live: <b>lanai.newfire.app</b> &nbsp;·&nbsp; Video: <b>lanai-full-walkthrough.mp4</b></p>
+      <p class="blurb">Luxury travel concierge advisor portal — deployed with every service in the menu exercised on video.</p>
+      <p class="arch"><b>Architecture.</b> React + Vite · Twenty CRM backend · Python/Flask AI microservices</p>
+      <p class="overview">A full-stack advisor portal and client-facing portal for Lanai Lifestyle, a luxury travel concierge company, with an AI-powered microservice suite on top of Twenty CRM.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>Advisor + client dual portal</li><li>Twenty CRM integration</li><li>Python/Flask AI microservices</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Luxury concierge businesses juggle clients across chat and spreadsheets — Lanai centralises advisory and client experience with AI assistance.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/lanai</p>
+    </div>
+    <div class="pblock">
+      <h3>Meridian TaxTech — Nigerian NRS Unified Tax Platform</h3>
+      <p class="tag">Live: <b>meridian.newfire.app</b> &nbsp;·&nbsp; Video: <b>meridian-walkthrough.mp4</b></p>
+      <p class="blurb">Nigeria Revenue Service TaxTech compliance plane — six compliance modules, all reporting healthy.</p>
+      <p class="arch"><b>Architecture.</b> Go + Python · monorepo core, microservice planes, signed YAML rule packs, TigerBeetle ledger</p>
+      <p class="overview">The unified tax platform for Nigeria&#x27;s Nigeria Revenue Service (NRS): a shared platform core (middleware spine, rule-pack registry, TIN graph, feature store, TigerBeetle ledger services), a compliance plane (e-invoicing T1/T2/T3, POS-VAT T6, WHT T7, TP/CbCR T8, ETR T9, CARF/VASP T10), a sovereign gov enclave (NRS analytics T4, JRB harmonisation T11, institutional case management T13, customs rails T15), and an inclusion plane (informal-sector onboarding T5, presumptive tax T12, taxpayer education T14 with agent app, USSD and white-labeling).</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>E-invoicing and MBS pre-clearance</li><li>Rev360 reconciliation workbench</li><li>Sovereignty boundary — gov enclave deployed separately</li><li>Signed versioned rule packs (rp-*) for VAT baskets, presumptive bands, ETR formulas</li><li>USSD + agent app for informal-sector inclusion</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Nigerian tax administration is fragmented across legacy systems and excludes the informal economy — Meridian unifies compliance, sovereignty, and inclusion into one platform the NRS can operate.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/meridian-core-platform, github.com/munisp/meridian-compliance-suite, github.com/munisp/meridian-gov-enclave, github.com/munisp/meridian-inclusion-suite, github.com/munisp/meridian-rule-packs</p>
+    </div>
+    <div class="pblock">
+      <h3>NDSEP — National Data Sovereignty Enforcement Platform</h3>
+      <p class="tag">Live: <b>ndsep.newfire.app</b> &nbsp;·&nbsp; Video: <b>ndsep-demo.mp4</b></p>
+      <p class="blurb">National Data Sovereignty Enforcement Platform — 18 operational sections captured in demo mode.</p>
+      <p class="arch"><b>Architecture.</b> TypeScript · full-stack, regulator-grade platform (NDPC-facing)</p>
+      <p class="overview">Nigeria&#x27;s regulatory-grade platform for data protection compliance, breach management, and sector oversight under the Nigeria Data Protection Act 2023. Built for the Nigeria Data Protection Commission (NDPC). Includes real-time compliance dashboards cutting across finance, health, and education sectors, plus Healthpoint for healthcare-institution data security using machine learning.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>Compliance management under NDPA 2023</li><li>Breach management and reporting pipelines</li><li>Sector oversight with real-time dashboards (finance, health, education)</li><li>ML-driven data security for healthcare (Healthpoint)</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Nigeria&#x27;s NDPA 2023 created obligations but no unified enforcement tooling — NDSEP gives the regulator a single platform to register, monitor, and enforce data-protection compliance nationwide.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/ndsep, github.com/munisp/NGApp</p>
+    </div>
+    <div class="pblock">
+      <h3>INEC — Election Management System</h3>
+      <p class="tag">Live: <b>campaign-inec-servers.newfire.app</b> &nbsp;·&nbsp; Video: <b>inec-demo.mp4</b></p>
+      <p class="blurb">INEC Digital Twin campaign platform — repaired from a broken schema to a fully seeded, working deployment.</p>
+      <p class="arch"><b>Architecture.</b> Full-stack · production-grade, under active development</p>
+      <p class="overview">A production-grade, full-stack election management system built for Nigeria&#x27;s electoral infrastructure; some components are production-ready while others are in progress.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>Full election lifecycle management</li><li>Built for Nigerian electoral infrastructure</li><li>Production-grade engineering standards</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Election administration in Nigeria needs transparent, auditable technology — this system targets that operational core.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/inec</p>
+    </div>
+    <div class="pblock">
+      <h3>TourismPay — Multi-Currency Tourism Payments</h3>
+      <p class="tag">Live: <b>tourismpay-servers.newfire.app</b> &nbsp;·&nbsp; Video: <b>tourismpay-demo.mp4</b></p>
+      <p class="blurb">Multi-currency tourism payments — merchant services, onboarding and fraud monitoring.</p>
+      <p class="arch"><b>Architecture.</b> Full-stack PWA · multi-currency wallets, QR payments</p>
+      <p class="overview">A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>Multi-currency wallets</li><li>QR payments</li><li>Merchant onboarding</li><li>Compliance built in</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/tourismpay</p>
+    </div>
+    <div class="pblock">
+      <h3>UmojaFlowOS — Cross-Border B2B Payment Orchestration</h3>
+      <p class="tag">Live: <b>umoja.newfire.app</b> &nbsp;·&nbsp; Video: <b>umoja-demo.mp4</b></p>
+      <p class="blurb">Cross-border payment control for Africa-linked corridors — Nigeria, Kenya and South Africa.</p>
+      <p class="arch"><b>Architecture.</b> TypeScript · enterprise control plane</p>
+      <p class="overview">An enterprise control plane for Africa-linked cross-border B2B payment orchestration across Nigeria (NGN), Kenya (KES), and South Africa (ZAR). It coordinates regulated counterparties rather than replacing them.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>Multi-currency corridors: NGN, KES, ZAR</li><li>Regulated-counterparty coordination model</li><li>Enterprise-grade orchestration layer</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Cross-border B2B payments in Africa are slow, opaque, and compliance-heavy — UmojaFlowOS orchestrates the regulated players instead of bypassing them, making corridors reliable.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/UmojaFlowOS</p>
+    </div>
+    <div class="pblock">
+      <h3>VPP — Open Source Virtual Power Plant Platform</h3>
+      <p class="tag">Live: <b>vpp.newfire.app</b> &nbsp;·&nbsp; Video: <b>vpp-demo.mp4</b></p>
+      <p class="blurb">Virtual Power Plant control plane — live telemetry, asset management and power trading.</p>
+      <p class="arch"><b>Architecture.</b> TypeScript · MIT-licensed, device-protocol-native</p>
+      <p class="overview">An open-source virtual power plant platform: it registers distributed energy resources, forecasts and optimizes their dispatch, controls them over the protocols the devices actually speak, and trades the aggregated capacity.</p>
+      <p class="lbl">Key features</p>
+      <ul class="feats"><li>DER registration and forecasting</li><li>Native device-protocol control</li><li>Energy trading on aggregated capacity</li></ul>
+      <p class="lbl">Problem it solves</p>
+      <p class="overview">Distributed energy assets (solar, batteries, EVs) sit idle and uncoordinated — VPP aggregates them into a dispatchable, tradable power plant.</p>
+      <p class="repos"><b>Repositories.</b> github.com/munisp/vpp</p>
+    </div>
+
+<div class="pagebreak"></div>
+<h2>The wider compiled portfolio</h2>
+<p class="sectsub">Documented platforms not yet demonstrated on video</p>
+<table>
+  <thead><tr><th style="width:38%">Platform</th><th>Repositories</th></tr></thead>
+  <tbody><tr><td>Blue Economy Platform — Nigerian Maritime PPP</td><td class="dim">blueeconomy, blueeconomy-administration-service, blueeconomy-agency-sandbox, blueeconomy-beneficiary-portal, blueeconomy-contracts, blueeconomy-credential-verification, blueeconomy-cv-service, blueeconomy-data-platform, blueeconomy-developer-platform, blueeconomy-ferry-ticketing, blueeconomy-financial-controls, blueeconomy-fisheries-traceability, blueeconomy-geo-service, blueeconomy-insurance, blueeconomy-maritime-evidence, blueeconomy-maritime-intelligence, blueeconomy-ministry-portal, blueeconomy-ml-stack, blueeconomy-platform-gitops, blueeconomy-port-interoperability, blueeconomy-security-operations, blueeconomy-tax-stamps, blueeconomy-traceability, blueeconomy-waterway-safety</td></tr><tr><td>AgricPlatform — Nigeria Farmer Platform</td><td class="dim">AgricPlatform, farmer-data-collection</td></tr><tr><td>Nexcomm — African Agricultural Commodity Exchange</td><td class="dim">nexcomm</td></tr><tr><td>BIS — Compliance Intelligence Platform</td><td class="dim">bis</td></tr><tr><td>Unified SOS — Subnational Digital Governance &amp; Revenue</td><td class="dim">unified-sos</td></tr><tr><td>FraudFusion — Multi-Service Fraud Prevention</td><td class="dim">fraudfusion</td></tr><tr><td>HealthLink — Healthcare Data Linkage</td><td class="dim">datalinkage</td></tr><tr><td>CRUSH — Healthcare Fraud, Waste &amp; Abuse Operations</td><td class="dim">cmscrush</td></tr><tr><td>H2Fleet — Hydrogen Bus Fleet Platform</td><td class="dim">hydrogenTransport</td></tr><tr><td>MineralVision — Mineral Exploration &amp; Compliance</td><td class="dim">mineralvision</td></tr><tr><td>NextGen INSR — Nigerian Insurance Technology Platform</td><td class="dim">nextgen-insr, nextgeninsr</td></tr><tr><td>Payment Switch Onboarding Platform</td><td class="dim">paygate, paymentswitch, crmaas</td></tr><tr><td>RemitFlow — Cross-Border Remittance Platform</td><td class="dim">remitflow</td></tr><tr><td>TaxStamp — Excise Stamp Issuance &amp; Verification</td><td class="dim">taxstamp</td></tr><tr><td>Agora — Open-Source AI Receptionist SaaS</td><td class="dim">agora</td></tr><tr><td>Singlewindow — Trade Facilitation Portal</td><td class="dim">singlewindow</td></tr><tr><td>NewFire — AI Homelab Platform</td><td class="dim">newfire</td></tr><tr><td>NRS Data Analytics Platform</td><td class="dim">NRSDataAnalyticsPlatform</td></tr><tr><td>PoliticalIntelligence — Political Analytics PWA</td><td class="dim">PoliticalIntelligence</td></tr><tr><td>CoreBanking</td><td class="dim">corebanking</td></tr><tr><td>AgentBanking</td><td class="dim">agentbanking</td></tr><tr><td>LandManagement</td><td class="dim">landmanagement</td></tr><tr><td>Realestate</td><td class="dim">realestate</td></tr><tr><td>Nexthub</td><td class="dim">nexthub</td></tr><tr><td>Sonalysis</td><td class="dim">sonalysis</td></tr><tr><td>WhatsAppCommerce</td><td class="dim">whatsappCommerce</td></tr><tr><td>DeliveryPlatform — SwitchOS Multi-Vertical Delivery Commerce</td><td class="dim">DeliveryPlatform</td></tr><tr><td>Social Protection Platform — Beneficiary Lifecycle Orchestration</td><td class="dim">socialservices</td></tr></tbody>
+</table>
+
+<h2 style="margin-top:22px">Next steps</h2>
+<p class="sectsub">How to take this further</p>
+<ul style="padding-left:18px">
+  <li><b>Guided walkthrough.</b> Each secured platform can be demonstrated live in a working session.</li>
+  <li><b>Environment access.</b> Dev environments are available for partner evaluation with real workflows.</li>
+  <li><b>Deployment planning.</b> Migration, integration and support models scoped per platform.</li>
+  <li><b>Partnership.</b> Agency and private-sector partnerships across the 54link portfolio.</li>
 </ul>
-<h2 id="contact">CONTACT</h2>
-<p>Beryl Malomo — Newfire Platform https://54link.54link.here.now/</p>
-</body>
-</html>
+<p style="margin-top:10px">Full platform pages, videos and live environment links:
+<b>54link.54link.here.now</b></p>
+
+<footer>
+  <b>54link</b> · Africa's platform compiler · Work for work, across Africa, Nigeria first.<br>
+  68 repositories · 36 platforms documented · 8 secured and demonstrated on video · 21 September 2026
+</footer>
+
+</body></html>

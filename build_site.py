@@ -96,6 +96,42 @@ STYLE = '''
   .video-card .body { padding:16px 18px; }
   .video-card h3 { font-size:1rem; margin-bottom:6px; }
   .video-card p { color:var(--muted); font-size:.88rem; }
+  /* collapsible platform list — keeps the homepage compact */
+  .plist { display:flex; flex-direction:column; gap:10px; }
+  .pcard { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:border-color .18s; }
+  .pcard:hover { border-color:rgba(240,180,41,.35); }
+  .pcard > summary { cursor:pointer; padding:15px 20px; display:flex; align-items:center; gap:14px; list-style:none; }
+  .pcard > summary::-webkit-details-marker { display:none; }
+  .pcard > summary:hover { background:rgba(240,180,41,.05); }
+  .pcard .chev { color:var(--gold); font-size:.78rem; transition:transform .18s; flex-shrink:0; }
+  .pcard[open] .chev { transform:rotate(90deg); }
+  .pcard .pt { font-weight:700; font-size:1.03rem; flex:1 1 auto; }
+  .pcard .pmeta { color:var(--muted); font-size:.79rem; white-space:nowrap; }
+  .pcard .live { color:var(--green); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(34,163,74,.4); border-radius:999px; padding:1px 8px; white-space:nowrap; }
+  .pcard[open] > summary { border-bottom:1px solid var(--border); background:rgba(240,180,41,.05); }
+  .pcard .pbody { padding:20px 22px 24px; }
+  .pcard .pbody h3 { font-size:.74rem; text-transform:uppercase; letter-spacing:.09em; color:var(--gold); margin:18px 0 7px; }
+  .pcard .pbody h3:first-child { margin-top:0; }
+  @media (max-width:620px) { .pcard .pmeta { display:none; } }
+  /* video previews */
+  .videos { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:22px; }
+  .vcard { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .18s, transform .18s; }
+  .vcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-2px); }
+  .vcard video { width:100%; aspect-ratio:16/9; display:block; background:#0e1826; object-fit:cover; }
+  .vcard .vbody { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
+  .vcard h3 { font-size:1.02rem; margin:6px 0 6px; }
+  .vcard p { color:var(--muted); font-size:.87rem; }
+  .vcard .vlink { margin-top:auto; padding-top:14px; }
+  .vcard .vlink a { color:var(--gold); font-weight:600; text-decoration:none; font-size:.9rem; }
+  .vcard .vlink a:hover { text-decoration:underline; }
+  .vcard .badge { display:inline-block; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase; color:var(--green); border:1px solid rgba(34,163,74,.4); border-radius:999px; padding:2px 9px; }
+  /* secured platforms table */
+  .secured { width:100%; border-collapse:collapse; font-size:.92rem; }
+  .secured th, .secured td { text-align:left; padding:11px 14px; border-bottom:1px solid var(--border); }
+  .secured th { color:var(--gold); font-size:.74rem; text-transform:uppercase; letter-spacing:.09em; }
+  .secured td a { color:var(--fg); text-decoration:none; font-weight:600; }
+  .secured td a:hover { color:var(--gold); }
+  .secured .ok { color:var(--green); }
   .video-frame { position:relative; padding-top:56.25%; background:#0e1826; border-radius:14px; overflow:hidden; border:1px solid rgba(240,180,41,.28); }
   .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .video-frame .no-video { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.95rem; text-align:center; padding:24px; }
@@ -141,9 +177,11 @@ STYLE = '''
 NAV = '''<nav><div class="in">
   <a class="brand" href="/index.html">{logo}<span><b>54</b>link</span></a>
   <a href="/index.html#platforms">Platforms</a>
-  <a href="/index.html#dev">Dev Environments</a>
   <a href="/index.html#videos">Video Demos</a>
-  <a href="/index.html#register">Get the Brochure</a>
+  <a href="/index.html#dev">Dev Environments</a>
+  <a href="/index.html#secured">Secured Platforms</a>
+  <a href="/brochure.pdf" target="_blank" rel="noopener">Brochure</a>
+  <a href="/index.html#register">Get in Touch</a>
 </div></nav>'''
 
 # substitute the logo mark into the nav (previously left as a literal placeholder)
@@ -256,18 +294,31 @@ for key, p in platforms.items():
 cards = []
 for key, p in platforms.items():
     slug = detail_pages[key]
-    feats = ''.join(f'<li>{esc(f)}</li>' for f in p['features'][:4])
-    more = f'<li>…and {len(p["features"])-4} more — see the platform page</li>' if len(p['features']) > 4 else ''
-    cards.append(f'''
-    <article class="card" data-search="{esc((p['title'] + ' ' + p['arch'] + ' ' + p['overview'] + ' ' + p['problem'] + ' ' + ' '.join(p['features']) + ' ' + ' '.join(p['repos'])).lower())}">
-      <h2><a href="/{esc(detail_pages[key])}">{esc(p['title'])}</a></h2>
-      <p class="arch"><strong>Architecture:</strong> {esc(p['arch'])}</p>
-      <p class="overview">{esc(p['overview'])}</p>
-      <h3>Key features</h3><ul>{feats}{more}</ul>
-      <h3>Problem it solves</h3><p class="problem">{esc(p['problem'])}</p>
-      <div class="repos"><h3>Repositories ({len(p['repos'])})</h3>{''.join(f'<a class="repo" href="https://github.com/munisp/{esc(rn)}" target="_blank" rel="noopener">{esc(rn)}<span class="lang">{esc(repo_by_name.get(rn,{}).get("language") or "")}</span></a>' for rn in p['repos'][:6])}</div>
-      <div class="cardlink"><a href="/{esc(detail_pages[key])}">Explore platform →</a></div>
-    </article>''')
+    feats = ''.join(f'<li>{esc(f)}</li>' for f in p['features'])
+    has_video = key in VIDEOS or key in VIDEO_SETS
+    badge = '<span class="live">Live demo</span>' if has_video else ''
+    repos_html = ''.join(
+        f'<a class="repo" href="https://github.com/munisp/{esc(rn)}" target="_blank" rel="noopener">{esc(rn)}'
+        f'<span class="lang">{esc(repo_by_name.get(rn,{}).get("language") or "")}</span></a>'
+        for rn in p['repos'])
+    search_blob = esc((p['title'] + ' ' + p['arch'] + ' ' + p['overview'] + ' ' + p['problem'] + ' ' + ' '.join(p['features']) + ' ' + ' '.join(p['repos'])).lower())
+    nrepo = len(p['repos'])
+    cards.append(f'''<details class="pcard" data-search="{search_blob}">
+      <summary>
+        <span class="chev" aria-hidden="true">&#9654;</span>
+        <span class="pt">{esc(p['title'])}</span>
+        {badge}
+        <span class="pmeta">{nrepo} repo{'s' if nrepo != 1 else ''}</span>
+      </summary>
+      <div class="pbody">
+        <h3>Architecture</h3><p class="arch">{esc(p['arch'])}</p>
+        <h3>Overview</h3><p class="overview">{esc(p['overview'])}</p>
+        <h3>Key features</h3><ul>{feats}</ul>
+        <h3>Problem it solves</h3><p class="problem">{esc(p['problem'])}</p>
+        <h3>Repositories ({nrepo})</h3><div class="repos">{repos_html}</div>
+        <div class="cardlink"><a href="/{esc(slug)}">Explore platform &rarr;</a></div>
+      </div>
+    </details>''')
 
 auto_cards = []
 for r in sorted(uncovered, key=lambda x: x['name'].lower()):
@@ -278,6 +329,47 @@ for r in sorted(uncovered, key=lambda x: x['name'].lower()):
       <p class="arch"><strong>Language:</strong> {esc(r.get("language") or '—')} · <strong>Last push:</strong> {(r.get("pushed_at") or "")[:10]}</p>
       {f'<p class="overview">{desc}</p>' if desc else '<p class="overview">Active repository in the 54link compiled portfolio — see the GitHub repo for details.</p>'}
     </article>''')
+
+# ---------- secured platforms (deployed + demonstrated on video) ----------
+SECURED = {
+    'Healthpoint': ('healthpoint', 'healthpoint-walkthrough.mp4', 'https://healthpoint.newfire.app',
+                    'NAS/IDR health dispute-resolution platform — logged in, every section.'),
+    'Lanai': ('lanai', 'lanai-full-walkthrough.mp4', 'https://lanai.newfire.app',
+              'Luxury travel concierge advisor portal — every service in the menu.'),
+    'Meridian TaxTech': ('meridian', 'meridian-walkthrough.mp4', 'https://meridian.newfire.app',
+                         'Nigeria Revenue Service TaxTech compliance plane — six modules.'),
+    'NDSEP / NGApp': ('ndsep', 'ndsep-demo.mp4', 'https://ndsep.newfire.app',
+                      'National Data Sovereignty Enforcement Platform — 18 sections.'),
+    'INEC Election Platform': ('inec', 'inec-demo.mp4', 'https://campaign-inec-servers.newfire.app',
+                               'INEC Digital Twin campaign platform — live KPI dashboard and campaign tools.'),
+    'TourismPay': ('tourismpay', 'tourismpay-demo.mp4', 'https://tourismpay-servers.newfire.app',
+                   'Multi-currency tourism payments — merchant services walkthrough.'),
+    'UmojaFlowOS': ('umoja', 'umoja-demo.mp4', 'https://umoja.newfire.app',
+                    'Cross-border payment control for Africa-linked corridors.'),
+    'VPP': ('vpp', 'vpp-demo.mp4', 'https://vpp.newfire.app',
+            'Virtual Power Plant control plane — live telemetry and power trading.'),
+}
+
+vcards = []
+secured_rows = []
+for key, (poster, vidfile, live_url, blurb) in SECURED.items():
+    if key not in detail_pages:
+        continue
+    vcards.append(f'''<div class="vcard">
+      <video src="/videos/{esc(vidfile)}" poster="/videos/posters/{esc(poster)}.png" preload="none" controls playsinline></video>
+      <div class="vbody">
+        <span class="badge">Live demo</span>
+        <h3>{esc(key)}</h3>
+        <p>{esc(blurb)}</p>
+        <p class="vlink"><a href="/{esc(detail_pages[key])}">Open the platform page &rarr;</a></p>
+      </div>
+    </div>''')
+    secured_rows.append(f'''<tr>
+      <td><a href="/{esc(detail_pages[key])}">{esc(key)}</a></td>
+      <td class="ok">Deployed</td>
+      <td class="ok">Recorded</td>
+      <td><a href="{esc(live_url)}" target="_blank" rel="noopener">{esc(live_url.replace('https://',''))}</a></td>
+    </tr>''')
 
 index = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -305,10 +397,16 @@ index = f'''<!DOCTYPE html>
     <span class="count" id="pcount"></span>
     <button class="clear" id="pclear" type="button" aria-label="Clear search">✕</button>
   </div>
-  <div class="grid" id="platformgrid">{''.join(cards)}</div>
+  <div class="plist" id="platformgrid">{''.join(cards)}</div>
   <p class="nohits" id="pnohits">No platforms match that search. Try a sector (tax, maritime, health), a technology (Go, Python, Rust), or a platform name.</p>
-  <h2 style="margin:56px 0 20px;font-size:1.4rem">More repositories ({len(uncovered)})</h2>
-  <div class="grid">{''.join(auto_cards)}</div>
+  <details class="pcard" style="margin-top:26px">
+    <summary>
+      <span class="chev" aria-hidden="true">&#9654;</span>
+      <span class="pt">More repositories ({len(uncovered)})</span>
+      <span class="pmeta">active repositories without a dedicated platform page</span>
+    </summary>
+    <div class="pbody"><div class="grid">{''.join(auto_cards)}</div></div>
+  </details>
 </section>
 
 <section id="dev">
@@ -318,13 +416,17 @@ index = f'''<!DOCTYPE html>
 
 <section id="videos">
   <h2>Video demos</h2>
-  <p class="sectsub">Walkthroughs of the deployed platforms — recorded from the live dev environments. Each video also sits on its platform's detail page.</p>
-  <div class="videos">
-    <div class="video-card"><div class="ph">HealthPoint — full walkthrough</div><div class="body"><h3>HealthPoint</h3><p>NSA/IDR dispute resolution platform, logged in as Platform Admin.</p><p><a href="/{detail_pages['Healthpoint']}">Open the platform page →</a></p></div></div>
-    <div class="video-card"><div class="ph">NDSEP — demo-mode walkthrough</div><div class="body"><h3>NDSEP</h3><p>National Data Sovereignty Enforcement Platform — 18 operational sections.</p><p><a href="/{detail_pages['NDSEP / NGApp']}">Open the platform page →</a></p></div></div>
-    <div class="video-card"><div class="ph">Lanai — advisor portal walkthrough</div><div class="body"><h3>Lanai</h3><p>Luxury travel concierge advisor portal, every service in the menu.</p><p><a href="/{detail_pages['Lanai']}">Open the platform page →</a></p></div></div>
-    <div class="video-card"><div class="ph">Meridian TaxTech — walkthrough</div><div class="body"><h3>Meridian TaxTech</h3><p>Nigerian NRS unified tax platform.</p><p><a href="/{detail_pages['Meridian TaxTech']}">Open the platform page →</a></p></div></div>
-  </div>
+  <p class="sectsub">Every walkthrough below was recorded from a live, deployed environment. Press play to preview it here, or open the platform page for the full write-up.</p>
+  <div class="videos">{''.join(vcards)}</div>
+</section>
+
+<section id="secured">
+  <h2>Secured platforms</h2>
+  <p class="sectsub">The platforms we have taken end to end — deployed in a live environment, verified working, and captured on video. These are the reference deployments we can demonstrate today.</p>
+  <table class="secured">
+    <thead><tr><th>Platform</th><th>Deployed</th><th>Video</th><th>Live environment</th></tr></thead>
+    <tbody>{''.join(secured_rows)}</tbody>
+  </table>
 </section>
 
 <section id="register">
@@ -357,7 +459,7 @@ index = f'''<!DOCTYPE html>
   const clearBtn = document.getElementById('pclear');
   const noHits = document.getElementById('pnohits');
   if (!input || !grid) return;
-  const cards = Array.from(grid.querySelectorAll('.card'));
+  const cards = Array.from(grid.querySelectorAll('.pcard'));
   const total = cards.length;
   function apply() {{
     const q = input.value.trim().toLowerCase();
@@ -384,8 +486,11 @@ index = f'''<!DOCTYPE html>
     if (e.key === 'Escape') {{ input.value = ''; apply(); }}
     if (e.key === 'Enter') {{
       const first = cards.find(function (c) {{ return c.style.display !== 'none'; }});
-      const link = first && first.querySelector('h2 a');
-      if (link) link.click();
+      if (first) {{
+        first.open = true;
+        const link = first.querySelector('.cardlink a');
+        if (link) link.click();
+      }}
     }}
   }});
   // focus search with "/" key

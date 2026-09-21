@@ -84,6 +84,42 @@
   .video-card .body { padding:16px 18px; }
   .video-card h3 { font-size:1rem; margin-bottom:6px; }
   .video-card p { color:var(--muted); font-size:.88rem; }
+  /* collapsible platform list — keeps the homepage compact */
+  .plist { display:flex; flex-direction:column; gap:10px; }
+  .pcard { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:border-color .18s; }
+  .pcard:hover { border-color:rgba(240,180,41,.35); }
+  .pcard > summary { cursor:pointer; padding:15px 20px; display:flex; align-items:center; gap:14px; list-style:none; }
+  .pcard > summary::-webkit-details-marker { display:none; }
+  .pcard > summary:hover { background:rgba(240,180,41,.05); }
+  .pcard .chev { color:var(--gold); font-size:.78rem; transition:transform .18s; flex-shrink:0; }
+  .pcard[open] .chev { transform:rotate(90deg); }
+  .pcard .pt { font-weight:700; font-size:1.03rem; flex:1 1 auto; }
+  .pcard .pmeta { color:var(--muted); font-size:.79rem; white-space:nowrap; }
+  .pcard .live { color:var(--green); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(34,163,74,.4); border-radius:999px; padding:1px 8px; white-space:nowrap; }
+  .pcard[open] > summary { border-bottom:1px solid var(--border); background:rgba(240,180,41,.05); }
+  .pcard .pbody { padding:20px 22px 24px; }
+  .pcard .pbody h3 { font-size:.74rem; text-transform:uppercase; letter-spacing:.09em; color:var(--gold); margin:18px 0 7px; }
+  .pcard .pbody h3:first-child { margin-top:0; }
+  @media (max-width:620px) { .pcard .pmeta { display:none; } }
+  /* video previews */
+  .videos { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:22px; }
+  .vcard { background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; transition:border-color .18s, transform .18s; }
+  .vcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-2px); }
+  .vcard video { width:100%; aspect-ratio:16/9; display:block; background:#0e1826; object-fit:cover; }
+  .vcard .vbody { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
+  .vcard h3 { font-size:1.02rem; margin:6px 0 6px; }
+  .vcard p { color:var(--muted); font-size:.87rem; }
+  .vcard .vlink { margin-top:auto; padding-top:14px; }
+  .vcard .vlink a { color:var(--gold); font-weight:600; text-decoration:none; font-size:.9rem; }
+  .vcard .vlink a:hover { text-decoration:underline; }
+  .vcard .badge { display:inline-block; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase; color:var(--green); border:1px solid rgba(34,163,74,.4); border-radius:999px; padding:2px 9px; }
+  /* secured platforms table */
+  .secured { width:100%; border-collapse:collapse; font-size:.92rem; }
+  .secured th, .secured td { text-align:left; padding:11px 14px; border-bottom:1px solid var(--border); }
+  .secured th { color:var(--gold); font-size:.74rem; text-transform:uppercase; letter-spacing:.09em; }
+  .secured td a { color:var(--fg); text-decoration:none; font-weight:600; }
+  .secured td a:hover { color:var(--gold); }
+  .secured .ok { color:var(--green); }
   .video-frame { position:relative; padding-top:56.25%; background:#0e1826; border-radius:14px; overflow:hidden; border:1px solid rgba(240,180,41,.28); }
   .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .video-frame .no-video { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.95rem; text-align:center; padding:24px; }
@@ -129,9 +165,11 @@
 <nav><div class="in">
   <a class="brand" href="/index.html"><img class="africa nav-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512"><span><b>54</b>link</span></a>
   <a href="/index.html#platforms">Platforms</a>
-  <a href="/index.html#dev">Dev Environments</a>
   <a href="/index.html#videos">Video Demos</a>
-  <a href="/index.html#register">Get the Brochure</a>
+  <a href="/index.html#dev">Dev Environments</a>
+  <a href="/index.html#secured">Secured Platforms</a>
+  <a href="/brochure.pdf" target="_blank" rel="noopener">Brochure</a>
+  <a href="/index.html#register">Get in Touch</a>
 </div></nav>
 <div class="detail">
   <p class="crumbs"><a href="/index.html">← Back to all platforms</a></p>
@@ -163,6 +201,6 @@
 </div>
 <footer><div class="in">
   <strong>54link</strong> · Africa's platform compiler · Nigeria first, then all 54.<br>
-  67 repositories · 35 platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
+  68 repositories · 36 platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
 </div></footer>
 </body></html>
