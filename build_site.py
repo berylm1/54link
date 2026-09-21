@@ -169,6 +169,7 @@ VIDEOS = {
     'INEC Election Platform': ('/videos/inec-demo.mp4', 'Full walkthrough of the deployed INEC Digital Twin campaign platform at campaign-inec-servers.newfire.app — the live KPI dashboard (₦107.0M fundraising, 50% compliance, 8/13 milestones, 154-day countdown) plus the campaign tools: War Room, Compliance, Campaign Timeline, Stakeholders Hub, Volunteer Portal and Voter Registration.'),
     'TourismPay': ('/videos/tourismpay-demo.mp4', 'Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.'),
     'UmojaFlowOS': ('/videos/umoja-demo.mp4', 'Walkthrough of the live UmojaFlowOS public site at umoja.newfire.app — cross-border payment control for Africa-linked corridors. Covers who it serves, partner roles, protections, the Nigeria / Kenya / South Africa market corridors and how it works: real records, assigned workspaces, accountable high-impact steps, and nothing activated by default.'),
+    'VPP': ('/videos/vpp-demo.mp4', 'Walkthrough of the deployed VPP Platform at vpp.newfire.app — the Virtual Power Plant control plane, signed in as an administrator. Live telemetry on the dashboard (2.53 MW current power, 1.82 GWh metered energy, 49.98 Hz grid frequency, 11147 V / 230 A electrical readings), 34 registered assets, active power trading, billing and alerts, plus the Energy & Insights, Market, Money, Grid Operations, Operations Centre, Community, Tools & Account and Administration sections.'),
 }
 
 # multiple videos per platform: featured video + archive
@@ -180,6 +181,10 @@ VIDEO_SETS = {
     'Lanai': [
         ('/videos/lanai-full-walkthrough.mp4', 'Full walkthrough — every service in the menu'),
         ('/videos/lanai-demo.mp4', 'Landing page tour — lanai.newfire.app'),
+    ],
+    'Meridian TaxTech': [
+        ('/videos/meridian-walkthrough.mp4', 'Full walkthrough — every compliance module, signed in as an operator'),
+        ('/videos/meridian-demo.mp4', 'Overview clip — meridian.newfire.app'),
     ],
 }
 
