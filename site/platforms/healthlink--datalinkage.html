@@ -12,9 +12,9 @@
   nav a:hover { color:var(--accent); }
   nav .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--fg); text-decoration:none; }
   nav .brand b { color:var(--accent); }
-  .africa { width:30px; height:30px; }
-  .nav-logo { width:26px; height:26px; flex-shrink:0; display:block; }
-  .hero-logo { width:64px; height:64px; }
+  .africa { width:30px; height:30px; border-radius:7px; object-fit:cover; }
+  .nav-logo { width:34px; height:34px; flex-shrink:0; display:block; border-radius:8px; }
+  .hero-logo { width:96px; height:96px; border-radius:16px; }
   header.hero { max-width:1100px; margin:0 auto; padding:56px 24px 40px; }
   .eyebrow { color:var(--accent2); text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; font-weight:700; }
   h1 { font-size:2.6rem; line-height:1.12; letter-spacing:-.02em; margin:14px 0 18px; }
@@ -102,13 +102,7 @@
 </style></head>
 <body>
 <nav><div class="in">
-  <a class="brand" href="/index.html"><svg viewBox="0 0 200 200" class="africa nav-logo" role="img" aria-label="Africa">
-  <circle cx="100" cy="100" r="94" fill="none" stroke="#2dd4a7" stroke-width="4"/>
-  <g transform="translate(100,100) scale(0.66) translate(-102,-100)">
-    <path fill="#2dd4a7" d="M58 42C68 35 80 32 92 32C106 32 120 35 130 41C135 44 137 47 138 51C140 58 141 66 142 74C152 70 162 70 168 74C172 77 172 82 168 86C162 91 154 94 148 97C143 100 140 106 138 113C135 122 133 130 130 138C127 146 123 153 117 159C112 164 106 167 102 164C98 161 96 155 94 149C91 141 88 134 84 128C80 121 76 116 72 113C70 111 69 109 70 107C74 105 80 106 84 105C86 105 87 104 86 102C78 100 68 99 58 98C50 97 44 95 40 91C35 86 33 79 34 72C35 66 38 61 42 55C46 49 52 45 58 42Z"/>
-    <path fill="#2dd4a7" d="M146 120C150 116 154 120 152 130C150 140 146 146 144 142C142 136 143 124 146 120Z"/>
-  </g>
-</svg><span><b>54</b>link</span></a>
+  <a class="brand" href="/index.html"><img class="africa nav-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512"><span><b>54</b>link</span></a>
   <a href="/index.html#platforms">Platforms</a>
   <a href="/index.html#dev">Dev Environments</a>
   <a href="/index.html#videos">Video Demos</a>
@@ -116,13 +110,7 @@
 </div></nav>
 <div class="detail">
   <p class="crumbs"><a href="/index.html">← Back to all platforms</a></p>
-  <h1><svg viewBox="0 0 200 200" class="africa hero-logo" role="img" aria-label="Africa">
-  <circle cx="100" cy="100" r="94" fill="none" stroke="#2dd4a7" stroke-width="4"/>
-  <g transform="translate(100,100) scale(0.66) translate(-102,-100)">
-    <path fill="#2dd4a7" d="M58 42C68 35 80 32 92 32C106 32 120 35 130 41C135 44 137 47 138 51C140 58 141 66 142 74C152 70 162 70 168 74C172 77 172 82 168 86C162 91 154 94 148 97C143 100 140 106 138 113C135 122 133 130 130 138C127 146 123 153 117 159C112 164 106 167 102 164C98 161 96 155 94 149C91 141 88 134 84 128C80 121 76 116 72 113C70 111 69 109 70 107C74 105 80 106 84 105C86 105 87 104 86 102C78 100 68 99 58 98C50 97 44 95 40 91C35 86 33 79 34 72C35 66 38 61 42 55C46 49 52 45 58 42Z"/>
-    <path fill="#2dd4a7" d="M146 120C150 116 154 120 152 130C150 140 146 146 144 142C142 136 143 124 146 120Z"/>
-  </g>
-</svg>HealthLink — Healthcare Data Linkage</h1>
+  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">HealthLink — Healthcare Data Linkage</h1>
   <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
   <h2>What it is</h2>
   <p>A runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an HCUP NRD pilot specification.</p>

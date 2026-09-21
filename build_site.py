@@ -10,13 +10,7 @@ repo_by_name = {r['name']: r for r in repos}
 def esc(s): return html.escape(str(s))
 def slugify(key): return key.lower().replace('/', '-').replace(' ', '-').replace('(', '').replace(')', '').replace('.', '')
 
-AFRICA_LOGO = '''<svg viewBox="0 0 200 200" class="africa" role="img" aria-label="Africa">
-  <circle cx="100" cy="100" r="94" fill="none" stroke="#2dd4a7" stroke-width="4"/>
-  <g transform="translate(100,100) scale(0.66) translate(-102,-100)">
-    <path fill="#2dd4a7" d="M58 42C68 35 80 32 92 32C106 32 120 35 130 41C135 44 137 47 138 51C140 58 141 66 142 74C152 70 162 70 168 74C172 77 172 82 168 86C162 91 154 94 148 97C143 100 140 106 138 113C135 122 133 130 130 138C127 146 123 153 117 159C112 164 106 167 102 164C98 161 96 155 94 149C91 141 88 134 84 128C80 121 76 116 72 113C70 111 69 109 70 107C74 105 80 106 84 105C86 105 87 104 86 102C78 100 68 99 58 98C50 97 44 95 40 91C35 86 33 79 34 72C35 66 38 61 42 55C46 49 52 45 58 42Z"/>
-    <path fill="#2dd4a7" d="M146 120C150 116 154 120 152 130C150 140 146 146 144 142C142 136 143 124 146 120Z"/>
-  </g>
-</svg>'''
+AFRICA_LOGO = '''<img class="africa" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">'''
 
 STYLE = '''
   :root { --bg:#0a0e14; --card:#111826; --fg:#e8eef5; --muted:#8b98a5; --accent:#2dd4a7; --accent2:#f5b942; --border:#1e2937; }
@@ -30,9 +24,9 @@ STYLE = '''
   nav a:hover { color:var(--accent); }
   nav .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; color:var(--fg); text-decoration:none; }
   nav .brand b { color:var(--accent); }
-  .africa { width:30px; height:30px; }
-  .nav-logo { width:26px; height:26px; flex-shrink:0; display:block; }
-  .hero-logo { width:64px; height:64px; }
+  .africa { width:30px; height:30px; border-radius:7px; object-fit:cover; }
+  .nav-logo { width:34px; height:34px; flex-shrink:0; display:block; border-radius:8px; }
+  .hero-logo { width:96px; height:96px; border-radius:16px; }
   header.hero { max-width:1100px; margin:0 auto; padding:56px 24px 40px; }
   .eyebrow { color:var(--accent2); text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; font-weight:700; }
   h1 { font-size:2.6rem; line-height:1.12; letter-spacing:-.02em; margin:14px 0 18px; }
@@ -144,10 +138,12 @@ uncovered = [r for r in repos if r['name'] not in covered]
 
 # per-platform demo videos (recorded via OpenScreen, hosted in /videos/)
 VIDEOS = {
-    'Meridian TaxTech': ('/videos/meridian-demo.mp4', 'A recorded walkthrough of this platform\'s detail page and the live 54link site.'),
+    'Meridian TaxTech': ('/videos/meridian-walkthrough.mp4', 'Walkthrough of the live Meridian compliance portal at meridian.newfire.app — the Nigeria Revenue Service TaxTech compliance plane, signed in as an operator. Shows the Compliance Overview health board and each module: E-Invoicing Console (IRN + crypto stamp status), WHT Dashboard (2024 evaluation + remittance files), ETR Pillar Two Dashboard (step trace, GIR download), VASP/CARF Console (cost basis, ring-fence, gates), Retailer POS Dashboard (receipts, attribution, variance) and the Practitioner Workspace (matters, documents, deadlines).'),
     'NDSEP / NGApp': ('/videos/ndsep-demo.mp4', 'Recorded walkthrough of the live NDSEP platform at ndsep.newfire.app — the National Data Sovereignty Enforcement Platform. Captured in demo mode (no credentials required), touring the government executive dashboard and all 18 core-platform sections: Discovery Engine, Data Catalog, Compliance Engine, SIEM & Audit, Network DPI, Network Intelligence, NOC Dashboard, Threat Intelligence, SOCint CTI Hub, Maritime Intel, Wazuh SIEM, SIGINT Correlation, Estorides Graph, AI NOC Agent, BGP Routes, Arkime PCAP and Platform Intelligence.'),
     'Lanai': ('/videos/lanai-full-walkthrough.mp4', 'Full walkthrough of the deployed Lanai Lifestyle portal at lanai.newfire.app — logged in as an advisor, testing every service in the menu: dashboard, morning briefing, revenue analytics, clients, members, travel requests, the AI proposal engine, client intelligence, Virtuoso recommendations, the confirmation re-brander, suppliers, WhatsApp and unified inboxes, task templates, invoicing, NPS & feedback, member portal, CRM sync, and settings.'),
     'INEC Election Platform': ('/videos/inec-demo.mp4', 'Full walkthrough of the deployed INEC Digital Twin campaign platform at campaign-inec-servers.newfire.app — the live KPI dashboard (₦107.0M fundraising, 50% compliance, 8/13 milestones, 154-day countdown) plus the campaign tools: War Room, Compliance, Campaign Timeline, Stakeholders Hub, Volunteer Portal and Voter Registration.'),
+    'TourismPay': ('/videos/tourismpay-demo.mp4', 'Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.'),
+    'UmojaFlowOS': ('/videos/umoja-demo.mp4', 'Walkthrough of the live UmojaFlowOS public site at umoja.newfire.app — cross-border payment control for Africa-linked corridors. Covers who it serves, partner roles, protections, the Nigeria / Kenya / South Africa market corridors and how it works: real records, assigned workspaces, accountable high-impact steps, and nothing activated by default.'),
 }
 
 # multiple videos per platform: featured video + archive
