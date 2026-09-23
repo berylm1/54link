@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TourismPay — Multi-Currency Tourism Payments · 54link</title><style>
+<title>Latest from Africa · 54link</title><style>
   :root {
     --bg:#0a0d12; --card:#121a24; --fg:#eef3f8; --muted:#93a0ad; --border:#22303f;
     --gold:#f0b429; --green:#22a34a; --red:#d92d20; --blue:#2f6fed; --orange:#f97316;
@@ -232,6 +232,21 @@
   .crumbs a:hover { color:var(--accent); }
   footer { border-top:3px solid transparent; border-image:var(--stripe) 1; margin-top:40px; }
   footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
+
+  .on { color:var(--gold) !important; }
+  .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:30px; }
+  .hubcard { display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+             padding:22px 24px; text-decoration:none; color:var(--fg); transition:border-color .18s, transform .18s; }
+  .hubcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-3px); }
+  .hubcard h3 { font-size:1.06rem; margin-bottom:7px; display:flex; align-items:center; gap:10px; color:var(--fg); }
+  .hubcard h3:before { content:''; width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .hubcard:nth-child(2) h3:before { background:var(--orange); }
+  .hubcard:nth-child(3) h3:before { background:var(--green); }
+  .hubcard:nth-child(4) h3:before { background:var(--blue); }
+  .hubcard:nth-child(5) h3:before { background:var(--red); }
+  .hubcard:nth-child(6) h3:before { background:var(--gold); }
+  .hubcard p { color:var(--muted); font-size:.9rem; }
+  .hubcard .more { display:inline-block; margin-top:11px; font-size:.82rem; color:var(--gold); }
 </style></head>
 <body>
 <nav id="topnav"><div class="in">
@@ -242,7 +257,7 @@
 </div>
 <div class="navmenu" id="navmenu"><div class="min">
   <a href="/africa.html"><span class="dotmark"></span>Africa &amp; its economies</a>
-  <a href="/news.html"><span class="dotmark"></span>Latest from Africa</a>
+  <a href="/news.html" class="on"><span class="dotmark"></span>Latest from Africa</a>
   <a href="/platforms.html"><span class="dotmark"></span>Platforms</a>
   <a href="/videos.html"><span class="dotmark"></span>Video Demos</a>
   <a href="/dev.html"><span class="dotmark"></span>Dev Environments</a>
@@ -250,39 +265,59 @@
   <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
   <a href="/contact.html"><span class="dotmark"></span>Get in Touch</a>
 </div></div></nav>
-<div class="detail">
-  <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
-  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">TourismPay — Multi-Currency Tourism Payments</h1>
-  <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
-  <h2>What it is</h2>
-  <p>A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.</p>
-  <h2>The problem we're solving</h2>
-  <p>Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface.</p>
-  <h2>Architecture</h2>
-  <p>Full-stack PWA · multi-currency wallets, QR payments</p>
-  <h2>Key capabilities</h2>
-  <ul><li>Multi-currency wallets</li><li>QR payments</li><li>Merchant onboarding</li><li>Compliance built in</li></ul>
-  
-    <h2>Roadmap — the steps we're taking</h2>
-    <ol class="steps">
-      <li><strong>Dev environment deployment.</strong> This platform is staged on 54link infrastructure (Kubernetes, hybrid GitOps) and wired to the relevant government-agency sandboxes where available.</li>
-      <li><strong>Demo video walkthrough.</strong> A recorded end-to-end walkthrough of the deployed environment, published on this page (Openscreen pipeline — see the site plan).</li>
-      <li><strong>Partner review.</strong> Nigerian agency and enterprise partners exercise real workflows in the dev environment with our team.</li>
-      <li><strong>Staging → production.</strong> Hardened deployment for the first Nigerian use case, with data-sovereignty and compliance controls in place.</li>
-      <li><strong>Continental rollout.</strong> The blueprint is replicated to additional African markets, localized per country.</li>
-    </ol>
-  <h2>Demo video</h2>
-  <p style="color:var(--muted)">Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.</p>
-  <div class="video-frame"><video controls preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;">
-    <source src="/videos/tourismpay-demo.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video></div>
-  <h2>Source repositories (1)</h2>
-  <div class="repos-list"><a href="https://github.com/munisp/tourismpay" target="_blank" rel="noopener"><span>tourismpay</span><span class="lang">TypeScript · 2026-08-07 16:16 UTC</span></a></div>
-  <p style="margin-top:26px"><a href="/contact.html" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
-</div>
+<section id="news">
+  <h2>Latest from Africa</h2>
+  <p class="sectsub">What is actually moving across the continent right now — capital, energy, trade and policy</p>
+  <div class="news"><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>Africa makes its case for a bigger role on the global stage</h3>
+      <p>Leaders from business, government and global institutions convened in New York alongside the 81st UN General Assembly. The UN Secretary-General called for a permanent African seat on the Security Council and for the continent&#x27;s critical minerals to generate local value and jobs rather than being exported raw.</p>
+      <span class="nsrc">GABI · Unstoppable Africa 2026</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>Nigeria&#x27;s economy grows 4.43% — its fastest in five years</h3>
+      <p>Second-quarter growth was carried by services, telecommunications, finance and agriculture, while the trade surplus doubled to $9.5bn. Non-oil sectors now account for 96% of total output.</p>
+      <span class="nsrc">Semafor Africa · National Bureau of Statistics</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>Dangote Refinery IPO set to be Africa&#x27;s largest share sale</h3>
+      <p>Nigeria&#x27;s SEC approved an offering expected to raise around $1.5–1.8bn, with plans to double the refinery&#x27;s capacity to 1.4 million barrels per day — which would make it the largest single-train refinery in the world.</p>
+      <span class="nsrc">Semafor Africa · Reuters</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>AfCFTA trade projected to reach $230bn this year</h3>
+      <p>Intra-African trade under the Continental Free Trade Area keeps scaling, supported by continental payment rails that shift cross-border settlement away from correspondent banking.</p>
+      <span class="nsrc">African Union Commission · GABI 2026</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>Africa&#x27;s solar adoption projected to rise 45% this year</h3>
+      <p>As energy independence becomes a strategic priority, several countries moved to expand both refining and generation capacity — with renewables adoption rising sharply across the continent.</p>
+      <span class="nsrc">Ember · Semafor Africa</span>
+    </article><article class="ncard">
+      <span class="ndate">H1 2026</span>
+      <h3>Fintech remains Africa&#x27;s largest venture sector</h3>
+      <p>African start-ups raised $1.35bn in the first half of 2026. Fintech took $556m (41%) and logistics $472m. Nigeria, Kenya, South Africa and Egypt have absorbed roughly 80% of all capital raised since 2019.</p>
+      <span class="nsrc">Africa: The Big Deal · Partech</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>AGOA extended through December 2028</h3>
+      <p>Preferential duty-free access to the US market is preserved for eligible sub-Saharan exporters, giving textiles, apparel and agriculture a firmer footing for the next two years.</p>
+      <span class="nsrc">US Government</span>
+    </article><article class="ncard">
+      <span class="ndate">Sep 2026</span>
+      <h3>Kenya: 90%+ renewable electricity, and a new critical-minerals facility</h3>
+      <p>Kenya generates more than 90% of its electricity from renewable sources, and the US backed a critical minerals processing facility in a country holding untapped copper, graphite, lithium and nickel.</p>
+      <span class="nsrc">Guterres / GABI 2026 · Reuters</span>
+    </article><article class="ncard">
+      <span class="ndate">21 Sep 2026</span>
+      <h3>$300m Nigeria Distributed Renewable Energy Fund reaches first close</h3>
+      <p>Co-managed by the Nigeria Sovereign Investment Authority and Africa50, the fund will finance local clean-energy developers — solar mini-grids, home systems and storage — aligned to Mission 300&#x27;s goal of connecting 300 million Africans to electricity by 2030.</p>
+      <span class="nsrc">NSIA · Africa50 · GABI 2026</span>
+    </article></div>
+</section>
 <footer><div class="in">
   <strong>54link</strong> · Africa's platform compiler · Nigeria first, then all 54.<br>
-  68 repositories · 36 platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
+  {nr} repositories · {np} platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
 </div></footer>
+<script src="/assets/site.js" defer></script>
 </body></html>

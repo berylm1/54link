@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TourismPay — Multi-Currency Tourism Payments · 54link</title><style>
+<title>Africa — the continent of the next century · 54link</title><style>
   :root {
     --bg:#0a0d12; --card:#121a24; --fg:#eef3f8; --muted:#93a0ad; --border:#22303f;
     --gold:#f0b429; --green:#22a34a; --red:#d92d20; --blue:#2f6fed; --orange:#f97316;
@@ -232,6 +232,21 @@
   .crumbs a:hover { color:var(--accent); }
   footer { border-top:3px solid transparent; border-image:var(--stripe) 1; margin-top:40px; }
   footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
+
+  .on { color:var(--gold) !important; }
+  .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:30px; }
+  .hubcard { display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+             padding:22px 24px; text-decoration:none; color:var(--fg); transition:border-color .18s, transform .18s; }
+  .hubcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-3px); }
+  .hubcard h3 { font-size:1.06rem; margin-bottom:7px; display:flex; align-items:center; gap:10px; color:var(--fg); }
+  .hubcard h3:before { content:''; width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .hubcard:nth-child(2) h3:before { background:var(--orange); }
+  .hubcard:nth-child(3) h3:before { background:var(--green); }
+  .hubcard:nth-child(4) h3:before { background:var(--blue); }
+  .hubcard:nth-child(5) h3:before { background:var(--red); }
+  .hubcard:nth-child(6) h3:before { background:var(--gold); }
+  .hubcard p { color:var(--muted); font-size:.9rem; }
+  .hubcard .more { display:inline-block; margin-top:11px; font-size:.82rem; color:var(--gold); }
 </style></head>
 <body>
 <nav id="topnav"><div class="in">
@@ -241,7 +256,7 @@
   </button>
 </div>
 <div class="navmenu" id="navmenu"><div class="min">
-  <a href="/africa.html"><span class="dotmark"></span>Africa &amp; its economies</a>
+  <a href="/africa.html" class="on"><span class="dotmark"></span>Africa &amp; its economies</a>
   <a href="/news.html"><span class="dotmark"></span>Latest from Africa</a>
   <a href="/platforms.html"><span class="dotmark"></span>Platforms</a>
   <a href="/videos.html"><span class="dotmark"></span>Video Demos</a>
@@ -250,39 +265,61 @@
   <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
   <a href="/contact.html"><span class="dotmark"></span>Get in Touch</a>
 </div></div></nav>
-<div class="detail">
-  <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
-  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">TourismPay — Multi-Currency Tourism Payments</h1>
-  <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
-  <h2>What it is</h2>
-  <p>A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.</p>
-  <h2>The problem we're solving</h2>
-  <p>Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface.</p>
-  <h2>Architecture</h2>
-  <p>Full-stack PWA · multi-currency wallets, QR payments</p>
-  <h2>Key capabilities</h2>
-  <ul><li>Multi-currency wallets</li><li>QR payments</li><li>Merchant onboarding</li><li>Compliance built in</li></ul>
-  
-    <h2>Roadmap — the steps we're taking</h2>
-    <ol class="steps">
-      <li><strong>Dev environment deployment.</strong> This platform is staged on 54link infrastructure (Kubernetes, hybrid GitOps) and wired to the relevant government-agency sandboxes where available.</li>
-      <li><strong>Demo video walkthrough.</strong> A recorded end-to-end walkthrough of the deployed environment, published on this page (Openscreen pipeline — see the site plan).</li>
-      <li><strong>Partner review.</strong> Nigerian agency and enterprise partners exercise real workflows in the dev environment with our team.</li>
-      <li><strong>Staging → production.</strong> Hardened deployment for the first Nigerian use case, with data-sovereignty and compliance controls in place.</li>
-      <li><strong>Continental rollout.</strong> The blueprint is replicated to additional African markets, localized per country.</li>
-    </ol>
-  <h2>Demo video</h2>
-  <p style="color:var(--muted)">Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.</p>
-  <div class="video-frame"><video controls preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;">
-    <source src="/videos/tourismpay-demo.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video></div>
-  <h2>Source repositories (1)</h2>
-  <div class="repos-list"><a href="https://github.com/munisp/tourismpay" target="_blank" rel="noopener"><span>tourismpay</span><span class="lang">TypeScript · 2026-08-07 16:16 UTC</span></a></div>
-  <p style="margin-top:26px"><a href="/contact.html" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
-</div>
+<section id="africa">
+  <h2>Africa — the continent of the next century</h2>
+  <p class="sectsub">One continent, 54 markets, and the world's youngest workforce</p>
+  <p class="bigp">Africa is not one story — it is 54 of them. One and a half billion people, the world&#x27;s fastest-growing workforce, roughly 30% of the world&#x27;s mineral reserves and 60% of its solar potential. It is a market estimated at $3 trillion, and its economy grew 4.4% last year even against global turbulence. Trade under the African Continental Free Trade Area is projected to reach $230 billion this year, while a single continental payment rail is starting to pull cross-border flows away from correspondent banks in London and Frankfurt. The opportunity is no longer about extracting from Africa — it is about building in it, and each country brings a different advantage to that work.</p>
+  <div class="grid3"><div class="bcard">
+      <h3>Nigeria</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Africa&#x27;s largest market and its busiest builder</p>
+      <p>The continent&#x27;s biggest economy and population, with the deepest concentration of start-up capital on the continent. Growth is now running on services rather than oil.</p>
+      <span class="metric">GDP +4.43% in Q2 2026 — fastest in five years · non-oil sectors = 96% of output · trade surplus doubled to $9.5bn</span>
+    </div><div class="bcard">
+      <h3>Kenya</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">The mobile-money economy</p>
+      <p>Kenya proved what digital financial infrastructure can do at national scale, and now leads the continent in renewable electricity and start-up capital raised.</p>
+      <span class="metric">91% mobile-money penetration · M-Pesa processes 21m+ transactions daily · &gt;90% electricity from renewables</span>
+    </div><div class="bcard">
+      <h3>South Africa</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Capital depth and financial services</p>
+      <p>The deepest capital markets and the largest concentration of private wealth in Africa, with a sophisticated banking and insurance sector.</p>
+      <span class="metric">48,200 millionaires — 38% of Africa&#x27;s total · Johannesburg is the continent&#x27;s wealthiest city</span>
+    </div><div class="bcard">
+      <h3>Egypt</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Manufacturing and the trade gateway</p>
+      <p>A dense deal pipeline and a deliberate strategy of balancing global partners to become the region&#x27;s manufacturing and trade hub.</p>
+      <span class="metric">100 deals in the current pipeline · fintech champions scaling across North Africa</span>
+    </div><div class="bcard">
+      <h3>Ghana</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Growth driven by digital services</p>
+      <p>One of West Africa&#x27;s steady performers, with communications and services now carrying the economy forward.</p>
+      <span class="metric">Economy expanded 6.2% in the first half of 2026</span>
+    </div><div class="bcard">
+      <h3>Morocco</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Green energy and industrial ambition</p>
+      <p>Positioned to export renewable electricity to Europe and home to some of Africa&#x27;s fastest-growing urban wealth.</p>
+      <span class="metric">Submarine green-power cable planned to Europe · Marrakech wealth +82% in a decade</span>
+    </div><div class="bcard">
+      <h3>Rwanda</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Governance and logistics technology</p>
+      <p>A reference market for how fast a country can digitise public service delivery and commercial logistics.</p>
+      <span class="metric">Nationwide drone delivery at operational scale · a top African performer on ease of doing business</span>
+    </div><div class="bcard">
+      <h3>Ethiopia</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Manufacturing and mineral processing</p>
+      <p>A deliberate push into industrial parks and domestic processing so raw materials are upgraded at home.</p>
+      <span class="metric">New processing capacity coming online in gold and minerals</span>
+    </div><div class="bcard">
+      <h3>Mauritius</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">Financial services and wealth hub</p>
+      <p>Africa&#x27;s fast-growing offshore financial centre and a magnet for mobile wealth.</p>
+      <span class="metric">Black River wealth +120% — Africa&#x27;s fastest-growing millionaire hotspot</span>
+    </div></div>
+  <p class="sources">Continental figures: UN Secretary-General António Guterres at GABI's <em>Unstoppable Africa 2026</em>, New York, September 2026. Country data: national statistics offices, Semafor Africa, Partech, Africa: The Big Deal, Africa Wealth Report 2026 and the African Development Bank.</p>
+</section>
 <footer><div class="in">
   <strong>54link</strong> · Africa's platform compiler · Nigeria first, then all 54.<br>
-  68 repositories · 36 platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
+  {nr} repositories · {np} platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
 </div></footer>
+<script src="/assets/site.js" defer></script>
 </body></html>

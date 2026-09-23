@@ -253,14 +253,14 @@ NAV = '''<nav id="topnav"><div class="in">
   </button>
 </div>
 <div class="navmenu" id="navmenu"><div class="min">
-  <a href="/index.html#africa"><span class="dotmark"></span>Africa &amp; its economies</a>
-  <a href="/index.html#news"><span class="dotmark"></span>Latest from Africa</a>
-  <a href="/index.html#platforms"><span class="dotmark"></span>Platforms</a>
-  <a href="/index.html#videos"><span class="dotmark"></span>Video Demos</a>
-  <a href="/index.html#dev"><span class="dotmark"></span>Dev Environments</a>
-  <a href="/index.html#secured"><span class="dotmark"></span>Secured Platforms</a>
+  <a href="/africa.html"><span class="dotmark"></span>Africa &amp; its economies</a>
+  <a href="/news.html"><span class="dotmark"></span>Latest from Africa</a>
+  <a href="/platforms.html"><span class="dotmark"></span>Platforms</a>
+  <a href="/videos.html"><span class="dotmark"></span>Video Demos</a>
+  <a href="/dev.html"><span class="dotmark"></span>Dev Environments</a>
+  <a href="/secured.html"><span class="dotmark"></span>Secured Platforms</a>
   <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
-  <a href="/index.html#register"><span class="dotmark"></span>Get in Touch</a>
+  <a href="/contact.html"><span class="dotmark"></span>Get in Touch</a>
 </div></div></nav>'''
 
 # substitute the logo mark into the nav (previously left as a literal placeholder)
@@ -327,9 +327,15 @@ detail_pages = {}
 for key, p in platforms.items():
     slug = slugify(key) if False else key.lower().replace(' ', '-').replace('/', '-').replace('(', '').replace(')', '').replace('--', '-')
     slug = slug.replace(' ', '-')
-    repos_list = ''.join(
-        f'<a href="https://github.com/munisp/{esc(rn)}" target="_blank" rel="noopener"><span>{esc(rn)}</span><span class="lang">{esc(repo_by_name.get(rn,{}).get("language") or "")}</span></a>'
-        for rn in p['repos'])
+    def repo_chip(rn):
+        """Repo chip: name, language and last push — so the hourly sync shows up here."""
+        r = repo_by_name.get(rn, {})
+        push = (r.get('pushed_at') or '')[:16].replace('T', ' ')
+        tail = ' · '.join(x for x in (r.get('language') or '', (push + ' UTC') if push else '') if x)
+        return (f'<a href="https://github.com/munisp/{esc(rn)}" target="_blank" rel="noopener">'
+                f'<span>{esc(rn)}</span><span class="lang">{esc(tail)}</span></a>')
+
+    repos_list = ''.join(repo_chip(rn) for rn in p['repos'])
     steps = f'''
     <h2>Roadmap — the steps we're taking</h2>
     <ol class="steps">
@@ -345,7 +351,7 @@ for key, p in platforms.items():
 <body>
 {NAV}
 <div class="detail">
-  <p class="crumbs"><a href="/index.html">← Back to all platforms</a></p>
+  <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
   <h1>{AFRICA_LOGO.replace('class="africa"','class="africa hero-logo"')}{esc(p['title'])}</h1>
   <p class="meta">{len(p['repos'])} repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
   <h2>What it is</h2>
@@ -361,7 +367,7 @@ for key, p in platforms.items():
   {video_block(key)}
   <h2>Source repositories ({len(p['repos'])})</h2>
   <div class="repos-list">{repos_list}</div>
-  <p style="margin-top:26px"><a href="/index.html#register" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
+  <p style="margin-top:26px"><a href="/contact.html" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
 </div>
 {FOOTER.format(nr=len(repos), np=len(platforms))}
 </body></html>'''
@@ -405,7 +411,7 @@ for r in sorted(uncovered, key=lambda x: x['name'].lower()):
     auto_cards.append(f'''
     <article class="card small">
       <h2><a href="https://github.com/munisp/{esc(r['name'])}" target="_blank" rel="noopener">{esc(r['name'])}</a></h2>
-      <p class="arch"><strong>Language:</strong> {esc(r.get("language") or '—')} · <strong>Last push:</strong> {(r.get("pushed_at") or "")[:10]}</p>
+      <p class="arch"><strong>Language:</strong> {esc(r.get("language") or '—')} · <strong>Last push:</strong> {esc((r.get("pushed_at") or "")[:16].replace("T", " "))} UTC</p>
       {f'<p class="overview">{desc}</p>' if desc else '<p class="overview">Active repository in the 54link compiled portfolio — see the GitHub repo for details.</p>'}
     </article>''')
 
@@ -552,12 +558,7 @@ news_cards = ''.join(
       <span class="nsrc">{esc(src)}</span>
     </article>''' for date, title, body, src in NEWS)
 
-index = f'''<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>54link — Africa's Platform Compiler · Nigeria First</title><style>{STYLE}</style></head>
-<body>
-{NAV}
-<header class="hero center">
+HERO = f'''<header class="hero center">
   <div class="stage">
     <div class="ring r2"></div>
     <div class="ring r1"></div>
@@ -581,23 +582,23 @@ index = f'''<!DOCTYPE html>
     <div class="stat"><b>{len(SECURED)}</b><span>deployed &amp; on video</span></div>
     <div class="stat"><b>1 → 54</b><span>Nigeria first, then the continent</span></div>
   </div>
-</header>
+</header>'''
 
-<section id="africa">
+SEC_AFRICA = f'''<section id="africa">
   <h2>Africa — the continent of the next century</h2>
   <p class="sectsub">One continent, 54 markets, and the world's youngest workforce</p>
   <p class="bigp">{esc(AFRICA_INTRO)}</p>
   <div class="grid3">{benefit_cards}</div>
   <p class="sources">Continental figures: UN Secretary-General António Guterres at GABI's <em>Unstoppable Africa 2026</em>, New York, September 2026. Country data: national statistics offices, Semafor Africa, Partech, Africa: The Big Deal, Africa Wealth Report 2026 and the African Development Bank.</p>
-</section>
+</section>'''
 
-<section id="news">
+SEC_NEWS = f'''<section id="news">
   <h2>Latest from Africa</h2>
   <p class="sectsub">What is actually moving across the continent right now — capital, energy, trade and policy</p>
   <div class="news">{news_cards}</div>
-</section>
+</section>'''
 
-<section id="platforms">
+SEC_PLATFORMS = f'''<section id="platforms">
   <h2>The compiled portfolio</h2>
   <p class="sectsub">Every platform in the 54link portfolio. Search by name, sector, technology or capability — then click any platform for its full detail page with the demo video.</p>
   <div class="searchwrap">
@@ -616,31 +617,31 @@ index = f'''<!DOCTYPE html>
     </summary>
     <div class="pbody"><div class="grid">{''.join(auto_cards)}</div></div>
   </details>
-</section>
+</section>'''
 
-<section id="dev">
+SEC_DEV = f'''<section id="dev">
   <h2>Dev environments</h2>
   <p class="sectsub">Each flagship platform runs in a dedicated development environment on our infrastructure (Kubernetes + hybrid GitOps), wired to real government-agency sandboxes where available — so partners can exercise real workflows, not slideware. Each platform's detail page shows its roadmap status.</p>
-</section>
+</section>'''
 
-<section id="videos">
+SEC_VIDEOS = f'''<section id="videos">
   <h2>Video demos</h2>
   <p class="sectsub">Every walkthrough below was recorded from a live, deployed environment. Press play to preview it here, or open the platform page for the full write-up.</p>
   <div class="videos">{''.join(vcards)}</div>
-</section>
+</section>'''
 
-<section id="secured">
+SEC_SECURED = f'''<section id="secured">
   <h2>Secured platforms</h2>
   <p class="sectsub">The platforms we have taken end to end — deployed in a live environment, verified working, and captured on video. These are the reference deployments we can demonstrate today.</p>
   <table class="secured">
     <thead><tr><th>Platform</th><th>Deployed</th><th>Video</th><th>Live environment</th></tr></thead>
     <tbody>{''.join(secured_rows)}</tbody>
   </table>
-</section>
+</section>'''
 
-<section id="register">
-  <h2>Get the 54link brochure</h2>
-  <p class="sectsub">Register to download the full brochure: platform plans, deployment roadmap, and partnership models.</p>
+SEC_REGISTER = f'''<section id="register">
+  <h2>Get in touch</h2>
+  <p class="sectsub">Register to get the full brochure — platform plans, deployment roadmap and partnership models — or reach us to talk through a specific deployment.</p>
   <div class="reg">
     <form id="regform">
       <label for="r-name">Full name</label>
@@ -658,112 +659,107 @@ index = f'''<!DOCTYPE html>
   </div>
 </section>
 
-{FOOTER}
-<script>
-/* ---- hamburger menu ---- */
-(function () {{
-  const nav = document.getElementById('topnav');
-  const btn = document.getElementById('burger');
-  if (!nav || !btn) return;
-  function setOpen(v) {{
-    nav.classList.toggle('open', v);
-    btn.setAttribute('aria-expanded', v ? 'true' : 'false');
-    btn.setAttribute('aria-label', v ? 'Close menu' : 'Open menu');
-  }}
-  btn.addEventListener('click', function (e) {{
-    e.stopPropagation();
-    setOpen(!nav.classList.contains('open'));
-  }});
-  Array.prototype.forEach.call(document.querySelectorAll('#navmenu a'), function (a) {{
-    a.addEventListener('click', function () {{ setOpen(false); }});
-  }});
-  document.addEventListener('keydown', function (e) {{ if (e.key === 'Escape') setOpen(false); }});
-  document.addEventListener('click', function (e) {{
-    if (nav.classList.contains('open') && !nav.contains(e.target)) setOpen(false);
-  }});
-}})();
+'''
 
-/* ---- platform search ---- */
-(function () {{
-  const input = document.getElementById('psearch');
-  const grid = document.getElementById('platformgrid');
-  const countEl = document.getElementById('pcount');
-  const clearBtn = document.getElementById('pclear');
-  const noHits = document.getElementById('pnohits');
-  if (!input || !grid) return;
-  const cards = Array.from(grid.querySelectorAll('.pcard'));
-  const total = cards.length;
-  function apply() {{
-    const q = input.value.trim().toLowerCase();
-    const terms = q.split(/\s+/).filter(Boolean);
-    let shown = 0;
-    cards.forEach(function (c) {{
-      const hay = (c.getAttribute('data-search') || c.innerText || '').toLowerCase();
-      const hit = terms.every(function (t) {{ return hay.indexOf(t) !== -1; }});
-      c.style.display = hit ? '' : 'none';
-      if (hit) shown++;
-    }});
-    if (!q) {{
-      countEl.textContent = total + ' platforms';
-      clearBtn.style.display = 'none';
-    }} else {{
-      countEl.textContent = shown + ' of ' + total;
-      clearBtn.style.display = 'block';
-    }}
-    noHits.style.display = (q && shown === 0) ? 'block' : 'none';
-  }}
-  input.addEventListener('input', apply);
-  clearBtn.addEventListener('click', function () {{ input.value = ''; input.focus(); apply(); }});
-  input.addEventListener('keydown', function (e) {{
-    if (e.key === 'Escape') {{ input.value = ''; apply(); }}
-    if (e.key === 'Enter') {{
-      const first = cards.find(function (c) {{ return c.style.display !== 'none'; }});
-      if (first) {{
-        first.open = true;
-        const link = first.querySelector('.cardlink a');
-        if (link) link.click();
-      }}
-    }}
-  }});
-  // focus search with "/" key
-  document.addEventListener('keydown', function (e) {{
-    if (e.key === '/' && document.activeElement !== input) {{ e.preventDefault(); input.focus(); }}
-  }});
-  apply();
-}})();
 
-const ENDPOINT = './.herenow/data/registrations';
-document.getElementById('regform').addEventListener('submit', async (e) => {{
-  e.preventDefault();
-  const msg = document.getElementById('regmsg');
-  const btn = e.target.querySelector('button');
-  btn.disabled = true; btn.textContent = 'Registering…';
-  const record = {{
-    name: document.getElementById('r-name').value.trim(),
-    email: document.getElementById('r-email').value.trim(),
-    organisation: document.getElementById('r-org').value.trim(),
-    interest: document.getElementById('r-interest').value.trim()
-  }};
-  try {{
-    const res = await fetch(ENDPOINT, {{
-      method: 'POST',
-      headers: {{ 'content-type': 'application/json', 'Idempotency-Key': crypto.randomUUID() }},
-      body: JSON.stringify(record)
-    }});
-    if (!res.ok) throw new Error('status ' + res.status);
-    msg.className = 'msg ok';
-    msg.textContent = 'Registered — your brochure download is starting.';
-    setTimeout(() => window.open('/brochure.pdf', '_blank'), 900);
-    e.target.reset();
-  }} catch (err) {{
-    msg.className = 'msg err';
-    msg.textContent = 'Registration failed — please try again or email us directly.';
-  }} finally {{
-    btn.disabled = false; btn.textContent = 'Register & download brochure';
-  }}
-}});
-</script>
-</body></html>'''
+# ---------------------------------------------------------------- page shell
+EXTRA_CSS = '''
+  .on { color:var(--gold) !important; }
+  .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:30px; }
+  .hubcard { display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+             padding:22px 24px; text-decoration:none; color:var(--fg); transition:border-color .18s, transform .18s; }
+  .hubcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-3px); }
+  .hubcard h3 { font-size:1.06rem; margin-bottom:7px; display:flex; align-items:center; gap:10px; color:var(--fg); }
+  .hubcard h3:before { content:''; width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .hubcard:nth-child(2) h3:before { background:var(--orange); }
+  .hubcard:nth-child(3) h3:before { background:var(--green); }
+  .hubcard:nth-child(4) h3:before { background:var(--blue); }
+  .hubcard:nth-child(5) h3:before { background:var(--red); }
+  .hubcard:nth-child(6) h3:before { background:var(--gold); }
+  .hubcard p { color:var(--muted); font-size:.9rem; }
+  .hubcard .more { display:inline-block; margin-top:11px; font-size:.82rem; color:var(--gold); }
+'''
+
+def nav_html(slug=None):
+    # the shared menu, with the current page marked
+    if slug and ('href="/' + slug) in NAV:
+        return NAV.replace('href="/' + slug, 'href="/' + slug + '" class="on', 1)
+    return NAV
+
+def page(title, body, slug=None):
+    return (
+        '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+        '<title>' + title + '</title><style>' + STYLE + EXTRA_CSS + '</style></head>\n<body>\n'
+        + nav_html(slug) + '\n' + body + '\n' + FOOTER +
+        '\n<script src="/assets/site.js" defer></script>\n</body></html>'
+    )
+
+HUB = f'''<section id="hub" style="padding-top:8px">
+  <h2>Explore 54link</h2>
+  <p class="sectsub">Every menu item now has its own page — pick a thread below.</p>
+  <div class="hubgrid">
+    <a class="hubcard" href="/africa.html">
+      <h3>Africa &amp; its economies</h3>
+      <p>The continent in numbers, and what each of nine markets actually brings to the table.</p>
+      <span class="more">Read the picture &rarr;</span>
+    </a>
+    <a class="hubcard" href="/news.html">
+      <h3>Latest from Africa</h3>
+      <p>Dated, sourced intelligence — capital, energy, trade and policy across the continent.</p>
+      <span class="more">See what is moving &rarr;</span>
+    </a>
+    <a class="hubcard" href="/platforms.html">
+      <h3>Platforms</h3>
+      <p>{len(platforms)} documented platforms. Search by sector, technology or capability.</p>
+      <span class="more">Browse the portfolio &rarr;</span>
+    </a>
+    <a class="hubcard" href="/videos.html">
+      <h3>Video Demos</h3>
+      <p>Walkthroughs recorded from live, deployed environments — press play and preview.</p>
+      <span class="more">Watch the demos &rarr;</span>
+    </a>
+    <a class="hubcard" href="/secured.html">
+      <h3>Secured Platforms</h3>
+      <p>The platforms taken end to end: deployed, verified working and captured on video.</p>
+      <span class="more">See what is secured &rarr;</span>
+    </a>
+    <a class="hubcard" href="/dev.html">
+      <h3>Dev Environments</h3>
+      <p>Where the platforms run, and how partners get access to exercise real workflows.</p>
+      <span class="more">How access works &rarr;</span>
+    </a>
+    <a class="hubcard" href="/contact.html">
+      <h3>Get in Touch</h3>
+      <p>Register for the full brochure — platform plans, deployment roadmap, partnership models.</p>
+      <span class="more">Register &rarr;</span>
+    </a>
+  </div>
+</section>'''
+
+BRIEF = f'''<section id="brief" style="padding-top:6px">
+  <h2>Why Africa, why now</h2>
+  <p class="sectsub">One continent, 54 markets, the world's youngest workforce</p>
+  <p class="bigp">{esc(AFRICA_INTRO[:520])}&hellip;</p>
+  <p style="margin-top:14px"><a href="/africa.html">The full picture, country by country &rarr;</a></p>
+</section>'''
+
+# ---------------------------------------------------------------- the pages
+index = page("54link — Africa's Platform Compiler · Nigeria First", HERO + BRIEF + HUB)
+
+PAGES = {
+    'africa.html': ('Africa — the continent of the next century · 54link', SEC_AFRICA, 'africa.html'),
+    'news.html': ('Latest from Africa · 54link', SEC_NEWS, 'news.html'),
+    'platforms.html': ('The compiled portfolio · 54link', SEC_PLATFORMS, 'platforms.html'),
+    'videos.html': ('Video demos · 54link', SEC_VIDEOS, 'videos.html'),
+    'secured.html': ('Secured platforms · 54link', SEC_SECURED, 'secured.html'),
+    'dev.html': ('Dev environments · 54link', SEC_DEV, 'dev.html'),
+    'contact.html': ('Get in touch · 54link', SEC_REGISTER, 'contact.html'),
+}
+
+for fn, (title, body, slug) in PAGES.items():
+    open(f'{BASE}/site/{fn}', 'w').write(page(title, body, slug))
 
 open(f'{BASE}/site/index.html', 'w').write(index)
-print(f'index written | detail pages: {len(detail_pages)} | cards: {len(cards)} | auto: {len(auto_cards)}')
+print('index + ' + str(len(PAGES)) + ' section pages written | detail pages: ' + str(len(detail_pages)) +
+      ' | platform cards: ' + str(len(cards)) + ' | repos without a platform: ' + str(len(auto_cards)))

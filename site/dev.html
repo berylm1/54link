@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TourismPay — Multi-Currency Tourism Payments · 54link</title><style>
+<title>Dev environments · 54link</title><style>
   :root {
     --bg:#0a0d12; --card:#121a24; --fg:#eef3f8; --muted:#93a0ad; --border:#22303f;
     --gold:#f0b429; --green:#22a34a; --red:#d92d20; --blue:#2f6fed; --orange:#f97316;
@@ -232,6 +232,21 @@
   .crumbs a:hover { color:var(--accent); }
   footer { border-top:3px solid transparent; border-image:var(--stripe) 1; margin-top:40px; }
   footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
+
+  .on { color:var(--gold) !important; }
+  .hubgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:30px; }
+  .hubcard { display:block; background:var(--card); border:1px solid var(--border); border-radius:14px;
+             padding:22px 24px; text-decoration:none; color:var(--fg); transition:border-color .18s, transform .18s; }
+  .hubcard:hover { border-color:rgba(240,180,41,.45); transform:translateY(-3px); }
+  .hubcard h3 { font-size:1.06rem; margin-bottom:7px; display:flex; align-items:center; gap:10px; color:var(--fg); }
+  .hubcard h3:before { content:''; width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .hubcard:nth-child(2) h3:before { background:var(--orange); }
+  .hubcard:nth-child(3) h3:before { background:var(--green); }
+  .hubcard:nth-child(4) h3:before { background:var(--blue); }
+  .hubcard:nth-child(5) h3:before { background:var(--red); }
+  .hubcard:nth-child(6) h3:before { background:var(--gold); }
+  .hubcard p { color:var(--muted); font-size:.9rem; }
+  .hubcard .more { display:inline-block; margin-top:11px; font-size:.82rem; color:var(--gold); }
 </style></head>
 <body>
 <nav id="topnav"><div class="in">
@@ -245,44 +260,18 @@
   <a href="/news.html"><span class="dotmark"></span>Latest from Africa</a>
   <a href="/platforms.html"><span class="dotmark"></span>Platforms</a>
   <a href="/videos.html"><span class="dotmark"></span>Video Demos</a>
-  <a href="/dev.html"><span class="dotmark"></span>Dev Environments</a>
+  <a href="/dev.html" class="on"><span class="dotmark"></span>Dev Environments</a>
   <a href="/secured.html"><span class="dotmark"></span>Secured Platforms</a>
   <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
   <a href="/contact.html"><span class="dotmark"></span>Get in Touch</a>
 </div></div></nav>
-<div class="detail">
-  <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
-  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">TourismPay — Multi-Currency Tourism Payments</h1>
-  <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
-  <h2>What it is</h2>
-  <p>A full-stack tourism payment PWA for African markets with multi-currency wallets, QR payments, merchant onboarding, and compliance features.</p>
-  <h2>The problem we're solving</h2>
-  <p>Tourists in African markets face fragmented payments — TourismPay gives merchants one compliant, multi-currency acceptance surface.</p>
-  <h2>Architecture</h2>
-  <p>Full-stack PWA · multi-currency wallets, QR payments</p>
-  <h2>Key capabilities</h2>
-  <ul><li>Multi-currency wallets</li><li>QR payments</li><li>Merchant onboarding</li><li>Compliance built in</li></ul>
-  
-    <h2>Roadmap — the steps we're taking</h2>
-    <ol class="steps">
-      <li><strong>Dev environment deployment.</strong> This platform is staged on 54link infrastructure (Kubernetes, hybrid GitOps) and wired to the relevant government-agency sandboxes where available.</li>
-      <li><strong>Demo video walkthrough.</strong> A recorded end-to-end walkthrough of the deployed environment, published on this page (Openscreen pipeline — see the site plan).</li>
-      <li><strong>Partner review.</strong> Nigerian agency and enterprise partners exercise real workflows in the dev environment with our team.</li>
-      <li><strong>Staging → production.</strong> Hardened deployment for the first Nigerian use case, with data-sovereignty and compliance controls in place.</li>
-      <li><strong>Continental rollout.</strong> The blueprint is replicated to additional African markets, localized per country.</li>
-    </ol>
-  <h2>Demo video</h2>
-  <p style="color:var(--muted)">Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.</p>
-  <div class="video-frame"><video controls preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;">
-    <source src="/videos/tourismpay-demo.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video></div>
-  <h2>Source repositories (1)</h2>
-  <div class="repos-list"><a href="https://github.com/munisp/tourismpay" target="_blank" rel="noopener"><span>tourismpay</span><span class="lang">TypeScript · 2026-08-07 16:16 UTC</span></a></div>
-  <p style="margin-top:26px"><a href="/contact.html" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
-</div>
+<section id="dev">
+  <h2>Dev environments</h2>
+  <p class="sectsub">Each flagship platform runs in a dedicated development environment on our infrastructure (Kubernetes + hybrid GitOps), wired to real government-agency sandboxes where available — so partners can exercise real workflows, not slideware. Each platform's detail page shows its roadmap status.</p>
+</section>
 <footer><div class="in">
   <strong>54link</strong> · Africa's platform compiler · Nigeria first, then all 54.<br>
-  68 repositories · 36 platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
+  {nr} repositories · {np} platforms · source on <a href="https://github.com/munisp?tab=repositories">GitHub</a>
 </div></footer>
+<script src="/assets/site.js" defer></script>
 </body></html>
