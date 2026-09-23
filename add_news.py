@@ -80,7 +80,7 @@ if not added:
     print('nothing new — feed unchanged')
     sys.exit(0)
 
-feed.sort(key=lambda i: str(i.get('date', '')), reverse=True)
+feed.sort(key=lambda i: (str(i.get('date', '')), str(i.get('added', ''))), reverse=True)
 feed = feed[:MAX_ITEMS]
 json.dump(feed, open(NEWS, 'w'), indent=1, ensure_ascii=False)
 print(f'added {len(added)} item(s); feed now holds {len(feed)}')

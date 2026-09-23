@@ -501,7 +501,7 @@ BENEFITS = [
 ]
 
 NEWS = json.load(open(f'{BASE}/news.json'))          # rewritten by the news sweep
-NEWS.sort(key=lambda i: str(i.get('date', '')), reverse=True)   # newest first
+NEWS.sort(key=lambda i: (str(i.get('date', '')), str(i.get('added', ''))), reverse=True)   # newest first
 FEED_STAMP = max((str(i.get('added') or i.get('date', '')) for i in NEWS), default='—')
 
 benefit_cards = ''.join(
