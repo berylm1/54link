@@ -49,15 +49,21 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+def camel_split(s):
+    """whatsappCommerce -> whatsapp-commerce (repo names are camelCase, hosts are not)."""
+    return re.sub(r'(?<=[a-z0-9])(?=[A-Z])', '-', s).lower()
+
+
 def variants(*names):
-    """Hostname candidates for a name: plain, hyphenated and the common suffixes."""
+    """Hostname candidates for a name: plain, hyphenated, camel-split and common suffixes."""
     out = []
     for n in names:
         if not n:
             continue
         base = slug(n)
-        for v in (base, base.replace('-', '')):
-            for suffix in ('', '-servers', '-server', '-app', '-portal'):
+        for v in dict.fromkeys((base, base.replace('-', ''), slug(camel_split(n)),
+                                camel_split(n).replace('-', ''))):
+            for suffix in ('', '-servers', '-server', '-app', '-portal', '-dev', '-ui', '-web'):
                 cand = v + suffix
                 if cand and len(cand) < 60:
                     out.append(cand)
