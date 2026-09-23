@@ -8,7 +8,7 @@ Usage:
     python3 publish.py            # incremental publish
     python3 publish.py --verify   # publish, then HEAD-check every file is live
 """
-import os, json, sys, hashlib, subprocess, urllib.request, urllib.error
+import os, json, sys, hashlib, subprocess, time, urllib.request, urllib.error
 
 SITE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'site')
 SLUG = 'olive-echo-hra6'
@@ -64,17 +64,46 @@ def api(path, payload, method='PUT'):
                  'X-HereNow-Client': 'hermes/54link-publish.py'})
     return json.load(urllib.request.urlopen(req))
 
+def api_retry(path, payload, method='PUT', attempts=8):
+    """here.now answers 409 'finalize_in_flight' while a previous version is still being
+    finalized, and 5xx during brief server trouble. Both clear on their own, so wait and
+    retry rather than failing an unattended cron publish."""
+    delay = 10
+    for i in range(attempts):
+        try:
+            return api(path, payload, method)
+        except urllib.error.HTTPError as e:
+            detail = ''
+            try:
+                detail = e.read().decode()[:160].strip()
+            except Exception:
+                pass
+            transient = e.code in (409, 429, 500, 502, 503, 504)
+            if transient and i < attempts - 1:
+                wait = delay
+                try:
+                    wait = max(int(e.headers.get('retry-after') or delay), 5)
+                except (TypeError, ValueError):
+                    pass
+                print(f'  server not ready ({e.code} {detail[:110]}) — retry {i+1}/{attempts-1} in {wait}s')
+                time.sleep(wait)
+                delay = min(delay * 2, 60)
+                continue
+            raise
+
+    raise RuntimeError(f'here.now publish: gave up after {attempts} attempts')
+
 def publish():
     files = collect()
     total = sum(f['size'] for f in files)
     print(f'{len(files)} files declared ({total/1e6:.1f} MB total)')
 
     try:
-        resp = api(SLUG, {'files': files})
+        resp = api_retry(SLUG, {'files': files})
     except urllib.error.HTTPError as e:
         if e.code == 404:
             print('site not found under this slug — creating it')
-            resp = api('', {'files': files}, method='POST')
+            resp = api_retry('', {'files': files}, method='POST')
         else:
             raise
 
@@ -98,14 +127,28 @@ def publish():
             sys.exit(1)
         print(f'  uploaded {u["path"]}')
 
-    freq = urllib.request.Request(
-        up['finalizeUrl'],
-        data=json.dumps({'versionId': up['versionId']}).encode(),
-        headers={'content-type': 'application/json',
-                 'authorization': 'Bearer ' + KEY,
-                 'X-HereNow-Account': ACCOUNT})
-    fin = json.load(urllib.request.urlopen(freq))
+    fin = None
+    delay = 10
+    for attempt in range(6):
+        freq = urllib.request.Request(
+            up['finalizeUrl'],
+            data=json.dumps({'versionId': up['versionId']}).encode(),
+            headers={'content-type': 'application/json',
+                     'authorization': 'Bearer ' + KEY,
+                     'X-HereNow-Account': ACCOUNT})
+        try:
+            fin = json.load(urllib.request.urlopen(freq, timeout=60))
+            break
+        except urllib.error.HTTPError as e:
+            if e.code in (409, 429, 500, 502, 503, 504) and attempt < 5:
+                print(f'  finalize not ready ({e.code}) — retry {attempt+1}/5 in {delay}s')
+                time.sleep(delay)
+                delay = min(delay * 2, 60)
+                continue
+            raise
 
+    if fin is None:
+        raise RuntimeError('here.now finalize: no response after retries')
     if fin.get('unchanged'):
         print('finalize: unchanged — live version already identical, no new version created')
     else:
