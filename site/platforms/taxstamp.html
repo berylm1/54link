@@ -120,6 +120,78 @@
   .secured td a { color:var(--fg); text-decoration:none; font-weight:600; }
   .secured td a:hover { color:var(--gold); }
   .secured .ok { color:var(--green); }
+  /* ---------- hamburger menu ---------- */
+  nav .in { justify-content:space-between; }
+  .burger { display:flex; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:9px 6px; }
+  .burger span { display:block; width:26px; height:2px; background:var(--fg); border-radius:2px; transition:transform .22s ease, opacity .18s ease; }
+  nav.open .burger span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  nav.open .burger span:nth-child(2) { opacity:0; }
+  nav.open .burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  .navmenu { display:none; border-top:1px solid var(--border); background:rgba(8,11,15,.985); backdrop-filter:blur(10px); max-height:78vh; overflow:auto; }
+  nav.open .navmenu { display:block; animation:menudrop .22s ease; }
+  @keyframes menudrop { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+  .navmenu .min { max-width:1100px; margin:0 auto; padding:6px 24px 14px; }
+  .navmenu a { display:flex; align-items:center; gap:12px; padding:13px 4px; border-bottom:1px solid var(--border); color:var(--fg); text-decoration:none; font-size:.98rem; }
+  .navmenu a:last-child { border-bottom:0; }
+  .navmenu a:hover { color:var(--gold); padding-left:10px; transition:padding .16s; }
+  .navmenu a .dotmark { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .navmenu a:nth-child(1) .dotmark { background:var(--red); }
+  .navmenu a:nth-child(2) .dotmark { background:var(--orange); }
+  .navmenu a:nth-child(3) .dotmark { background:var(--gold); }
+  .navmenu a:nth-child(4) .dotmark { background:var(--green); }
+  .navmenu a:nth-child(5) .dotmark { background:var(--blue); }
+  .navmenu a:nth-child(6) .dotmark { background:var(--gold); }
+  .navmenu a:nth-child(7) .dotmark { background:var(--orange); }
+  .navmenu a:nth-child(8) .dotmark { background:var(--red); }
+  /* ---------- animated logo stage ---------- */
+  header.hero.center { text-align:center; padding:40px 24px 34px; }
+  .stage { position:relative; width:380px; height:380px; margin:6px auto 26px; }
+  @media (max-width:480px) { .stage { width:290px; height:290px; } }
+  .stage .ring { position:absolute; border-radius:50%; border:1px dashed rgba(240,180,41,.34); }
+  .stage .r1 { inset:38px; animation:spin 52s linear infinite; }
+  .stage .r2 { inset:6px; border-color:rgba(47,111,237,.30); animation:spin 78s linear infinite reverse; }
+  .stage .r3 { inset:70px; border-color:rgba(34,163,74,.30); animation:spin 36s linear infinite; }
+  .stage .halo { position:absolute; inset:16px; border-radius:50%; animation:spin 14s linear infinite;
+      background:conic-gradient(from 0deg, transparent 0 76%, rgba(240,180,41,.20) 88%, transparent 100%); }
+  .stage .glow { position:absolute; inset:34%; border-radius:50%; background:radial-gradient(circle, rgba(240,180,41,.30), transparent 68%); animation:breathe 5.5s ease-in-out infinite; }
+  .stage .orbit { position:absolute; inset:0; animation:spin 26s linear infinite; }
+  .stage .orbit.o2 { inset:30px; animation:spin 38s linear infinite reverse; }
+  .stage .orbit i { position:absolute; left:50%; top:50%; width:11px; height:11px; margin:-5.5px 0 0 -5.5px; border-radius:50%; display:block; box-shadow:0 0 10px currentColor; }
+  .stage .orbit.o1 i:nth-child(1) { background:var(--gold); color:var(--gold); transform:rotate(0deg) translateY(-152px); }
+  .stage .orbit.o1 i:nth-child(2) { background:var(--green); color:var(--green); transform:rotate(120deg) translateY(-152px); }
+  .stage .orbit.o1 i:nth-child(3) { background:var(--blue); color:var(--blue); transform:rotate(240deg) translateY(-152px); }
+  .stage .orbit.o2 i:nth-child(1) { background:var(--red); color:var(--red); transform:rotate(60deg) translateY(-118px); }
+  .stage .orbit.o2 i:nth-child(2) { background:var(--orange); color:var(--orange); transform:rotate(210deg) translateY(-118px); }
+  .stage .orbit.o2 i:nth-child(3) { background:var(--green); color:var(--green); transform:rotate(300deg) translateY(-118px); }
+  .stage img.stage-logo { position:absolute; left:50%; top:50%; width:152px; height:152px; margin:-76px 0 0 -76px;
+      border-radius:26px; animation:breathe 5.5s ease-in-out infinite;
+      box-shadow:0 0 0 1px rgba(240,180,41,.4), 0 18px 50px rgba(0,0,0,.55); }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.045); } }
+  @media (prefers-reduced-motion: reduce) { .stage .ring, .stage .halo, .stage .orbit, .stage .glow, .stage img.stage-logo { animation:none; } }
+  .chips { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin:0 0 6px; }
+  .chips span { font-size:.76rem; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 12px; }
+  /* ---------- africa intro / benefits ---------- */
+  .bigp { font-size:1.09rem; color:#d5dee8; max-width:860px; }
+  .grid3 { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:26px; }
+  .bcard { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:20px 22px; transition:border-color .18s, transform .18s; }
+  .bcard:hover { border-color:rgba(240,180,41,.42); transform:translateY(-2px); }
+  .bcard h3 { font-size:1rem; margin-bottom:7px; display:flex; align-items:center; gap:9px; }
+  .bcard h3:before { content:''; width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .bcard:nth-child(3n+2) h3:before { background:var(--green); }
+  .bcard:nth-child(3n) h3:before { background:var(--blue); }
+  .bcard p { color:#c3cedb; font-size:.92rem; }
+  .bcard .metric { display:block; margin-top:9px; font-size:.8rem; color:var(--gold); letter-spacing:.02em; }
+  .sources { color:#6f7c8a; font-size:.79rem; margin-top:20px; max-width:820px; }
+  /* ---------- news ---------- */
+  .news { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; }
+  .ncard { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:20px 22px; border-left:3px solid var(--gold); }
+  .ncard:nth-child(3n+2) { border-left-color:var(--green); }
+  .ncard:nth-child(3n) { border-left-color:var(--blue); }
+  .ncard .ndate { font-size:.72rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); }
+  .ncard h3 { font-size:1rem; margin:7px 0 7px; line-height:1.35; }
+  .ncard p { color:#c3cedb; font-size:.9rem; }
+  .ncard .nsrc { display:block; margin-top:10px; font-size:.75rem; color:#6f7c8a; }
   .video-frame { position:relative; padding-top:56.25%; background:#0e1826; border-radius:14px; overflow:hidden; border:1px solid rgba(240,180,41,.28); }
   .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .video-frame .no-video { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.95rem; text-align:center; padding:24px; }
@@ -162,15 +234,22 @@
   footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
 </style></head>
 <body>
-<nav><div class="in">
+<nav id="topnav"><div class="in">
   <a class="brand" href="/index.html"><img class="africa nav-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512"><span><b>54</b>link</span></a>
-  <a href="/index.html#platforms">Platforms</a>
-  <a href="/index.html#videos">Video Demos</a>
-  <a href="/index.html#dev">Dev Environments</a>
-  <a href="/index.html#secured">Secured Platforms</a>
-  <a href="/brochure.pdf" target="_blank" rel="noopener">Brochure</a>
-  <a href="/index.html#register">Get in Touch</a>
-</div></nav>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="navmenu" id="navmenu"><div class="min">
+  <a href="/index.html#africa"><span class="dotmark"></span>Africa &amp; its economies</a>
+  <a href="/index.html#news"><span class="dotmark"></span>Latest from Africa</a>
+  <a href="/index.html#platforms"><span class="dotmark"></span>Platforms</a>
+  <a href="/index.html#videos"><span class="dotmark"></span>Video Demos</a>
+  <a href="/index.html#dev"><span class="dotmark"></span>Dev Environments</a>
+  <a href="/index.html#secured"><span class="dotmark"></span>Secured Platforms</a>
+  <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
+  <a href="/index.html#register"><span class="dotmark"></span>Get in Touch</a>
+</div></div></nav>
 <div class="detail">
   <p class="crumbs"><a href="/index.html">← Back to all platforms</a></p>
   <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">TaxStamp — Excise Stamp Issuance &amp; Verification</h1>

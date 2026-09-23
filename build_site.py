@@ -132,6 +132,78 @@ STYLE = '''
   .secured td a { color:var(--fg); text-decoration:none; font-weight:600; }
   .secured td a:hover { color:var(--gold); }
   .secured .ok { color:var(--green); }
+  /* ---------- hamburger menu ---------- */
+  nav .in { justify-content:space-between; }
+  .burger { display:flex; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:9px 6px; }
+  .burger span { display:block; width:26px; height:2px; background:var(--fg); border-radius:2px; transition:transform .22s ease, opacity .18s ease; }
+  nav.open .burger span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  nav.open .burger span:nth-child(2) { opacity:0; }
+  nav.open .burger span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  .navmenu { display:none; border-top:1px solid var(--border); background:rgba(8,11,15,.985); backdrop-filter:blur(10px); max-height:78vh; overflow:auto; }
+  nav.open .navmenu { display:block; animation:menudrop .22s ease; }
+  @keyframes menudrop { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
+  .navmenu .min { max-width:1100px; margin:0 auto; padding:6px 24px 14px; }
+  .navmenu a { display:flex; align-items:center; gap:12px; padding:13px 4px; border-bottom:1px solid var(--border); color:var(--fg); text-decoration:none; font-size:.98rem; }
+  .navmenu a:last-child { border-bottom:0; }
+  .navmenu a:hover { color:var(--gold); padding-left:10px; transition:padding .16s; }
+  .navmenu a .dotmark { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .navmenu a:nth-child(1) .dotmark { background:var(--red); }
+  .navmenu a:nth-child(2) .dotmark { background:var(--orange); }
+  .navmenu a:nth-child(3) .dotmark { background:var(--gold); }
+  .navmenu a:nth-child(4) .dotmark { background:var(--green); }
+  .navmenu a:nth-child(5) .dotmark { background:var(--blue); }
+  .navmenu a:nth-child(6) .dotmark { background:var(--gold); }
+  .navmenu a:nth-child(7) .dotmark { background:var(--orange); }
+  .navmenu a:nth-child(8) .dotmark { background:var(--red); }
+  /* ---------- animated logo stage ---------- */
+  header.hero.center { text-align:center; padding:40px 24px 34px; }
+  .stage { position:relative; width:380px; height:380px; margin:6px auto 26px; }
+  @media (max-width:480px) { .stage { width:290px; height:290px; } }
+  .stage .ring { position:absolute; border-radius:50%; border:1px dashed rgba(240,180,41,.34); }
+  .stage .r1 { inset:38px; animation:spin 52s linear infinite; }
+  .stage .r2 { inset:6px; border-color:rgba(47,111,237,.30); animation:spin 78s linear infinite reverse; }
+  .stage .r3 { inset:70px; border-color:rgba(34,163,74,.30); animation:spin 36s linear infinite; }
+  .stage .halo { position:absolute; inset:16px; border-radius:50%; animation:spin 14s linear infinite;
+      background:conic-gradient(from 0deg, transparent 0 76%, rgba(240,180,41,.20) 88%, transparent 100%); }
+  .stage .glow { position:absolute; inset:34%; border-radius:50%; background:radial-gradient(circle, rgba(240,180,41,.30), transparent 68%); animation:breathe 5.5s ease-in-out infinite; }
+  .stage .orbit { position:absolute; inset:0; animation:spin 26s linear infinite; }
+  .stage .orbit.o2 { inset:30px; animation:spin 38s linear infinite reverse; }
+  .stage .orbit i { position:absolute; left:50%; top:50%; width:11px; height:11px; margin:-5.5px 0 0 -5.5px; border-radius:50%; display:block; box-shadow:0 0 10px currentColor; }
+  .stage .orbit.o1 i:nth-child(1) { background:var(--gold); color:var(--gold); transform:rotate(0deg) translateY(-152px); }
+  .stage .orbit.o1 i:nth-child(2) { background:var(--green); color:var(--green); transform:rotate(120deg) translateY(-152px); }
+  .stage .orbit.o1 i:nth-child(3) { background:var(--blue); color:var(--blue); transform:rotate(240deg) translateY(-152px); }
+  .stage .orbit.o2 i:nth-child(1) { background:var(--red); color:var(--red); transform:rotate(60deg) translateY(-118px); }
+  .stage .orbit.o2 i:nth-child(2) { background:var(--orange); color:var(--orange); transform:rotate(210deg) translateY(-118px); }
+  .stage .orbit.o2 i:nth-child(3) { background:var(--green); color:var(--green); transform:rotate(300deg) translateY(-118px); }
+  .stage img.stage-logo { position:absolute; left:50%; top:50%; width:152px; height:152px; margin:-76px 0 0 -76px;
+      border-radius:26px; animation:breathe 5.5s ease-in-out infinite;
+      box-shadow:0 0 0 1px rgba(240,180,41,.4), 0 18px 50px rgba(0,0,0,.55); }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.045); } }
+  @media (prefers-reduced-motion: reduce) { .stage .ring, .stage .halo, .stage .orbit, .stage .glow, .stage img.stage-logo { animation:none; } }
+  .chips { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin:0 0 6px; }
+  .chips span { font-size:.76rem; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 12px; }
+  /* ---------- africa intro / benefits ---------- */
+  .bigp { font-size:1.09rem; color:#d5dee8; max-width:860px; }
+  .grid3 { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:26px; }
+  .bcard { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:20px 22px; transition:border-color .18s, transform .18s; }
+  .bcard:hover { border-color:rgba(240,180,41,.42); transform:translateY(-2px); }
+  .bcard h3 { font-size:1rem; margin-bottom:7px; display:flex; align-items:center; gap:9px; }
+  .bcard h3:before { content:''; width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+  .bcard:nth-child(3n+2) h3:before { background:var(--green); }
+  .bcard:nth-child(3n) h3:before { background:var(--blue); }
+  .bcard p { color:#c3cedb; font-size:.92rem; }
+  .bcard .metric { display:block; margin-top:9px; font-size:.8rem; color:var(--gold); letter-spacing:.02em; }
+  .sources { color:#6f7c8a; font-size:.79rem; margin-top:20px; max-width:820px; }
+  /* ---------- news ---------- */
+  .news { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; }
+  .ncard { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:20px 22px; border-left:3px solid var(--gold); }
+  .ncard:nth-child(3n+2) { border-left-color:var(--green); }
+  .ncard:nth-child(3n) { border-left-color:var(--blue); }
+  .ncard .ndate { font-size:.72rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); }
+  .ncard h3 { font-size:1rem; margin:7px 0 7px; line-height:1.35; }
+  .ncard p { color:#c3cedb; font-size:.9rem; }
+  .ncard .nsrc { display:block; margin-top:10px; font-size:.75rem; color:#6f7c8a; }
   .video-frame { position:relative; padding-top:56.25%; background:#0e1826; border-radius:14px; overflow:hidden; border:1px solid rgba(240,180,41,.28); }
   .video-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .video-frame .no-video { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.95rem; text-align:center; padding:24px; }
@@ -174,15 +246,22 @@ STYLE = '''
   footer .in { max-width:1100px; margin:0 auto; padding:32px 24px; color:var(--muted); font-size:.85rem; }
 '''
 
-NAV = '''<nav><div class="in">
+NAV = '''<nav id="topnav"><div class="in">
   <a class="brand" href="/index.html">{logo}<span><b>54</b>link</span></a>
-  <a href="/index.html#platforms">Platforms</a>
-  <a href="/index.html#videos">Video Demos</a>
-  <a href="/index.html#dev">Dev Environments</a>
-  <a href="/index.html#secured">Secured Platforms</a>
-  <a href="/brochure.pdf" target="_blank" rel="noopener">Brochure</a>
-  <a href="/index.html#register">Get in Touch</a>
-</div></nav>'''
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="navmenu" id="navmenu"><div class="min">
+  <a href="/index.html#africa"><span class="dotmark"></span>Africa &amp; its economies</a>
+  <a href="/index.html#news"><span class="dotmark"></span>Latest from Africa</a>
+  <a href="/index.html#platforms"><span class="dotmark"></span>Platforms</a>
+  <a href="/index.html#videos"><span class="dotmark"></span>Video Demos</a>
+  <a href="/index.html#dev"><span class="dotmark"></span>Dev Environments</a>
+  <a href="/index.html#secured"><span class="dotmark"></span>Secured Platforms</a>
+  <a href="/brochure.pdf" target="_blank" rel="noopener"><span class="dotmark"></span>Brochure (PDF)</a>
+  <a href="/index.html#register"><span class="dotmark"></span>Get in Touch</a>
+</div></div></nav>'''
 
 # substitute the logo mark into the nav (previously left as a literal placeholder)
 NAV = NAV.replace('{logo}', AFRICA_LOGO.replace('class="africa"', 'class="africa nav-logo"'))
@@ -371,22 +450,152 @@ for key, (poster, vidfile, live_url, blurb) in SECURED.items():
       <td><a href="{esc(live_url)}" target="_blank" rel="noopener">{esc(live_url.replace('https://',''))}</a></td>
     </tr>''')
 
+# ---------- Africa intro, country benefits and current news ----------
+AFRICA_INTRO = (
+    "Africa is not one story — it is 54 of them. One and a half billion people, the world's fastest-growing "
+    "workforce, roughly 30% of the world's mineral reserves and 60% of its solar potential. It is a market "
+    "estimated at $3 trillion, and its economy grew 4.4% last year even against global turbulence. Trade under "
+    "the African Continental Free Trade Area is projected to reach $230 billion this year, while a single "
+    "continental payment rail is starting to pull cross-border flows away from correspondent banks in London "
+    "and Frankfurt. The opportunity is no longer about extracting from Africa — it is about building in it, "
+    "and each country brings a different advantage to that work."
+)
+
+BENEFITS = [
+    ("Nigeria", "Africa's largest market and its busiest builder",
+     "The continent's biggest economy and population, with the deepest concentration of start-up capital on the "
+     "continent. Growth is now running on services rather than oil.",
+     "GDP +4.43% in Q2 2026 — fastest in five years · non-oil sectors = 96% of output · trade surplus doubled to $9.5bn"),
+    ("Kenya", "The mobile-money economy",
+     "Kenya proved what digital financial infrastructure can do at national scale, and now leads the continent in "
+     "renewable electricity and start-up capital raised.",
+     "91% mobile-money penetration · M-Pesa processes 21m+ transactions daily · >90% electricity from renewables"),
+    ("South Africa", "Capital depth and financial services",
+     "The deepest capital markets and the largest concentration of private wealth in Africa, with a sophisticated "
+     "banking and insurance sector.",
+     "48,200 millionaires — 38% of Africa's total · Johannesburg is the continent's wealthiest city"),
+    ("Egypt", "Manufacturing and the trade gateway",
+     "A dense deal pipeline and a deliberate strategy of balancing global partners to become the region's "
+     "manufacturing and trade hub.",
+     "100 deals in the current pipeline · fintech champions scaling across North Africa"),
+    ("Ghana", "Growth driven by digital services",
+     "One of West Africa's steady performers, with communications and services now carrying the economy forward.",
+     "Economy expanded 6.2% in the first half of 2026"),
+    ("Morocco", "Green energy and industrial ambition",
+     "Positioned to export renewable electricity to Europe and home to some of Africa's fastest-growing urban wealth.",
+     "Submarine green-power cable planned to Europe · Marrakech wealth +82% in a decade"),
+    ("Rwanda", "Governance and logistics technology",
+     "A reference market for how fast a country can digitise public service delivery and commercial logistics.",
+     "Nationwide drone delivery at operational scale · a top African performer on ease of doing business"),
+    ("Ethiopia", "Manufacturing and mineral processing",
+     "A deliberate push into industrial parks and domestic processing so raw materials are upgraded at home.",
+     "New processing capacity coming online in gold and minerals"),
+    ("Mauritius", "Financial services and wealth hub",
+     "Africa's fast-growing offshore financial centre and a magnet for mobile wealth.",
+     "Black River wealth +120% — Africa's fastest-growing millionaire hotspot"),
+]
+
+NEWS = [
+    ("Sep 2026", "Africa makes its case for a bigger role on the global stage",
+     "Leaders from business, government and global institutions convened in New York alongside the 81st UN General "
+     "Assembly. The UN Secretary-General called for a permanent African seat on the Security Council and for the "
+     "continent's critical minerals to generate local value and jobs rather than being exported raw.",
+     "GABI · Unstoppable Africa 2026"),
+    ("Sep 2026", "Nigeria's economy grows 4.43% — its fastest in five years",
+     "Second-quarter growth was carried by services, telecommunications, finance and agriculture, while the trade "
+     "surplus doubled to $9.5bn. Non-oil sectors now account for 96% of total output.",
+     "Semafor Africa · National Bureau of Statistics"),
+    ("Sep 2026", "Dangote Refinery IPO set to be Africa's largest share sale",
+     "Nigeria's SEC approved an offering expected to raise around $1.5–1.8bn, with plans to double the refinery's "
+     "capacity to 1.4 million barrels per day — which would make it the largest single-train refinery in the world.",
+     "Semafor Africa · Reuters"),
+    ("Sep 2026", "AfCFTA trade projected to reach $230bn this year",
+     "Intra-African trade under the Continental Free Trade Area keeps scaling, supported by continental payment "
+     "rails that shift cross-border settlement away from correspondent banking.",
+     "African Union Commission · GABI 2026"),
+    ("Sep 2026", "Africa's solar adoption projected to rise 45% this year",
+     "As energy independence becomes a strategic priority, several countries moved to expand both refining and "
+     "generation capacity — with renewables adoption rising sharply across the continent.",
+     "Ember · Semafor Africa"),
+    ("H1 2026", "Fintech remains Africa's largest venture sector",
+     "African start-ups raised $1.35bn in the first half of 2026. Fintech took $556m (41%) and logistics $472m. "
+     "Nigeria, Kenya, South Africa and Egypt have absorbed roughly 80% of all capital raised since 2019.",
+     "Africa: The Big Deal · Partech"),
+    ("Sep 2026", "AGOA extended through December 2028",
+     "Preferential duty-free access to the US market is preserved for eligible sub-Saharan exporters, giving "
+     "textiles, apparel and agriculture a firmer footing for the next two years.",
+     "US Government"),
+    ("Sep 2026", "Kenya: 90%+ renewable electricity, and a new critical-minerals facility",
+     "Kenya generates more than 90% of its electricity from renewable sources, and the US backed a critical "
+     "minerals processing facility in a country holding untapped copper, graphite, lithium and nickel.",
+     "Guterres / GABI 2026 · Reuters"),
+    ("21 Sep 2026", "$300m Nigeria Distributed Renewable Energy Fund reaches first close",
+     "Co-managed by the Nigeria Sovereign Investment Authority and Africa50, the fund will finance local clean-energy "
+     "developers — solar mini-grids, home systems and storage — aligned to Mission 300's goal of connecting 300 "
+     "million Africans to electricity by 2030.",
+     "NSIA · Africa50 · GABI 2026"),
+]
+
+benefit_cards = ''.join(
+    f'''<div class="bcard">
+      <h3>{esc(name)}</h3>
+      <p style="color:var(--muted);font-size:.82rem;margin:0 0 6px;text-transform:uppercase;letter-spacing:.07em">{esc(tag)}</p>
+      <p>{esc(body)}</p>
+      <span class="metric">{esc(metric)}</span>
+    </div>''' for name, tag, body, metric in BENEFITS)
+
+news_cards = ''.join(
+    f'''<article class="ncard">
+      <span class="ndate">{esc(date)}</span>
+      <h3>{esc(title)}</h3>
+      <p>{esc(body)}</p>
+      <span class="nsrc">{esc(src)}</span>
+    </article>''' for date, title, body, src in NEWS)
+
 index = f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>54link — Africa's Platform Compiler · Nigeria First</title><style>{STYLE}</style></head>
 <body>
 {NAV}
-<header class="hero">
-  {AFRICA_LOGO.replace('class="africa"','class="africa hero-logo"')}
-  <p class="eyebrow" style="margin-top:18px">Work for work · Across Africa · Nigeria first</p>
+<header class="hero center">
+  <div class="stage">
+    <div class="ring r2"></div>
+    <div class="ring r1"></div>
+    <div class="ring r3"></div>
+    <div class="halo"></div>
+    <div class="glow"></div>
+    <div class="orbit o1"><i></i><i></i><i></i></div>
+    <div class="orbit o2"><i></i><i></i><i></i></div>
+    <img class="stage-logo" src="/assets/54link-logo.png" alt="54link — compiled platforms for Africa" width="512" height="512">
+  </div>
+  <div class="chips">
+    <span>Nigeria</span><span>Kenya</span><span>South Africa</span><span>Ghana</span><span>Egypt</span>
+    <span>Morocco</span><span>Rwanda</span><span>Ethiopia</span><span>Mauritius</span>
+  </div>
+  <p class="eyebrow" style="margin-top:24px">Work for work · Across Africa · Nigeria first</p>
   <h1><b>54link</b> compiles, deploys, and showcases Africa's operational platforms.</h1>
-  <p class="lead">54link is a technology company that brings together a compiled portfolio of production-grade platforms — tax, trade, maritime, health, payments, energy, governance — built for African markets. Every platform is deployed in a live dev environment, documented in full, and demonstrated on video. Nigeria is the first use case; the blueprint scales across all 54.</p>
-  <div class="stats">
+  <p class="lead" style="margin:0 auto">54link is a technology company that brings together a compiled portfolio of production-grade platforms — tax, trade, maritime, health, payments, energy, governance — built for African markets. Every platform is deployed in a live dev environment, documented in full, and demonstrated on video. Nigeria is the first use case; the blueprint scales across all 54.</p>
+  <div class="stats" style="justify-content:center">
     <div class="stat"><b>{len(repos)}</b><span>repositories compiled</span></div>
     <div class="stat"><b>{len(platforms)}</b><span>platforms documented</span></div>
+    <div class="stat"><b>{len(SECURED)}</b><span>deployed &amp; on video</span></div>
     <div class="stat"><b>1 → 54</b><span>Nigeria first, then the continent</span></div>
   </div>
 </header>
+
+<section id="africa">
+  <h2>Africa — the continent of the next century</h2>
+  <p class="sectsub">One continent, 54 markets, and the world's youngest workforce</p>
+  <p class="bigp">{esc(AFRICA_INTRO)}</p>
+  <div class="grid3">{benefit_cards}</div>
+  <p class="sources">Continental figures: UN Secretary-General António Guterres at GABI's <em>Unstoppable Africa 2026</em>, New York, September 2026. Country data: national statistics offices, Semafor Africa, Partech, Africa: The Big Deal, Africa Wealth Report 2026 and the African Development Bank.</p>
+</section>
+
+<section id="news">
+  <h2>Latest from Africa</h2>
+  <p class="sectsub">What is actually moving across the continent right now — capital, energy, trade and policy</p>
+  <div class="news">{news_cards}</div>
+</section>
 
 <section id="platforms">
   <h2>The compiled portfolio</h2>
@@ -451,6 +660,29 @@ index = f'''<!DOCTYPE html>
 
 {FOOTER}
 <script>
+/* ---- hamburger menu ---- */
+(function () {{
+  const nav = document.getElementById('topnav');
+  const btn = document.getElementById('burger');
+  if (!nav || !btn) return;
+  function setOpen(v) {{
+    nav.classList.toggle('open', v);
+    btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+    btn.setAttribute('aria-label', v ? 'Close menu' : 'Open menu');
+  }}
+  btn.addEventListener('click', function (e) {{
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('open'));
+  }});
+  Array.prototype.forEach.call(document.querySelectorAll('#navmenu a'), function (a) {{
+    a.addEventListener('click', function () {{ setOpen(false); }});
+  }});
+  document.addEventListener('keydown', function (e) {{ if (e.key === 'Escape') setOpen(false); }});
+  document.addEventListener('click', function (e) {{
+    if (nav.classList.contains('open') && !nav.contains(e.target)) setOpen(false);
+  }});
+}})();
+
 /* ---- platform search ---- */
 (function () {{
   const input = document.getElementById('psearch');
