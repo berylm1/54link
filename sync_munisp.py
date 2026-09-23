@@ -172,6 +172,27 @@ def run():
     covered = {rn for p in platforms.values() for rn in p.get('repos', [])}
     uncovered = sorted(r['name'] for r in repos if r['name'] not in covered)
 
+    # ---- live-environment sweep (check_live.py rewrites live.json) --------
+    def read_live():
+        try:
+            return open(f'{BASE}/live.json').read()
+        except OSError:
+            return ''
+
+    live_before = read_live()
+    try:
+        lr = subprocess.run(['python3', 'check_live.py'], cwd=BASE, capture_output=True, text=True, timeout=900)
+        for line in lr.stdout.splitlines():
+            s = line.strip()
+            if s and (line.startswith(' ') or s.split(' ')[0] in ('probing', 'live', 'platforms')):
+                log('  live | ' + s)
+    except Exception as e:
+        log(f'  live sweep failed ({e}) — carrying on with the repo data only')
+    live_changed = read_live() != live_before
+    if live_changed:
+        log('  live environments changed')
+    changed = changed or live_changed
+
     # ---- rebuild + publish only when something changed --------------------
     published = False
     if changed:
@@ -204,11 +225,34 @@ def run():
     # ---- baseline + state -------------------------------------------------
     json.dump({'user': {'public_repos': user.get('public_repos'), 'followers': user.get('followers')},
                'repos': live}, open(BASELINE, 'w'), indent=1)
+    # ---- what the site now knows ------------------------------------------
+    live_info = {}
+    try:
+        live_info = json.load(open(f'{BASE}/live.json')).get('platforms', {})
+    except Exception:
+        pass
+    vids = {}
+    try:
+        vids = json.load(open(f'{BASE}/videos.json'))
+    except Exception:
+        pass
+    live_keys = sorted(k for k, v in live_info.items() if v.get('live'))
+    needs_recording = sorted(k for k in live_keys if not vids.get(k))
+    attached = {v.get('src') for vs in vids.values() for v in vs}
+    try:
+        on_disk = sorted(f for f in os.listdir(f'{BASE}/site/videos') if f.endswith('.mp4'))
+    except OSError:
+        on_disk = []
+    unattached = [f for f in on_disk if f'/videos/{f}' not in attached]
+
     json.dump({
         'last_run': time.strftime('%Y-%m-%dT%H:%M:%S%z'),
         'repos': len(repos),
         'platforms': len(platforms),
         'repos_without_platform': uncovered,
+        'live_platforms': live_keys,
+        'live_without_video': needs_recording,
+        'video_files_not_attached': unattached,
         'published': published,
         'new_repos': new_repos,
         'removed_repos': gone_repos,
@@ -216,10 +260,16 @@ def run():
     }, open(STATE, 'w'), indent=1)
 
     log(f'done: {len(repos)} repos / {len(platforms)} platforms / '
+        f'{len(live_keys)} live environments / {len(vids)} platforms with video / '
         f'{len(uncovered)} repos without a platform page / published={published}')
     if new_repos:
         log('ACTION NEEDED: new repo(s) ' + ', '.join(new_repos) +
             ' have no platform page — read the repo and author one in platforms.json, then rebuild+publish.')
+    if unattached:
+        log('ACTION NEEDED: video file(s) in site/videos not attached to any platform — '
+            + ', '.join(unattached) + ' — attach them in videos.json, then rebuild+publish.')
+    if needs_recording:
+        log('NEEDS RECORDING: live platforms with no demo video yet — ' + ', '.join(needs_recording))
     return 0
 
 

@@ -279,46 +279,47 @@ for p in platforms.values():
 uncovered = [r for r in repos if r['name'] not in covered]
 
 # per-platform demo videos (recorded via OpenScreen, hosted in /videos/)
-VIDEOS = {
-    'Meridian TaxTech': ('/videos/meridian-walkthrough.mp4', 'Walkthrough of the live Meridian compliance portal at meridian.newfire.app — the Nigeria Revenue Service TaxTech compliance plane, signed in as an operator. Shows the Compliance Overview health board and each module: E-Invoicing Console (IRN + crypto stamp status), WHT Dashboard (2024 evaluation + remittance files), ETR Pillar Two Dashboard (step trace, GIR download), VASP/CARF Console (cost basis, ring-fence, gates), Retailer POS Dashboard (receipts, attribution, variance) and the Practitioner Workspace (matters, documents, deadlines).'),
-    'NDSEP / NGApp': ('/videos/ndsep-demo.mp4', 'Recorded walkthrough of the live NDSEP platform at ndsep.newfire.app — the National Data Sovereignty Enforcement Platform. Captured in demo mode (no credentials required), touring the government executive dashboard and all 18 core-platform sections: Discovery Engine, Data Catalog, Compliance Engine, SIEM & Audit, Network DPI, Network Intelligence, NOC Dashboard, Threat Intelligence, SOCint CTI Hub, Maritime Intel, Wazuh SIEM, SIGINT Correlation, Estorides Graph, AI NOC Agent, BGP Routes, Arkime PCAP and Platform Intelligence.'),
-    'Lanai': ('/videos/lanai-full-walkthrough.mp4', 'Full walkthrough of the deployed Lanai Lifestyle portal at lanai.newfire.app — logged in as an advisor, testing every service in the menu: dashboard, morning briefing, revenue analytics, clients, members, travel requests, the AI proposal engine, client intelligence, Virtuoso recommendations, the confirmation re-brander, suppliers, WhatsApp and unified inboxes, task templates, invoicing, NPS & feedback, member portal, CRM sync, and settings.'),
-    'INEC Election Platform': ('/videos/inec-demo.mp4', 'Full walkthrough of the deployed INEC Digital Twin campaign platform at campaign-inec-servers.newfire.app — the live KPI dashboard (₦107.0M fundraising, 50% compliance, 8/13 milestones, 154-day countdown) plus the campaign tools: War Room, Compliance, Campaign Timeline, Stakeholders Hub, Volunteer Portal and Voter Registration.'),
-    'TourismPay': ('/videos/tourismpay-demo.mp4', 'Walkthrough of the deployed TourismPay merchant platform at tourismpay-servers.newfire.app — signed in as a demo merchant (Serengeti Safari Experience, KYB approved and live) and touring the merchant services: Operations Dashboard with live KPI cards and open fraud alerts, Revenue Dashboard, QR Codes, Product Catalog, Channel Manager, Staff Management, Cashier Terminal, Booking Inbox, Deal and KPI Leaderboards, Availability Calendar and BIS Compliance. Multi-currency FX ticker covering KES, GHS, ZAR, NGN and GBP.'),
-    'UmojaFlowOS': ('/videos/umoja-demo.mp4', 'Walkthrough of the live UmojaFlowOS public site at umoja.newfire.app — cross-border payment control for Africa-linked corridors. Covers who it serves, partner roles, protections, the Nigeria / Kenya / South Africa market corridors and how it works: real records, assigned workspaces, accountable high-impact steps, and nothing activated by default.'),
-    'VPP': ('/videos/vpp-demo.mp4', 'Walkthrough of the deployed VPP Platform at vpp.newfire.app — the Virtual Power Plant control plane, signed in as an administrator. Live telemetry on the dashboard (2.53 MW current power, 1.82 GWh metered energy, 49.98 Hz grid frequency, 11147 V / 230 A electrical readings), 34 registered assets, active power trading, billing and alerts, plus the Energy & Insights, Market, Money, Grid Operations, Operations Centre, Community, Tools & Account and Administration sections.'),
-}
+# --- data files, all rewritten by the cron sweep ---------------------------------
+# platform -> [ {src, label, kind, poster, featured} ]
+VIDEOS = json.load(open(f'{BASE}/videos.json'))
 
-# multiple videos per platform: featured video + archive
-VIDEO_SETS = {
-    'Healthpoint': [
-        ('/videos/healthpoint-walkthrough.mp4', 'Full walkthrough — logged in, every section of the platform'),
-        ('/videos/healthpoint-demo.mp4', 'Platform overview — healthpoint.newfire.app'),
-    ],
-    'Lanai': [
-        ('/videos/lanai-full-walkthrough.mp4', 'Full walkthrough — every service in the menu'),
-        ('/videos/lanai-demo.mp4', 'Landing page tour — lanai.newfire.app'),
-    ],
-    'Meridian TaxTech': [
-        ('/videos/meridian-walkthrough.mp4', 'Full walkthrough — every compliance module, signed in as an operator'),
-        ('/videos/meridian-demo.mp4', 'Overview clip — meridian.newfire.app'),
-    ],
-}
+# platform -> {url, host, live, status, verified}  (check_live.py probes and rewrites this)
+LIVE = json.load(open(f'{BASE}/live.json')).get('platforms', {})
+
+
+def is_live(key):
+    return bool(LIVE.get(key, {}).get('live'))
+
+
+def live_url(key):
+    return (LIVE.get(key) or {}).get('url', '')
+
+
+def featured_video(key):
+    vids = VIDEOS.get(key) or []
+    return next((v for v in vids if v.get('featured')), vids[0] if vids else None)
+
 
 def video_frame(src):
     return f'<div class="video-frame"><video controls preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;">\n    <source src="{esc(src)}" type="video/mp4">\n    Your browser does not support embedded video.\n  </video></div>'
 
 def video_block(key):
-    # multiple videos: render each with its own label
-    if key in VIDEO_SETS:
-        parts = []
-        for src, label in VIDEO_SETS[key]:
-            parts.append(f'<h3 style="margin-top:22px">{esc(label)}</h3>\n  {video_frame(src)}')
-        return '\n  '.join(parts)
-    if key in VIDEOS:
-        src, blurb = VIDEOS[key]
-        return f'<p style="color:var(--muted)">{esc(blurb)}</p>\n  {video_frame(src)}'
-    return '<p style="color:var(--muted)">A recorded walkthrough of this platform\'s dev environment will appear here — so you can see the application in action before engaging. Recorded and embedded once the deployment ships.</p>\n  <div class="video-frame"><div class="no-video">Demo video coming — recorded from the live dev environment once this platform\'s deployment completes.</div></div>'
+    """Render every video for a platform: one blurb, or several labelled clips."""
+    vids = VIDEOS.get(key) or []
+    if not vids:
+        return ('<p style="color:var(--muted)">A recorded walkthrough of this platform\'s dev '
+                'environment will appear here — so you can see the application in action before '
+                'engaging. Recorded and embedded once the deployment ships.</p>\n'
+                '  <div class="video-frame"><div class="no-video">Demo video coming — recorded from '
+                'the live dev environment once this platform\'s deployment completes.</div></div>')
+    out = []
+    for v in vids:
+        if v.get('kind') == 'label' and len(vids) > 1:
+            out.append(f'<h3 style="margin-top:22px">{esc(v["label"])}</h3>\n  {video_frame(v["src"])}')
+        else:
+            out.append(f'<p style="color:var(--muted)">{esc(v["label"])}</p>\n  {video_frame(v["src"])}')
+    return '\n  '.join(out)
+
 
 os.makedirs(f'{BASE}/site/platforms', exist_ok=True)
 
@@ -354,6 +355,7 @@ for key, p in platforms.items():
   <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
   <h1>{AFRICA_LOGO.replace('class="africa"','class="africa hero-logo"')}{esc(p['title'])}</h1>
   <p class="meta">{len(p['repos'])} repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
+  {f'<p class="meta"><span class="live">Live</span> <a href="{esc(live_url(key))}" target="_blank" rel="noopener">{esc(live_url(key).replace("https://", ""))}</a> · verified {esc((LIVE.get(key) or {}).get("verified", ""))}</p>' if is_live(key) else '<p class="meta">No verified live environment yet</p>'}
   <h2>What it is</h2>
   <p>{esc(p['overview'])}</p>
   <h2>The problem we're solving</h2>
@@ -380,8 +382,13 @@ cards = []
 for key, p in platforms.items():
     slug = detail_pages[key]
     feats = ''.join(f'<li>{esc(f)}</li>' for f in p['features'])
-    has_video = key in VIDEOS or key in VIDEO_SETS
-    badge = '<span class="live">Live demo</span>' if has_video else ''
+    has_video = bool(VIDEOS.get(key))
+    badges = []
+    if is_live(key):
+        badges.append('<span class="live">Live site</span>')
+    if has_video:
+        badges.append('<span class="live">Demo video</span>')
+    badge = ''.join(badges)
     repos_html = ''.join(
         f'<a class="repo" href="https://github.com/munisp/{esc(rn)}" target="_blank" rel="noopener">{esc(rn)}'
         f'<span class="lang">{esc(repo_by_name.get(rn,{}).get("language") or "")}</span></a>'
@@ -415,45 +422,37 @@ for r in sorted(uncovered, key=lambda x: x['name'].lower()):
       {f'<p class="overview">{desc}</p>' if desc else '<p class="overview">Active repository in the 54link compiled portfolio — see the GitHub repo for details.</p>'}
     </article>''')
 
-# ---------- secured platforms (deployed + demonstrated on video) ----------
-SECURED = {
-    'Healthpoint': ('healthpoint', 'healthpoint-walkthrough.mp4', 'https://healthpoint.newfire.app',
-                    'NAS/IDR health dispute-resolution platform — logged in, every section.'),
-    'Lanai': ('lanai', 'lanai-full-walkthrough.mp4', 'https://lanai.newfire.app',
-              'Luxury travel concierge advisor portal — every service in the menu.'),
-    'Meridian TaxTech': ('meridian', 'meridian-walkthrough.mp4', 'https://meridian.newfire.app',
-                         'Nigeria Revenue Service TaxTech compliance plane — six modules.'),
-    'NDSEP / NGApp': ('ndsep', 'ndsep-demo.mp4', 'https://ndsep.newfire.app',
-                      'National Data Sovereignty Enforcement Platform — 18 sections.'),
-    'INEC Election Platform': ('inec', 'inec-demo.mp4', 'https://campaign-inec-servers.newfire.app',
-                               'INEC Digital Twin campaign platform — live KPI dashboard and campaign tools.'),
-    'TourismPay': ('tourismpay', 'tourismpay-demo.mp4', 'https://tourismpay-servers.newfire.app',
-                   'Multi-currency tourism payments — merchant services walkthrough.'),
-    'UmojaFlowOS': ('umoja', 'umoja-demo.mp4', 'https://umoja.newfire.app',
-                    'Cross-border payment control for Africa-linked corridors.'),
-    'VPP': ('vpp', 'vpp-demo.mp4', 'https://vpp.newfire.app',
-            'Virtual Power Plant control plane — live telemetry and power trading.'),
-}
+# ---------- secured = a live environment AND a recorded demo (both data-driven) ----------
+SECURED = {k: v for k, v in VIDEOS.items() if v and is_live(k)}
 
 vcards = []
 secured_rows = []
-for key, (poster, vidfile, live_url, blurb) in SECURED.items():
-    if key not in detail_pages:
+for key, vids in VIDEOS.items():
+    if key not in detail_pages or not vids:
         continue
+    feat = featured_video(key)
+    info = LIVE.get(key, {})
+    poster = f' poster="{esc(feat["poster"])}"' if feat.get('poster') else ''
+    live_bit = ''
+    if info.get('live'):
+        live_bit = ('<p class="vlink">Live: <a href="%s" target="_blank" rel="noopener">%s</a></p>'
+                    % (esc(info['url']), esc(info['url'].replace('https://', ''))))
     vcards.append(f'''<div class="vcard">
-      <video src="/videos/{esc(vidfile)}" poster="/videos/posters/{esc(poster)}.png" preload="none" controls playsinline></video>
+      <video src="{esc(feat["src"])}"{poster} preload="none" controls playsinline></video>
       <div class="vbody">
         <span class="badge">Live demo</span>
         <h3>{esc(key)}</h3>
-        <p>{esc(blurb)}</p>
+        <p>{esc(feat["label"])}</p>
         <p class="vlink"><a href="/{esc(detail_pages[key])}">Open the platform page &rarr;</a></p>
+        {live_bit}
       </div>
     </div>''')
-    secured_rows.append(f'''<tr>
+    if info.get('live'):
+        secured_rows.append(f'''<tr>
       <td><a href="/{esc(detail_pages[key])}">{esc(key)}</a></td>
       <td class="ok">Deployed</td>
       <td class="ok">Recorded</td>
-      <td><a href="{esc(live_url)}" target="_blank" rel="noopener">{esc(live_url.replace('https://',''))}</a></td>
+      <td><a href="{esc(info["url"])}" target="_blank" rel="noopener">{esc(info["url"].replace("https://",""))}</a></td>
     </tr>''')
 
 # ---------- Africa intro, country benefits and current news ----------
@@ -501,46 +500,9 @@ BENEFITS = [
      "Black River wealth +120% — Africa's fastest-growing millionaire hotspot"),
 ]
 
-NEWS = [
-    ("Sep 2026", "Africa makes its case for a bigger role on the global stage",
-     "Leaders from business, government and global institutions convened in New York alongside the 81st UN General "
-     "Assembly. The UN Secretary-General called for a permanent African seat on the Security Council and for the "
-     "continent's critical minerals to generate local value and jobs rather than being exported raw.",
-     "GABI · Unstoppable Africa 2026"),
-    ("Sep 2026", "Nigeria's economy grows 4.43% — its fastest in five years",
-     "Second-quarter growth was carried by services, telecommunications, finance and agriculture, while the trade "
-     "surplus doubled to $9.5bn. Non-oil sectors now account for 96% of total output.",
-     "Semafor Africa · National Bureau of Statistics"),
-    ("Sep 2026", "Dangote Refinery IPO set to be Africa's largest share sale",
-     "Nigeria's SEC approved an offering expected to raise around $1.5–1.8bn, with plans to double the refinery's "
-     "capacity to 1.4 million barrels per day — which would make it the largest single-train refinery in the world.",
-     "Semafor Africa · Reuters"),
-    ("Sep 2026", "AfCFTA trade projected to reach $230bn this year",
-     "Intra-African trade under the Continental Free Trade Area keeps scaling, supported by continental payment "
-     "rails that shift cross-border settlement away from correspondent banking.",
-     "African Union Commission · GABI 2026"),
-    ("Sep 2026", "Africa's solar adoption projected to rise 45% this year",
-     "As energy independence becomes a strategic priority, several countries moved to expand both refining and "
-     "generation capacity — with renewables adoption rising sharply across the continent.",
-     "Ember · Semafor Africa"),
-    ("H1 2026", "Fintech remains Africa's largest venture sector",
-     "African start-ups raised $1.35bn in the first half of 2026. Fintech took $556m (41%) and logistics $472m. "
-     "Nigeria, Kenya, South Africa and Egypt have absorbed roughly 80% of all capital raised since 2019.",
-     "Africa: The Big Deal · Partech"),
-    ("Sep 2026", "AGOA extended through December 2028",
-     "Preferential duty-free access to the US market is preserved for eligible sub-Saharan exporters, giving "
-     "textiles, apparel and agriculture a firmer footing for the next two years.",
-     "US Government"),
-    ("Sep 2026", "Kenya: 90%+ renewable electricity, and a new critical-minerals facility",
-     "Kenya generates more than 90% of its electricity from renewable sources, and the US backed a critical "
-     "minerals processing facility in a country holding untapped copper, graphite, lithium and nickel.",
-     "Guterres / GABI 2026 · Reuters"),
-    ("21 Sep 2026", "$300m Nigeria Distributed Renewable Energy Fund reaches first close",
-     "Co-managed by the Nigeria Sovereign Investment Authority and Africa50, the fund will finance local clean-energy "
-     "developers — solar mini-grids, home systems and storage — aligned to Mission 300's goal of connecting 300 "
-     "million Africans to electricity by 2030.",
-     "NSIA · Africa50 · GABI 2026"),
-]
+NEWS = json.load(open(f'{BASE}/news.json'))          # rewritten by the news sweep
+NEWS.sort(key=lambda i: str(i.get('date', '')), reverse=True)   # newest first
+FEED_STAMP = max((str(i.get('added') or i.get('date', '')) for i in NEWS), default='—')
 
 benefit_cards = ''.join(
     f'''<div class="bcard">
@@ -550,13 +512,19 @@ benefit_cards = ''.join(
       <span class="metric">{esc(metric)}</span>
     </div>''' for name, tag, body, metric in BENEFITS)
 
-news_cards = ''.join(
-    f'''<article class="ncard">
-      <span class="ndate">{esc(date)}</span>
-      <h3>{esc(title)}</h3>
-      <p>{esc(body)}</p>
-      <span class="nsrc">{esc(src)}</span>
-    </article>''' for date, title, body, src in NEWS)
+def news_card(item):
+    title = esc(item.get('title'))
+    url = str(item.get('url', ''))
+    if url.startswith('http'):
+        title = f'<a href="{esc(url)}" target="_blank" rel="noopener">{title}</a>'
+    return f'''<article class="ncard">
+      <span class="ndate">{esc(item.get('display') or item.get('date'))}</span>
+      <h3>{title}</h3>
+      <p>{esc(item.get('body'))}</p>
+      <span class="nsrc">{esc(item.get('source'))}</span>
+    </article>'''
+
+news_cards = ''.join(news_card(i) for i in NEWS)
 
 HERO = f'''<header class="hero center">
   <div class="stage">
@@ -595,6 +563,7 @@ SEC_AFRICA = f'''<section id="africa">
 SEC_NEWS = f'''<section id="news">
   <h2>Latest from Africa</h2>
   <p class="sectsub">What is actually moving across the continent right now — capital, energy, trade and policy</p>
+  <p style="color:var(--gold);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:22px;padding-left:16px">{len(NEWS)} items &middot; live feed, swept every hour &middot; feed updated {esc(FEED_STAMP)}</p>
   <div class="news">{news_cards}</div>
 </section>'''
 

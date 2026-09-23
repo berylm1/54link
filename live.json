@@ -1,0 +1,77 @@
+{
+ "_note": "Live environments per platform. Rewritten by check_live.py each sweep.",
+ "platforms": {
+  "Healthpoint": {
+   "url": "https://healthpoint.newfire.app",
+   "host": "healthpoint.newfire.app",
+   "repo": "healthpoint",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "Lanai": {
+   "url": "https://lanai.newfire.app",
+   "host": "lanai.newfire.app",
+   "repo": "lanai",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "Meridian TaxTech": {
+   "url": "https://meridian.newfire.app",
+   "host": "meridian.newfire.app",
+   "repo": "meridian",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "NDSEP / NGApp": {
+   "url": "https://ndsep.newfire.app",
+   "host": "ndsep.newfire.app",
+   "repo": "ndsep",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "INEC Election Platform": {
+   "url": "https://campaign-inec-servers.newfire.app",
+   "host": "campaign-inec-servers.newfire.app",
+   "repo": "inec",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "TourismPay": {
+   "url": "https://tourismpay-servers.newfire.app",
+   "host": "tourismpay-servers.newfire.app",
+   "repo": "tourismpay",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "UmojaFlowOS": {
+   "url": "https://umoja.newfire.app",
+   "host": "umoja.newfire.app",
+   "repo": "umoja",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  },
+  "VPP": {
+   "url": "https://vpp.newfire.app",
+   "host": "vpp.newfire.app",
+   "repo": "vpp",
+   "status": 200,
+   "verified": "2026-09-23",
+   "source": "probe",
+   "live": true
+  }
+ }
+}
