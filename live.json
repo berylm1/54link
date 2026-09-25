@@ -10,7 +10,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "demonstrable",
+   "render_evidence": "5220 chars rendered (has a sign-in entry point)",
+   "demonstrable": true
   },
   "Lanai": {
    "url": "https://lanai.newfire.app",
@@ -21,7 +24,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "gated",
+   "render_evidence": "login wall (sign in)",
+   "demonstrable": true
   },
   "Meridian TaxTech": {
    "url": "https://meridian.newfire.app",
@@ -32,7 +38,7 @@
    "source": "probe",
    "live": false,
    "deployed": true,
-   "failures": 4,
+   "failures": 6,
    "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
@@ -44,7 +50,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "gated",
+   "render_evidence": "login wall (keycloak, sign in)",
+   "demonstrable": true
   },
   "INEC Election Platform": {
    "url": "https://campaign-inec-servers.newfire.app",
@@ -55,7 +64,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "gated",
+   "render_evidence": "login form (password field present)",
+   "demonstrable": true
   },
   "TourismPay": {
    "url": "https://tourismpay-servers.newfire.app",
@@ -66,7 +78,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "demonstrable",
+   "render_evidence": "1149 chars rendered",
+   "demonstrable": true
   },
   "UmojaFlowOS": {
    "url": "https://umoja.newfire.app",
@@ -77,7 +92,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "demonstrable",
+   "render_evidence": "5408 chars rendered (has a sign-in entry point)",
+   "demonstrable": true
   },
   "VPP": {
    "url": "https://vpp.newfire.app",
@@ -88,7 +106,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "blank",
+   "render_evidence": "no DOM produced",
+   "demonstrable": true
   },
   "WhatsAppCommerce": {
    "url": "https://wa-app.newfire.app",
@@ -99,7 +120,10 @@
    "source": "probe",
    "live": true,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "render": "demonstrable",
+   "render_evidence": "1611 chars rendered (has a sign-in entry point)",
+   "demonstrable": true
   },
   "Blue Economy Platform": {
    "url": "https://blueeco-singlewindow.newfire.app",
@@ -108,10 +132,26 @@
    "status": 200,
    "verified": "2026-09-25",
    "source": "probe",
-   "live": false,
+   "live": true,
    "deployed": true,
    "failures": 0,
-   "note": "route serves and the bundle loads, but the app throws on startup: VITE_KEYCLOAK_LOGIN_URL must be configured for interactive login. Not demonstrable until the build config is fixed."
+   "render": "crashing",
+   "render_evidence": "TradeGateway\u2122 NGSWTP \u2014 Revised Technical Specification An unexpected error occurred. Error: VITE_KEYCLOAK_LOGIN_URL must be configured for interactive login. at Ac (https://bl",
+   "demonstrable": false
+  },
+  "NextGen INSR": {
+   "url": "https://insurance-platform-servers.newfire.app",
+   "host": "insurance-platform-servers.newfire.app",
+   "repo": "nextgen-insr",
+   "status": 200,
+   "verified": "2026-09-25",
+   "source": "probe",
+   "live": true,
+   "deployed": true,
+   "failures": 0,
+   "render": "demonstrable",
+   "render_evidence": "5094 chars rendered (has a sign-in entry point)",
+   "demonstrable": true
   }
  }
 }

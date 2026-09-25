@@ -193,6 +193,36 @@ for pk, info in list(out.items()):
 for pk, info in found.items():
     out[pk] = dict(info, live=True, deployed=True, failures=0)
 
+# ---- render-check the live platforms --------------------------------------
+# A 200 can mean a working app OR an app that throws on startup (or a login wall).
+# Render each in headless Chrome so "live" never gets mistaken for "demonstrable".
+try:
+    sys.path.insert(0, BASE)
+    from render_check import check as render_verdict
+except Exception as e:
+    print(f'  render check unavailable ({e}) — skipping')
+    render_verdict = None
+
+if render_verdict:
+    tallies = {}
+    for pk in sorted(found):
+        url = out[pk].get('url', '')
+        try:
+            verdict, evidence = render_verdict(url)
+        except Exception as e:
+            verdict, evidence = 'unknown', f'render failed: {e}'
+        tallies[verdict] = tallies.get(verdict, 0) + 1
+        # Only a crash means "not demonstrable". A login wall is normal — several platforms were
+        # filmed signed in — and a failed render is a limit of this check, not proof of breakage.
+        out[pk] = dict(out[pk], render=verdict, render_evidence=str(evidence)[:220],
+                       demonstrable=(verdict != 'crashing'))
+        if verdict == 'crashing':
+            print(f'  render | {pk}: CRASHING — {str(evidence)[:120]}')
+        elif verdict not in ('demonstrable',):
+            print(f'  render | {pk}: {verdict} (still counts as demonstrable) — {str(evidence)[:90]}')
+    print('  render-checked ' + str(len(found)) + ' live platform(s): '
+          + ', '.join(f'{v} {k}' for k, v in sorted(tallies.items())))
+
 newly = [k for k in found if k not in previous or not previous[k].get('live')]
 if newly:
     print('  newly live: ' + ', '.join(newly))

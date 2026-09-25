@@ -97,5 +97,14 @@
    "poster": "/videos/posters/whatsappcommerce.png",
    "featured": true
   }
+ ],
+ "NextGen INSR": [
+  {
+   "src": "/videos/insurance-demo.mp4",
+   "label": "Walkthrough of the deployed Unified Insurance Platform (InsurePortal) at insurance-platform-servers.newfire.app — the public journey: \"Insurance Made Simple\" for policyholders, the free no-signup tools (Find My Coverage, which asks six questions and returns AI-powered recommendations, and the Premium Calculator, which gives real-time estimates for Health, Auto, Property and Life cover), the insurance product range, and why InsurePortal (NAICOM licensed, 24/7 claims support, fast digital processing, blockchain-secured policies). The policyholder and admin consoles sit behind the platform's own sign-in, so this tour covers the public experience and the free tools.",
+   "kind": "blurb",
+   "poster": "/videos/posters/insurance.png",
+   "featured": true
+  }
  ]
 }

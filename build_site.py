@@ -306,10 +306,18 @@ def live_meta(key):
     info = LIVE.get(key) or {}
     url = info.get('url', '')
     nice = url.replace('https://', '')
-    if info.get('live'):
+    if info.get('live') and info.get('demonstrable', True):
         return (f'<p class="meta"><span class="live">Live</span> '
                 f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> '
-                f'&middot; verified {esc(str(info.get("verified", "")))}</p>')
+                f'&middot; verified {esc(str(info.get("verified", "")))}'
+                + (f' &middot; render-checked: {esc(str(info.get("render")))}'
+                   if info.get('render') else '') + '</p>')
+    if info.get('live'):
+        # the route serves, but the app does not render cleanly — do not call that "live"
+        why = str(info.get('render_evidence') or info.get('note') or 'did not render cleanly')
+        return (f'<p class="meta"><span style="color:var(--orange);font-weight:700">Deployed</span> '
+                f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> '
+                f'&middot; not demonstrable: {esc(why)}</p>')
     if info.get('deployed'):
         note = str(info.get('note') or '').strip()
         detail = (esc(note) if note else
