@@ -291,8 +291,31 @@ def is_live(key):
     return bool(LIVE.get(key, {}).get('live'))
 
 
+def is_deployed(key):
+    """True if the platform has a deployed environment — even if it is not answering right now."""
+    info = LIVE.get(key) or {}
+    return bool(info.get('live') or info.get('deployed'))
+
+
 def live_url(key):
     return (LIVE.get(key) or {}).get('url', '')
+
+
+def live_meta(key):
+    """Honest one-line environment status for a platform page: live / deployed-but-down / none."""
+    info = LIVE.get(key) or {}
+    url = info.get('url', '')
+    nice = url.replace('https://', '')
+    if info.get('live'):
+        return (f'<p class="meta"><span class="live">Live</span> '
+                f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> '
+                f'&middot; verified {esc(str(info.get("verified", "")))}</p>')
+    if info.get('deployed'):
+        return (f'<p class="meta"><span style="color:var(--orange);font-weight:700">Deployed</span> '
+                f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> is not '
+                f'responding right now ({esc(str(info.get("status", "?")))}) &middot; last verified '
+                f'{esc(str(info.get("last_ok") or info.get("verified") or "earlier"))}</p>')
+    return '<p class="meta">No verified live environment yet</p>'
 
 
 def featured_video(key):
@@ -355,7 +378,7 @@ for key, p in platforms.items():
   <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
   <h1>{AFRICA_LOGO.replace('class="africa"','class="africa hero-logo"')}{esc(p['title'])}</h1>
   <p class="meta">{len(p['repos'])} repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
-  {f'<p class="meta"><span class="live">Live</span> <a href="{esc(live_url(key))}" target="_blank" rel="noopener">{esc(live_url(key).replace("https://", ""))}</a> · verified {esc((LIVE.get(key) or {}).get("verified", ""))}</p>' if is_live(key) else '<p class="meta">No verified live environment yet</p>'}
+  {live_meta(key)}
   <h2>What it is</h2>
   <p>{esc(p['overview'])}</p>
   <h2>The problem we're solving</h2>
@@ -423,7 +446,7 @@ for r in sorted(uncovered, key=lambda x: x['name'].lower()):
     </article>''')
 
 # ---------- secured = a live environment AND a recorded demo (both data-driven) ----------
-SECURED = {k: v for k, v in VIDEOS.items() if v and is_live(k)}
+SECURED = {k: v for k, v in VIDEOS.items() if v and is_deployed(k)}
 
 vcards = []
 secured_rows = []

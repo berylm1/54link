@@ -88,5 +88,14 @@
    "poster": "/videos/posters/vpp.png",
    "featured": true
   }
+ ],
+ "WhatsAppCommerce": [
+  {
+   "src": "/videos/whatsappcommerce-demo.mp4",
+   "label": "Walkthrough of the live WhatsApp Commerce Platform at wa-app.newfire.app — selling on WhatsApp end to end: the Smart Assistant, selling right in chat, your own storefront and currency, taking payment by mobile money / card / bank transfer, being always on, and knowing your numbers in real time — plus the four-step onboarding (connect WhatsApp, add products, chat and sell, get paid and grow). The signed-in console sits behind Keycloak (realm wacommerce), so this tour covers the public experience.",
+   "kind": "blurb",
+   "poster": "/videos/posters/whatsappcommerce.png",
+   "featured": true
+  }
  ]
 }

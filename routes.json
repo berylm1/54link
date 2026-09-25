@@ -1,0 +1,264 @@
+{
+ "_note": "Hostnames read from the cluster ApisixRoute objects (authoritative). Regenerate with: kubectl get apisixroute -A -o jsonpath=... | this script. check_live.py probes these first.",
+ "hosts": {
+  "54agent.newfire.app": [
+   "54agent"
+  ],
+  "54link-dev.newfire.app": [
+   "54agent",
+   "54link-dev"
+  ],
+  "54link.newfire.app": [
+   "54link-dev"
+  ],
+  "54remit.newfire.app": [
+   "54remit"
+  ],
+  "admin-54agent.newfire.app": [
+   "54agent"
+  ],
+  "admin-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "admin-cpaas.newfire.app": [
+   "cpaas"
+  ],
+  "admin-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "admin.lanai.newfire.app": [
+   "lanai"
+  ],
+  "agent-54agent.newfire.app": [
+   "54agent"
+  ],
+  "agent-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "alertmanager.newfire.app": [
+   "otel"
+  ],
+  "api-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "api.lanai.newfire.app": [
+   "lanai"
+  ],
+  "app-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "auth-lanai.newfire.app": [
+   "lanai"
+  ],
+  "auth.lanai.newfire.app": [
+   "lanai"
+  ],
+  "blueeco-beneficiary.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-cvff-api.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-geo.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-hub.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-insurance.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-maritime.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-ml.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-mrv.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-singlewindow.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-tax-stamps.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeco-waterway.newfire.app": [
+   "blueeconomy"
+  ],
+  "blueeconomy.newfire.app": [
+   "blueeconomy"
+  ],
+  "campaign-inec-servers.newfire.app": [
+   "inec"
+  ],
+  "chatwoot.lanai.newfire.app": [
+   "lanai"
+  ],
+  "compliance-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "core.newfire.app": [
+   "meridian-core"
+  ],
+  "cpaas.newfire.app": [
+   "cpaas"
+  ],
+  "crm.lanai.newfire.app": [
+   "lanai"
+  ],
+  "customer-54agent.newfire.app": [
+   "54agent"
+  ],
+  "customer-cpaas.newfire.app": [
+   "cpaas"
+  ],
+  "enclave.newfire.app": [
+   "meridian-enclave"
+  ],
+  "farmer-servers.newfire.app": [
+   "farmer-data-collection"
+  ],
+  "fineract-server.newfire.app": [
+   "fineract"
+  ],
+  "gds-api-servers.newfire.app": [
+   "gds"
+  ],
+  "gds-app-servers.newfire.app": [
+   "gds"
+  ],
+  "grafana.newfire.app": [
+   "otel"
+  ],
+  "healthpoint.newfire.app": [
+   "healthpoint"
+  ],
+  "inbox.lanai.newfire.app": [
+   "lanai"
+  ],
+  "inclusion.newfire.app": [
+   "meridian-inclusion"
+  ],
+  "inec-servers.newfire.app": [
+   "inec"
+  ],
+  "insurance-platform-servers.newfire.app": [
+   "insurance-platform-demo"
+  ],
+  "jaeger.newfire.app": [
+   "otel"
+  ],
+  "kafka-ui.newfire.app": [
+   "cluster-tools"
+  ],
+  "keycloak-healthpoint.newfire.app": [
+   "healthpoint"
+  ],
+  "keycloak-servers.newfire.app": [
+   "keycloak"
+  ],
+  "kyc-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "kyc-cpaas.newfire.app": [
+   "cpaas"
+  ],
+  "lanai.newfire.app": [
+   "lanai"
+  ],
+  "member.lanai.newfire.app": [
+   "lanai"
+  ],
+  "meridian.newfire.app": [
+   "meridian"
+  ],
+  "mifos.newfire.app": [
+   "fineract"
+  ],
+  "minio-servers.newfire.app": [
+   "minio"
+  ],
+  "minio-ui-servers.newfire.app": [
+   "minio"
+  ],
+  "mojaloop-oracle-shared-servers.newfire.app": [
+   "oracle"
+  ],
+  "ndsep-platform-servers.newfire.app": [
+   "nsep-demo"
+  ],
+  "ndsep.newfire.app": [
+   "ndsep"
+  ],
+  "newwave-dev.newfire.app": [
+   "inec"
+  ],
+  "opensearch-be-shared-servers.newfire.app": [
+   "opensearch"
+  ],
+  "opensearch-shared-servers.newfire.app": [
+   "opensearch"
+  ],
+  "otel.newfire.app": [
+   "otel"
+  ],
+  "paymenthub-ucard-ng-servers.newfire.app": [
+   "paymenthub"
+  ],
+  "pg-ui.newfire.app": [
+   "cluster-tools"
+  ],
+  "pos-haproxy-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "pos-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "pos-ucardng-servers.newfire.app": [
+   "ucard"
+  ],
+  "prometheus.newfire.app": [
+   "otel"
+  ],
+  "pup-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "redis-ui.newfire.app": [
+   "cluster-tools"
+  ],
+  "superdealer-ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "temporal-web.newfire.app": [
+   "temporal"
+  ],
+  "tenant-54link-dev.newfire.app": [
+   "54link-dev"
+  ],
+  "tourismpay-servers.newfire.app": [
+   "tourismpay"
+  ],
+  "ucard-ng-pos.newfire.app": [
+   "ucard"
+  ],
+  "ucard-ng-servers.newfire.app": [
+   "ucard"
+  ],
+  "umoja.newfire.app": [
+   "umoja"
+  ],
+  "vpp.newfire.app": [
+   "vpp"
+  ],
+  "wa-app.newfire.app": [
+   "whatsapp-commerce"
+  ],
+  "whatsapp.newfire.app": [
+   "whatsapp-commerce"
+  ],
+  "www.lanai.newfire.app": [
+   "lanai"
+  ]
+ }
+}

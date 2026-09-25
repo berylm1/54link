@@ -92,6 +92,24 @@ for key, info in previous.items():
     if h:
         targets.setdefault(h, (key, info.get('repo', '')))
 
+# the cluster's own ApisixRoute hostnames: authoritative, so a platform can never be
+# missed just because its hostname is not derivable from a repository name
+routes = load(f'{BASE}/routes.json', {}).get('hosts', {})
+key_by_slug = {slug(k): k for k in platforms}
+repo_owner = {slug(rn): k for k, p in platforms.items() for rn in p.get('repos', [])}
+NS_ALIAS = {'whatsapp-commerce': 'WhatsAppCommerce'}          # namespace -> platform key
+ns_platform = {}
+for host, nss in routes.items():
+    for ns in nss:
+        s = slug(ns)
+        ns_platform[ns] = NS_ALIAS.get(ns) or key_by_slug.get(s) or repo_owner.get(s)
+route_stems = set()
+for host in routes:
+    stem = host.replace(f'.{DOMAIN}', '')
+    route_stems.add(stem)
+    pk = next((ns_platform[ns] for ns in routes[host] if ns_platform.get(ns)), None)
+    targets.setdefault(stem, (pk, (routes[host] or [''])[0]))
+
 print(f'probing {len(targets)} candidate host(s) across {len(platforms)} platforms '
       f'and {len(repo_names)} repositories…')
 
@@ -113,25 +131,33 @@ def probe(host):
         return host, None, False
 
 
+prev_by_host = {v.get('host', '').replace(f'.{DOMAIN}', ''): k for k, v in previous.items()}
 hits = {}
+unmatched = []
+fail_codes = {}
 with ThreadPoolExecutor(max_workers=WORKERS) as pool:
     for host, status, live in pool.map(probe, sorted(targets)):
         if live:
             key, repo = targets[host]
-            hits[host] = (key, repo, status)
+            pk = key or prev_by_host.get(host)
+            if pk:
+                hits[host] = (pk, repo, status)
+            else:
+                unmatched.append((host, status, repo))
+        else:
+            fail_codes[host] = status          # remember what the failed probe actually saw
 
-print(f'live hosts found: {len(hits)}')
+print(f'live hosts found: {len(hits) + len(unmatched)}')
+if unmatched:
+    print('  ANSWERING BUT NOT MAPPED TO A PLATFORM PAGE:')
+    for host, status, repo in sorted(unmatched):
+        print(f'     {host}.{DOMAIN}  {status}  (namespace: {repo})')
 
 # ---- fold the results into live.json ---------------------------------------
 out = dict(previous)
-by_host = {v.get('host', '').replace(f'.{DOMAIN}', ''): k for k, v in previous.items()}
 found = {}
-for host, (key, repo, status) in sorted(hits.items()):
-    url = f'https://{host}.{DOMAIN}'
-    pk = key or by_host.get(host)
-    if not pk:
-        continue                      # live host for a repo with no platform page yet
-    found[pk] = {'url': url, 'host': f'{host}.{DOMAIN}', 'repo': repo,
+for host, (pk, repo, status) in sorted(hits.items()):
+    found[pk] = {'url': f'https://{host}.{DOMAIN}', 'host': f'{host}.{DOMAIN}', 'repo': repo,
                  'status': status, 'verified': time.strftime('%Y-%m-%d'),
                  'source': 'probe'}
 
@@ -148,13 +174,24 @@ for pk, info in found.items():
     if pk in out and out[pk].get('url') != info['url']:
         print(f'  platform {pk!r}: live URL changed {out[pk]["url"]} -> {info["url"]}')
     out[pk] = info
+probed = set(targets)
 for pk, info in list(out.items()):
+    if pk in found:
+        continue
+    stem = str(info.get('host', '')).replace(f'.{DOMAIN}', '')
+    if stem and stem not in probed:
+        continue      # its host was not probed this sweep — leave the recorded state alone
     if pk not in found:
+        # The route still exists (it answered before), the app just is not serving right now:
+        # keep it marked deployed so a transient 503 does not erase it from the site.
+        fails = int(info.get('failures', 0)) + 1
         print(f'  platform {pk!r}: {info.get("url")} did not answer '
-              f'(was verified {info.get("verified")}) — keeping it, flagged live=false')
-        out[pk] = dict(info, live=False)
+              f'(was verified {info.get("verified")}) — deployed but not serving (fail #{fails})')
+        out[pk] = dict(info, live=False, deployed=True, failures=fails,
+                       status=fail_codes.get(stem, info.get('status')),
+                       last_ok=info.get('last_ok') or info.get('verified'))
 for pk, info in found.items():
-    out[pk] = dict(info, live=True)
+    out[pk] = dict(info, live=True, deployed=True, failures=0)
 
 newly = [k for k in found if k not in previous or not previous[k].get('live')]
 if newly:

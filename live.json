@@ -6,72 +6,111 @@
    "host": "healthpoint.newfire.app",
    "repo": "healthpoint",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "Lanai": {
    "url": "https://lanai.newfire.app",
    "host": "lanai.newfire.app",
    "repo": "lanai",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "Meridian TaxTech": {
    "url": "https://meridian.newfire.app",
    "host": "meridian.newfire.app",
    "repo": "meridian",
-   "status": 200,
-   "verified": "2026-09-23",
+   "status": 503,
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": false,
+   "deployed": true,
+   "failures": 2,
+   "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
    "url": "https://ndsep.newfire.app",
    "host": "ndsep.newfire.app",
    "repo": "ndsep",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "INEC Election Platform": {
    "url": "https://campaign-inec-servers.newfire.app",
    "host": "campaign-inec-servers.newfire.app",
    "repo": "inec",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "TourismPay": {
    "url": "https://tourismpay-servers.newfire.app",
    "host": "tourismpay-servers.newfire.app",
    "repo": "tourismpay",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "UmojaFlowOS": {
    "url": "https://umoja.newfire.app",
    "host": "umoja.newfire.app",
    "repo": "umoja",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
   },
   "VPP": {
    "url": "https://vpp.newfire.app",
    "host": "vpp.newfire.app",
    "repo": "vpp",
    "status": 200,
-   "verified": "2026-09-23",
+   "verified": "2026-09-25",
    "source": "probe",
-   "live": true
+   "live": true,
+   "deployed": true,
+   "failures": 0
+  },
+  "WhatsAppCommerce": {
+   "url": "https://wa-app.newfire.app",
+   "host": "wa-app.newfire.app",
+   "repo": "whatsappCommerce",
+   "status": 200,
+   "verified": "2026-09-25",
+   "source": "probe",
+   "live": true,
+   "deployed": true,
+   "failures": 0
+  },
+  "Blue Economy Platform": {
+   "url": "https://blueeco-singlewindow.newfire.app",
+   "host": "blueeco-singlewindow.newfire.app",
+   "repo": "blueeconomy",
+   "status": 200,
+   "verified": "2026-09-25",
+   "source": "probe",
+   "live": true,
+   "deployed": true,
+   "failures": 0
   }
  }
 }
