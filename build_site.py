@@ -311,9 +311,12 @@ def live_meta(key):
                 f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> '
                 f'&middot; verified {esc(str(info.get("verified", "")))}</p>')
     if info.get('deployed'):
+        note = str(info.get('note') or '').strip()
+        detail = (esc(note) if note else
+                  f'is not responding right now ({esc(str(info.get("status", "?")))})')
         return (f'<p class="meta"><span style="color:var(--orange);font-weight:700">Deployed</span> '
-                f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> is not '
-                f'responding right now ({esc(str(info.get("status", "?")))}) &middot; last verified '
+                f'<a href="{esc(url)}" target="_blank" rel="noopener">{esc(nice)}</a> '
+                f'&middot; {detail} &middot; last verified '
                 f'{esc(str(info.get("last_ok") or info.get("verified") or "earlier"))}</p>')
     return '<p class="meta">No verified live environment yet</p>'
 

@@ -32,7 +32,7 @@
    "source": "probe",
    "live": false,
    "deployed": true,
-   "failures": 2,
+   "failures": 4,
    "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
@@ -108,9 +108,10 @@
    "status": 200,
    "verified": "2026-09-25",
    "source": "probe",
-   "live": true,
+   "live": false,
    "deployed": true,
-   "failures": 0
+   "failures": 0,
+   "note": "route serves and the bundle loads, but the app throws on startup: VITE_KEYCLOAK_LOGIN_URL must be configured for interactive login. Not demonstrable until the build config is fixed."
   }
  }
 }
