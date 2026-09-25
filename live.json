@@ -27,7 +27,9 @@
    "failures": 0,
    "render": "gated",
    "render_evidence": "login wall (sign in)",
-   "demonstrable": true
+   "demonstrable": true,
+   "entry_route": "DOCUMENTED-CREDENTIAL",
+   "entry_route_evidence": "documented credential in lanai:.github/workflows/ci.yml (user:pass \"co******\") \u2014 save it to the vault to use it"
   },
   "Meridian TaxTech": {
    "url": "https://meridian.newfire.app",
@@ -38,7 +40,7 @@
    "source": "probe",
    "live": false,
    "deployed": true,
-   "failures": 6,
+   "failures": 7,
    "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
@@ -53,7 +55,9 @@
    "failures": 0,
    "render": "gated",
    "render_evidence": "login wall (keycloak, sign in)",
-   "demonstrable": true
+   "demonstrable": true,
+   "entry_route": "DEMO-MODE",
+   "entry_route_evidence": "a demo/auth switch exists in ndsep:client/src/components/DemoModeBanner.tsx (demo mode)"
   },
   "INEC Election Platform": {
    "url": "https://campaign-inec-servers.newfire.app",
@@ -67,7 +71,9 @@
    "failures": 0,
    "render": "gated",
    "render_evidence": "login form (password field present)",
-   "demonstrable": true
+   "demonstrable": true,
+   "entry_route": "DOCUMENTED-CREDENTIAL",
+   "entry_route_evidence": "documented credential in inec:.agents/skills/testing-inec-frontend/SKILL.md (username \"ad***\") \u2014 save it to the vault to use it"
   },
   "TourismPay": {
    "url": "https://tourismpay-servers.newfire.app",
@@ -79,9 +85,11 @@
    "live": true,
    "deployed": true,
    "failures": 0,
-   "render": "demonstrable",
-   "render_evidence": "1149 chars rendered",
-   "demonstrable": true
+   "render": "gated",
+   "render_evidence": "login form (password field present)",
+   "demonstrable": true,
+   "entry_route": "DEMO-MODE",
+   "entry_route_evidence": "a demo/auth switch exists in tourismpay:.agents/skills/testing-left-nav/SKILL.md (DEMO_MODE, demo mode)"
   },
   "UmojaFlowOS": {
    "url": "https://umoja.newfire.app",

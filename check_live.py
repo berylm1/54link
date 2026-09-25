@@ -223,6 +223,35 @@ if render_verdict:
     print('  render-checked ' + str(len(found)) + ' live platform(s): '
           + ', '.join(f'{v} {k}' for k, v in sorted(tallies.items())))
 
+# ---- how to get in: scan the repos, cached so it only happens once --------
+# A login wall is not the end of the story: the way in is usually documented in the repo.
+try:
+    from find_login import scan_platform, verdict as entry_verdict
+except Exception as e:
+    print(f'  login scan unavailable ({e})')
+    scan_platform = None
+    entry_verdict = None
+
+if scan_platform and entry_verdict:
+    for pk in sorted(found):
+        if out[pk].get('render') != 'gated':
+            continue
+        cached = (previous.get(pk) or {}).get('entry_route')
+        if cached:
+            out[pk]['entry_route'] = cached
+            out[pk]['entry_route_evidence'] = (previous.get(pk) or {}).get('entry_route_evidence', '')
+            continue
+        try:
+            fs = scan_platform(pk, platforms)
+            v, why = entry_verdict(pk, fs)
+        except Exception as e:
+            v, why = 'SCAN-FAILED', str(e)[:140]
+        out[pk]['entry_route'] = v
+        out[pk]['entry_route_evidence'] = str(why)[:300]
+        print(f'  entry | {pk}: {v} — {str(why)[:110]}')
+        if v == 'NO-DOCUMENTED-ENTRY':
+            print(f'     -> no way in is documented; the deployer must add a demo path or credentials')
+
 newly = [k for k in found if k not in previous or not previous[k].get('live')]
 if newly:
     print('  newly live: ' + ', '.join(newly))
