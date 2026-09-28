@@ -1,12 +1,11 @@
 {
- "_note": "Live environments per platform. Rewritten by check_live.py each sweep.",
  "platforms": {
   "Healthpoint": {
    "url": "https://healthpoint.newfire.app",
    "host": "healthpoint.newfire.app",
    "repo": "healthpoint",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -20,7 +19,7 @@
    "host": "lanai.newfire.app",
    "repo": "lanai",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -29,7 +28,7 @@
    "render_evidence": "login wall (sign in)",
    "demonstrable": true,
    "entry_route": "DOCUMENTED-CREDENTIAL",
-   "entry_route_evidence": "documented credential in lanai:.github/workflows/ci.yml (user:pass \"co******\") \u2014 save it to the vault to use it"
+   "entry_route_evidence": "documented credential in lanai:.github/workflows/ci.yml (user:pass \"co******\") — save it to the vault to use it"
   },
   "Meridian TaxTech": {
    "url": "https://meridian.newfire.app",
@@ -40,7 +39,7 @@
    "source": "probe",
    "live": false,
    "deployed": true,
-   "failures": 7,
+   "failures": 79,
    "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
@@ -48,7 +47,7 @@
    "host": "ndsep.newfire.app",
    "repo": "ndsep",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -64,7 +63,7 @@
    "host": "campaign-inec-servers.newfire.app",
    "repo": "inec",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -73,14 +72,14 @@
    "render_evidence": "login form (password field present)",
    "demonstrable": true,
    "entry_route": "DOCUMENTED-CREDENTIAL",
-   "entry_route_evidence": "documented credential in inec:.agents/skills/testing-inec-frontend/SKILL.md (username \"ad***\") \u2014 save it to the vault to use it"
+   "entry_route_evidence": "documented credential in inec:.agents/skills/testing-inec-frontend/SKILL.md (username \"ad***\") — save it to the vault to use it"
   },
   "TourismPay": {
    "url": "https://tourismpay-servers.newfire.app",
    "host": "tourismpay-servers.newfire.app",
    "repo": "tourismpay",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -96,7 +95,7 @@
    "host": "umoja.newfire.app",
    "repo": "umoja",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -110,7 +109,7 @@
    "host": "vpp.newfire.app",
    "repo": "vpp",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
@@ -124,27 +123,28 @@
    "host": "wa-app.newfire.app",
    "repo": "whatsappCommerce",
    "status": 200,
-   "verified": "2026-09-25",
-   "source": "probe",
+   "verified": "2026-09-27",
+   "source": "film_pipeline",
    "live": true,
    "deployed": true,
    "failures": 0,
    "render": "demonstrable",
    "render_evidence": "1611 chars rendered (has a sign-in entry point)",
-   "demonstrable": true
+   "demonstrable": true,
+   "note": "demonstrable at film time (render-checked in headless Chrome)"
   },
   "Blue Economy Platform": {
    "url": "https://blueeco-singlewindow.newfire.app",
    "host": "blueeco-singlewindow.newfire.app",
    "repo": "blueeconomy",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
    "failures": 0,
    "render": "crashing",
-   "render_evidence": "TradeGateway\u2122 NGSWTP \u2014 Revised Technical Specification An unexpected error occurred. Error: VITE_KEYCLOAK_LOGIN_URL must be configured for interactive login. at Ac (https://bl",
+   "render_evidence": "TradeGateway™ NGSWTP — Revised Technical Specification An unexpected error occurred. Error: VITE_KEYCLOAK_LOGIN_URL must be configured for interactive login. at Ac (https://bl",
    "demonstrable": false
   },
   "NextGen INSR": {
@@ -152,13 +152,27 @@
    "host": "insurance-platform-servers.newfire.app",
    "repo": "nextgen-insr",
    "status": 200,
-   "verified": "2026-09-25",
+   "verified": "2026-09-27",
    "source": "probe",
    "live": true,
    "deployed": true,
    "failures": 0,
    "render": "demonstrable",
    "render_evidence": "5094 chars rendered (has a sign-in entry point)",
+   "demonstrable": true
+  },
+  "PayGate / PaymentSwitch / CRMaaS": {
+   "url": "https://paygate.newfire.app",
+   "host": "paygate.newfire.app",
+   "repo": "paygate",
+   "status": 200,
+   "verified": "2026-09-27",
+   "source": "probe",
+   "live": true,
+   "deployed": true,
+   "failures": 0,
+   "render": "blank",
+   "render_evidence": "only 34 chars of text after render",
    "demonstrable": true
   }
  }
