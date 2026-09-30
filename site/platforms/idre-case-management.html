@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HealthLink — Healthcare Data Linkage · 54link</title><style>
+<title>IDRE Case Management — NSA Federal Independent Dispute Resolution Platform · 54link</title><style>
   :root {
     --bg:#0a0d12; --card:#121a24; --fg:#eef3f8; --muted:#93a0ad; --border:#22303f;
     --gold:#f0b429; --green:#22a34a; --red:#d92d20; --blue:#2f6fed; --orange:#f97316;
@@ -252,17 +252,17 @@
 </div></div></nav>
 <div class="detail">
   <p class="crumbs"><a href="/platforms.html">← Back to all platforms</a></p>
-  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">HealthLink — Healthcare Data Linkage</h1>
+  <h1><img class="africa hero-logo" src="/assets/54link-logo.png" alt="54link — Africa" width="512" height="512">IDRE Case Management — NSA Federal Independent Dispute Resolution Platform</h1>
   <p class="meta">1 repositories · part of the 54link compiled portfolio · Nigeria first use case</p>
   <p class="meta">No verified live environment yet</p>
   <h2>What it is</h2>
-  <p>A runnable, governance-first polyglot reference implementation for healthcare data linkage, extracted from a full architecture, service contracts, and an HCUP NRD pilot specification.</p>
+  <p>Self-hosted, multi-tenant case-management platform for CMS No Surprises Act federal Independent Dispute Resolution, with 50 isolated state tenants and no vendor-portal dependencies. A Go control-plane API drives the statutory dispute lifecycle via Temporal workflows; a Rust double-blind vault keeps sealed offers cryptographically inaccessible (AES-256-GCM + HKDF per-tenant keys) until lawful reveal; Python services handle document intelligence (Docling + PaddleOCR + VLM extraction), stakeholder onboarding, CMS reporting crons, and lakehouse analytics.</p>
   <h2>The problem we're solving</h2>
-  <p>Health records for the same patient live in disconnected systems — HealthLink links them safely under explicit governance rules.</p>
+  <p>Federal No Surprises Act dispute resolution depends on vendor portals and manual case handling — IDRE Case Management gives a self-hosted, cryptographically sealed, multi-tenant platform where CMS statutory workflows, escrow, and audit run end to end.</p>
   <h2>Architecture</h2>
-  <p>Polyglot · governance-first reference implementation</p>
+  <p>Go + Rust + Python · Kubernetes, APISIX + open-appsec, Keycloak, PostgreSQL, Redis, Temporal, TigerBeetle, Kafka/Fluvio, Dapr, OpenSearch, MinIO/S3 Delta lakehouse, Flink/Spark/Ray</p>
   <h2>Key capabilities</h2>
-  <ul><li>Governance-first patient-record linkage</li><li>Service contracts and pilot specification included</li><li>Runnable reference implementation</li></ul>
+  <ul><li>Statutory IDRE case lifecycle with Temporal timers and CMS monthly reporting</li><li>Double-blind offer vault — sealed offers hidden from DBAs until lawful reveal</li><li>Fail-closed tenant isolation across identity, gateway, database (RLS), ledger, topics, object keys</li><li>TigerBeetle double-entry money movement with idempotency keys and escrow pending-to-post transfers</li><li>Document intelligence pipeline: IBM Docling, PaddleOCR fallback, PP-StructureV3 seals, VLM extraction</li><li>Hash-chained append-only audit log with 6-year retention; Wazuh SIEM + OpenCTI + open-appsec WAF</li><li>Voice-AI integration via API-key tool endpoints and HMAC-signed event webhooks</li></ul>
   
     <h2>Roadmap — the steps we're taking</h2>
     <ol class="steps">
@@ -276,7 +276,7 @@
   <p style="color:var(--muted)">A recorded walkthrough of this platform's dev environment will appear here — so you can see the application in action before engaging. Recorded and embedded once the deployment ships.</p>
   <div class="video-frame"><div class="no-video">Demo video coming — recorded from the live dev environment once this platform's deployment completes.</div></div>
   <h2>Source repositories (1)</h2>
-  <div class="repos-list"><a href="https://github.com/munisp/datalinkage" target="_blank" rel="noopener"><span>datalinkage</span><span class="lang">TypeScript · 2026-08-26 10:36 UTC</span></a></div>
+  <div class="repos-list"><a href="https://github.com/munisp/idrecasemanagement" target="_blank" rel="noopener"><span>idrecasemanagement</span><span class="lang">Go · 2026-09-30 20:58 UTC</span></a></div>
   <p style="margin-top:26px"><a href="/contact.html" style="background:linear-gradient(94deg,var(--gold),var(--orange));color:#231704;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 24px;display:inline-block">Get the 54link brochure</a></p>
 </div>
 <footer><div class="in">

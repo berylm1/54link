@@ -12,7 +12,7 @@
    "deployed": true,
    "failures": 0,
    "render": "demonstrable",
-   "render_evidence": "5361 chars rendered (has a sign-in entry point)",
+   "render_evidence": "5513 chars rendered (has a sign-in entry point)",
    "demonstrable": true
   },
   "Lanai": {
@@ -40,7 +40,7 @@
    "source": "probe",
    "live": false,
    "deployed": true,
-   "failures": 110,
+   "failures": 111,
    "last_ok": "2026-09-25"
   },
   "NDSEP / NGApp": {
@@ -81,14 +81,15 @@
    "repo": "tourismpay",
    "status": 200,
    "verified": "2026-09-30",
-   "source": "film_pipeline",
+   "source": "probe",
    "live": true,
    "deployed": true,
    "failures": 0,
    "render": "gated",
-   "render_evidence": "no DOM produced",
+   "render_evidence": "login form (password field present)",
    "demonstrable": true,
-   "note": "demonstrable at film time (render-checked in headless Chrome)"
+   "entry_route": "DEMO-MODE",
+   "entry_route_evidence": "a demo/auth switch exists in tourismpay:.agents/skills/testing-left-nav/SKILL.md (DEMO_MODE, demo mode)"
   },
   "UmojaFlowOS": {
    "url": "https://umoja.newfire.app",
@@ -115,7 +116,7 @@
    "deployed": true,
    "failures": 0,
    "render": "blank",
-   "render_evidence": "no DOM produced",
+   "render_evidence": "only 113 chars of text after render",
    "demonstrable": true
   },
   "WhatsAppCommerce": {
@@ -124,13 +125,14 @@
    "repo": "whatsappCommerce",
    "status": 200,
    "verified": "2026-09-30",
-   "source": "probe",
+   "source": "film_pipeline",
    "live": true,
    "deployed": true,
    "failures": 0,
    "render": "demonstrable",
    "render_evidence": "1611 chars rendered (has a sign-in entry point)",
-   "demonstrable": true
+   "demonstrable": true,
+   "note": "demonstrable at film time (render-checked in headless Chrome)"
   },
   "Blue Economy Platform": {
    "url": "https://blueeco-singlewindow.newfire.app",

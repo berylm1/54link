@@ -210,13 +210,16 @@ def run():
             continue
 
         mp4 = f'{BASE}/site/videos/{fname}'
+        if DRY_FILM:
+            mp4 = f'/tmp/dry-{fname}'      # validate the machinery only: never touch site files
         os.makedirs(f'{BASE}/site/videos/posters', exist_ok=True)
         subprocess.run(['cp', out_tmp, mp4], check=True)
-        subprocess.run(['cp', out_tmp, os.path.expanduser(f'~/Desktop/{fname}')])
+        if not DRY_FILM:
+            subprocess.run(['cp', out_tmp, os.path.expanduser(f'~/Desktop/{fname}')])
         poster = f'{BASE}/site/videos/posters/{slug(key)}.png'
         sh(['qlmanage', '-t', '-s', '1200', '-o', '/tmp', out_tmp], timeout=120)
         src_png = f'/tmp/{fname}.png'
-        if os.path.exists(src_png):
+        if os.path.exists(src_png) and not DRY_FILM:
             subprocess.run(['cp', src_png, poster], check=True)
 
         blurb = (f'Walkthrough of the deployed {title} at {url.replace("https://", "")} — the '

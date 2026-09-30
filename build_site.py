@@ -589,6 +589,9 @@ HERO = f'''<header class="hero center">
 SEC_AFRICA = f'''<section id="africa">
   <h2>Africa — the continent of the next century</h2>
   <p class="sectsub">One continent, 54 markets, and the world's youngest workforce</p>
+  <div style="margin:28px 0 30px;border-radius:18px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.45)">
+    <video src="/videos/africa-hero.mp4" poster="/videos/posters/africa-hero.png" autoplay muted loop playsinline style="display:block;width:100%;height:auto" aria-label="Hands over a glowing map of Africa — one continent coming online"></video>
+  </div>
   <p class="bigp">{esc(AFRICA_INTRO)}</p>
   <div class="grid3">{benefit_cards}</div>
   <p class="sources">Continental figures: UN Secretary-General António Guterres at GABI's <em>Unstoppable Africa 2026</em>, New York, September 2026. Country data: national statistics offices, Semafor Africa, Partech, Africa: The Big Deal, Africa Wealth Report 2026 and the African Development Bank.</p>
