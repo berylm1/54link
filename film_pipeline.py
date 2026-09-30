@@ -84,9 +84,35 @@ def slug(s):
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 
+def demo_signin(url):
+    """If the page ships the app's own pre-filled demo login, sign in — no credential needed.
+
+    Proven on TourismPay: the live login form arrives with demo admin@tourismpay.io already
+    filled. We only ever CLICK the app's own prefilled form; we never type a password.
+    """
+    js = ("(function(){var pw=document.querySelector('input[type=password]');"
+          "if(!pw||!pw.value)return 'NO-PREFILL';"
+          "var b=[].slice.call(document.querySelectorAll('button')).filter(function(x){"
+          "return /sign in/i.test(x.textContent||'')})[0];"
+          "if(!b)return 'NO-BUTTON';b.click();return 'CLICKED';})()")
+    r = sh(['osascript', '-e',
+            "tell application \"Google Chrome\" to execute front window's active tab javascript \"" + js + '"'],
+           timeout=45)
+    out = (r.stdout or '').strip()
+    if out != 'CLICKED':
+        return out or 'js-unavailable'
+    time.sleep(6)
+    u = sh(['osascript', '-e',
+            'tell application "Google Chrome" to get URL of active tab of front window'])
+    return 'SIGNED-IN' if '/login' not in (u.stdout or '') else 'still-on-login'
+
+
 def film(url, out_mp4):
     """Record ~80s of a scroll tour and export. The tour must happen DURING the recording."""
     proj = '/tmp/film_pipeline.openscreen'
+    si = demo_signin(url)
+    if si not in ('NO-PREFILL', 'NO-BUTTON'):
+        log(f'  demo sign-in: {si}')
     sh(['osascript', '-e', 'tell application "System Events" to key code 115'])   # Home
     time.sleep(2)
     rec_json = '/tmp/film_pipeline.rec.json'
@@ -162,10 +188,12 @@ def run():
         if not url:
             continue
         verdict, evidence = render_verdict(url)          # fresh check: 200 can still lie
-        if verdict != 'demonstrable':
+        if verdict in ('crashing', 'blank'):
             log(f'skip {key}: fresh render says {verdict} ({str(evidence)[:80]})')
             live[key]['render'] = verdict
             continue
+        # 'gated' is fine now: demo_signin clicks the app's own pre-filled demo login when one
+        # exists, and falls back to the public tour when it does not.
         if frontmost() != CHROME and not chrome_front(url):
             log(f'ABORT {key}: could not bring Chrome to the front — not filming the wrong window')
             break
