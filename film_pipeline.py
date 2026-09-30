@@ -201,6 +201,20 @@ def run():
             log(f'ABORT {key}: Chrome is not frontmost')
             break
 
+        # verify the lens is actually pointed at the target before recording
+        u = sh(['osascript', '-e', 'tell application "Google Chrome" to get URL of active tab of front window'])
+        tab = (u.stdout or '').strip()
+        if not tab.startswith(url.rstrip('/')):
+            sh(['osascript', '-e',
+                f'tell application "Google Chrome" to set URL of active tab of front window to "{url}"'])
+            time.sleep(8)
+            u = sh(['osascript', '-e',
+                    'tell application "Google Chrome" to get URL of active tab of front window'])
+            tab = (u.stdout or '').strip()
+            if not tab.startswith(url.rstrip('/')):
+                log(f'ABORT {key}: front tab is {tab[:90]!r}, not {url} — refusing to film the wrong page')
+                break
+
         title = page_title(url) or key
         fname = slug(key) + '-demo.mp4'
         out_tmp = f'/tmp/{fname}'

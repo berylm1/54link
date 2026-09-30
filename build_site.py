@@ -746,6 +746,9 @@ HUB = f'''<section id="hub" style="padding-top:8px">
 BRIEF = f'''<section id="brief" style="padding-top:6px">
   <h2>Why Africa, why now</h2>
   <p class="sectsub">One continent, 54 markets, the world's youngest workforce</p>
+  <div style="margin:26px 0 28px;border-radius:18px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.45)">
+    <video src="/videos/africa-hero.mp4" poster="/videos/posters/africa-hero.png" autoplay muted loop playsinline style="display:block;width:100%;height:auto" aria-label="Hands over a glowing map of Africa — one continent coming online"></video>
+  </div>
   <p class="bigp">{esc(AFRICA_INTRO[:520])}&hellip;</p>
   <p style="margin-top:14px"><a href="/africa.html">The full picture, country by country &rarr;</a></p>
 </section>'''
