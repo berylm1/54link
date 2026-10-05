@@ -580,5 +580,22 @@
       "Voice-AI integration via API-key tool endpoints and HMAC-signed event webhooks"
     ],
     "problem": "Federal No Surprises Act dispute resolution depends on vendor portals and manual case handling — IDRE Case Management gives a self-hosted, cryptographically sealed, multi-tenant platform where CMS statutory workflows, escrow, and audit run end to end."
+  },
+  "NeoBank": {
+    "repos": [
+      "neobank"
+    ],
+    "title": "NeoBank — Unified Digital Banking Platform",
+    "arch": "Python FastAPI backend (536 endpoints across 50 routers) · React + Vite frontends: web, PWA (29 pages), native and hybrid apps · Docker / Kubernetes deployment configs",
+    "overview": "An enterprise digital banking platform unified from multiple implementations into one production-ready package. The FastAPI backend covers accounts and transactions, money transfers and bill payments, loans and credit scoring, investment and trading, insurance products and claims, KYC/KYB verification, document management, analytics and admin operations. Frontends ship as a web app, a React + Vite PWA with 29 pages and offline service-worker support, plus native and hybrid mobile apps.",
+    "features": [
+      "Accounts, transactions, transfers and bill payments",
+      "Loans, credit scoring, investments and trading",
+      "Insurance products and claims",
+      "KYC/KYB verification and document management",
+      "Analytics, reporting and admin operations",
+      "PWA with offline support (29 pages) plus web and mobile clients"
+    ],
+    "problem": "Banks and fintechs need a full digital-banking stack — accounts, transfers, lending, insurance, KYC — but assembling one from scratch takes years. NeoBank packages a complete, deployment-ready stack (backend, four frontends, e2e tests, deployment configs) so a regulated institution can stand up digital banking quickly."
   }
 }
