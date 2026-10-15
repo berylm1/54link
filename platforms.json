@@ -597,5 +597,26 @@
       "PWA with offline support (29 pages) plus web and mobile clients"
     ],
     "problem": "Banks and fintechs need a full digital-banking stack — accounts, transfers, lending, insurance, KYC — but assembling one from scratch takes years. NeoBank packages a complete, deployment-ready stack (backend, four frontends, e2e tests, deployment configs) so a regulated institution can stand up digital banking quickly."
+  },
+  "IDRE Case Management NG": {
+    "repos": [
+      "idrecasemanagementNG"
+    ],
+    "title": "IDRE Case Management NG — Sector-Agnostic Dispute Resolution Platform (Next Generation)",
+    "arch": "Go + Rust + Python · Kubernetes, APISIX + open-appsec, Keycloak, PostgreSQL, Redis, Temporal, TigerBeetle (+ Mojaloop settlement patterns), Kafka/Fluvio, Dapr, OpenSearch, MinIO/S3 Delta lakehouse, Flink/Spark/DataFusion/Ray/Sedona, Wazuh/OpenCTI, Kubecost",
+    "overview": "Next-generation, sector-agnostic IDRE platform: the same self-hosted case-management core as the original — 50 isolated state tenants, program manifests, configurable lifecycle state machines and pluggable determination engines — generalised beyond NSA federal disputes to healthcare IDR, insurance appraisal, workers comp, procurement and beyond. A Go control-plane API drives the dispute lifecycle via Temporal statutory workflows with stakeholder onboarding; a Rust vault keeps sealed offers cryptographically inaccessible (AES-256-GCM + HKDF per-tenant keys) until lawful reveal; Python services handle document intelligence (IBM Docling + PaddleOCR + PP-StructureV3 seals + VLM extraction), lakehouse analytics and CMS report crons.",
+    "features": [
+      "Program manifests with configurable lifecycle state machines and pluggable determination engines",
+      "Multi-tenant (50 state tenants) with fail-closed isolation across identity, gateway, database (RLS), ledger, topics and object keys",
+      "Double-blind offer/document vault — sealed until lawful reveal, verified against workflow state",
+      "TigerBeetle double-entry money movement with idempotency keys and escrow pending-to-post/void transfers",
+      "Document intelligence: IBM Docling parser, PaddleOCR fallback, PP-StructureV3 seals, composable VLM extraction",
+      "Lakehouse jobs on Spark/Delta, Flink, DataFusion, Ray and Sedona",
+      "Hash-chained append-only audit log, 6-year retention, CMS monthly reporting workflow",
+      "Wazuh SIEM + OpenCTI IOC correlation + open-appsec WAF; mTLS east-west via Dapr",
+      "Voice-AI integration via API-key tool endpoints and HMAC-signed event webhooks",
+      "Kubecost per-state-tenant chargeback reporting"
+    ],
+    "problem": "Dispute resolution across healthcare, insurance, workers comp and procurement still runs on vendor portals and manual case handling. IDRE Case Management NG turns the proven NSA federal IDRE core into a sector-agnostic, self-hosted platform: one multi-tenant spine where program manifests, statutory state machines, sealed offers and auditable money movement are configured per programme instead of rebuilt."
   }
 }
