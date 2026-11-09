@@ -916,7 +916,7 @@
         <h3>Overview</h3><p class="overview">Open-source healthcare OS designed for developing countries with unreliable power, scarce water and constrained networks — built around Nigeria&#x27;s 34,076 primary health centres. Offline-first platform making primary health facilities, insured lives and out-of-pocket spending legible to each other, with twelve modules across identity/registries, FHIR R4 core records, community health (CHW with USSD fallback), claims and insurance rails, payments (Mojaloop-pattern switch seam), laboratory (OpenELIS), telehealth/AI triage, analytics, and an infrastructure layer tracking power, water, cold chain and equipment telemetry. Pilots in one Nigerian state across 50-200 facilities with six-month measured gates. AGPL-3.0 core, Apache-2.0 SDKs.</p>
         <h3>Key features</h3><ul><li>Offline-first FHIR R4 shared health record with consent artefacts</li><li>Identity &amp; registries: patient, provider, facility and terminology services</li><li>Claims &amp; insurance rails: eligibility, pre-auth, adjudication</li><li>Payments: wallets, instant payment, reconciliation via ledger + Mojaloop-pattern switch</li><li>Infrastructure layer: power, water, cold-chain and equipment telemetry from solar-powered edge nodes</li><li>Community health worker tasks with USSD/SMS fallback and store-and-forward sync</li></ul>
         <h3>Problem it solves</h3><p class="problem">Primary healthcare in African countries runs against grid collapse, non-functional equipment and no connectivity — and the systems meant to support it assume reliable infrastructure. OpenHealth OS is DPI that degrades gracefully: any layer can fail without taking the stack down.</p>
-        <h3>Repositories (1)</h3><div class="repos"><a class="repo" href="https://github.com/munisp/openhealthOS" target="_blank" rel="noopener">openhealthOS<span class="lang">Go</span></a></div>
+        <h3>Repositories (1)</h3><div class="repos"><a class="repo" href="https://github.com/munisp/openhealthOS" target="_blank" rel="noopener">openhealthOS<span class="lang">Python</span></a></div>
         <div class="cardlink"><a href="/platforms/openhealth-os.html">Explore platform &rarr;</a></div>
       </div>
     </details><details class="pcard" data-search="howudeychat — sovereign patient channel javascript/typescript pwa + android/ios (capacitor) · go store-and-forward relay · rust crypto core · self-hosted matrix (synapse/dendrite) a whatsapp-alternative patient messaging channel that a ministry, state, or ngo owns end-to-end: the backup that keeps care running if whatsapp is banned, throttled, or turned into leverage. one codebase for android, ios and pwa; offline-first and security-first; speaks english, naija (pidgin), hausa, yoruba and igbo. clinic-patient communication in developing countries rides on whatsapp, a foreign platform that can be banned, throttled or weaponised — cutting off care with no sovereign fallback. howudeychat keeps the patient channel owned and offline-capable, and patients migrate by installing an app, not by changing behaviour. self-hosted matrix homeserver chat between patients and clinics — no foreign platform in the critical path rich content: photos, voice notes, video, files, live-style location sharing, and structured health artifacts (appointment cards, prescriptions, facility pins) zero-tile offline maps rendered on canvas — no tile server, cdn or google dependency built for 2g: queue-first sending, idempotent retries with backoff, cache-first media, precached app shell go store-and-forward relay for clinic hotspots and lga hubs — spools messages to disk with hmac integrity and replays them on recovery same protocol as openhealth os&#x27;s channel gateway (adr-0038), so booking, coverage checks and results work identically on whatsapp and howudeychat howudeychat">
@@ -938,7 +938,7 @@
       <summary>
         <span class="chev" aria-hidden="true">&#9654;</span>
         <span class="pt">VolumeOS — Naira Volume Playbook Operating Platform</span>
-        
+        <span class="live">Live site</span>
         <span class="pmeta">1 repo</span>
       </summary>
       <div class="pbody">
@@ -948,6 +948,21 @@
         <h3>Problem it solves</h3><p class="problem">Nigerian MSMEs need affordable, durable digital operations (offers, messaging, storefronts, money) without stitching ad-hoc tools — VolumeOS packages the Naira Volume Playbook as an open-source, multi-tenant operating platform.</p>
         <h3>Repositories (1)</h3><div class="repos"><a class="repo" href="https://github.com/munisp/volume0S" target="_blank" rel="noopener">volume0S<span class="lang">Python</span></a></div>
         <div class="cardlink"><a href="/platforms/volumeos.html">Explore platform &rarr;</a></div>
+      </div>
+    </details><details class="pcard" data-search="kampusforce — campus commerce attribution, commission, escrow and settlement layer react 19 + typescript + vite frontend; hono + trpc 11 + drizzle orm on mysql; sandbox adapters for otp, kyc and payouts a vendor-neutral campus commerce layer connecting vendors, verified student representatives and customers. reps earn vendor-funded commission (80% rep / 20%% platform) on vendor-verified activations, not signups. phase 1 mvp vertical slice with role-gated rep, vendor and operations workspaces: signed links, qr kits and whatsapp sharing with first-touch attribution via salted phone hashes; six-step assisted onboarding that never stores customer nin/bvn/otp; hmac-sha256 webhooks with replay quarantine; integer-kobo commission math with escrow reservation and double-entry-style ledger postings; refund voids, clawbacks and negative-balance netting; payout pre-flight checks with 10% sandbox withholding; rep disputes and audit history. installable pwa with offline catalog viewing. campus distribution is unaccountable: reps cannot prove introductions, commissions are opaque and payouts unpredictable, and vendors cannot reconcile spend against verified activations — kampusforce makes every step from introduction to payout attributable and settled. first-touch attribution from signed links, qr kits and whatsapp sharing versioned flat/percentage commission rules across five product verticals pre-funded escrow with double-entry-style ledger postings in integer kobo hmac-sha256 webhooks with timestamp validation, replay dedupe and quarantine payout pre-flight: verified kyc, bank-name match, minimum payout, sandbox withholding refunds, paid-deal clawbacks and negative-balance netting kampusforce">
+      <summary>
+        <span class="chev" aria-hidden="true">&#9654;</span>
+        <span class="pt">KampusForce — campus commerce attribution, commission, escrow and settlement layer</span>
+        <span class="live">Live site</span>
+        <span class="pmeta">1 repo</span>
+      </summary>
+      <div class="pbody">
+        <h3>Architecture</h3><p class="arch">React 19 + TypeScript + Vite frontend; Hono + tRPC 11 + Drizzle ORM on MySQL; sandbox adapters for OTP, KYC and payouts</p>
+        <h3>Overview</h3><p class="overview">A vendor-neutral campus commerce layer connecting vendors, verified student representatives and customers. Reps earn vendor-funded commission (80% rep / 20%% platform) on vendor-verified activations, not signups. Phase 1 MVP vertical slice with role-gated rep, vendor and operations workspaces: signed links, QR kits and WhatsApp sharing with first-touch attribution via salted phone hashes; six-step assisted onboarding that never stores customer NIN/BVN/OTP; HMAC-SHA256 webhooks with replay quarantine; integer-kobo commission math with escrow reservation and double-entry-style ledger postings; refund voids, clawbacks and negative-balance netting; payout pre-flight checks with 10% sandbox withholding; rep disputes and audit history. Installable PWA with offline catalog viewing.</p>
+        <h3>Key features</h3><ul><li>First-touch attribution from signed links, QR kits and WhatsApp sharing</li><li>Versioned flat/percentage commission rules across five product verticals</li><li>Pre-funded escrow with double-entry-style ledger postings in integer kobo</li><li>HMAC-SHA256 webhooks with timestamp validation, replay dedupe and quarantine</li><li>Payout pre-flight: verified KYC, bank-name match, minimum payout, sandbox withholding</li><li>Refunds, paid-deal clawbacks and negative-balance netting</li></ul>
+        <h3>Problem it solves</h3><p class="problem">Campus distribution is unaccountable: reps cannot prove introductions, commissions are opaque and payouts unpredictable, and vendors cannot reconcile spend against verified activations — KampusForce makes every step from introduction to payout attributable and settled.</p>
+        <h3>Repositories (1)</h3><div class="repos"><a class="repo" href="https://github.com/munisp/KampusForce" target="_blank" rel="noopener">KampusForce<span class="lang">TypeScript</span></a></div>
+        <div class="cardlink"><a href="/platforms/kampusforce.html">Explore platform &rarr;</a></div>
       </div>
     </details></div>
   <p class="nohits" id="pnohits">No platforms match that search. Try a sector (tax, maritime, health), a technology (Go, Python, Rust), or a platform name.</p>
@@ -959,9 +974,9 @@
     </summary>
     <div class="pbody"><div class="grid">
     <article class="card small">
-      <h2><a href="https://github.com/munisp/KampusForce" target="_blank" rel="noopener">KampusForce</a></h2>
-      <p class="arch"><strong>Language:</strong> TypeScript · <strong>Last push:</strong> 2026-10-27 14:36 UTC</p>
-      <p class="overview">Active repository in the 54link compiled portfolio — see the GitHub repo for details.</p>
+      <h2><a href="https://github.com/munisp/OpenRide" target="_blank" rel="noopener">OpenRide</a></h2>
+      <p class="arch"><strong>Language:</strong> Dart · <strong>Last push:</strong> 2026-11-09 07:43 UTC</p>
+      <p class="overview">Fully offline route planner &amp; navigator for iOS/Android — Flutter, BRouter ported to Dart, on-device OSM maps/geocoder, GPX/FIT/TCX ride recording, no account</p>
     </article></div></div>
   </details>
 </section>

@@ -703,5 +703,22 @@
       "GitOps: pinned Argo CD apps, Dapr mTLS, APISIX + open-appsec, Strimzi Kafka, OpenSearch"
     ],
     "problem": "Nigerian MSMEs need affordable, durable digital operations (offers, messaging, storefronts, money) without stitching ad-hoc tools — VolumeOS packages the Naira Volume Playbook as an open-source, multi-tenant operating platform."
+  },
+  "KampusForce": {
+    "repos": [
+      "KampusForce"
+    ],
+    "title": "KampusForce — campus commerce attribution, commission, escrow and settlement layer",
+    "arch": "React 19 + TypeScript + Vite frontend; Hono + tRPC 11 + Drizzle ORM on MySQL; sandbox adapters for OTP, KYC and payouts",
+    "overview": "A vendor-neutral campus commerce layer connecting vendors, verified student representatives and customers. Reps earn vendor-funded commission (80% rep / 20%% platform) on vendor-verified activations, not signups. Phase 1 MVP vertical slice with role-gated rep, vendor and operations workspaces: signed links, QR kits and WhatsApp sharing with first-touch attribution via salted phone hashes; six-step assisted onboarding that never stores customer NIN/BVN/OTP; HMAC-SHA256 webhooks with replay quarantine; integer-kobo commission math with escrow reservation and double-entry-style ledger postings; refund voids, clawbacks and negative-balance netting; payout pre-flight checks with 10% sandbox withholding; rep disputes and audit history. Installable PWA with offline catalog viewing.",
+    "features": [
+      "First-touch attribution from signed links, QR kits and WhatsApp sharing",
+      "Versioned flat/percentage commission rules across five product verticals",
+      "Pre-funded escrow with double-entry-style ledger postings in integer kobo",
+      "HMAC-SHA256 webhooks with timestamp validation, replay dedupe and quarantine",
+      "Payout pre-flight: verified KYC, bank-name match, minimum payout, sandbox withholding",
+      "Refunds, paid-deal clawbacks and negative-balance netting"
+    ],
+    "problem": "Campus distribution is unaccountable: reps cannot prove introductions, commissions are opaque and payouts unpredictable, and vendors cannot reconcile spend against verified activations — KampusForce makes every step from introduction to payout attributable and settled."
   }
 }
