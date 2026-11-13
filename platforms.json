@@ -720,5 +720,21 @@
       "Refunds, paid-deal clawbacks and negative-balance netting"
     ],
     "problem": "Campus distribution is unaccountable: reps cannot prove introductions, commissions are opaque and payouts unpredictable, and vendors cannot reconcile spend against verified activations — KampusForce makes every step from introduction to payout attributable and settled."
+  },
+  "OpenRide": {
+    "repos": [
+      "OpenRide"
+    ],
+    "title": "OpenRide — Offline Route Planner, Navigator & Ride Recorder",
+    "arch": "Dart/Flutter · modular offline-first mobile app (pure-Dart engine packages, no runtime network)",
+    "overview": "Fully offline cycling and trekking navigation for iOS and Android. The BRouter routing engine is ported to pure Dart (OSM PBF parsing, trekking/bike/MTB/car routing profiles, bidirectional A* with turn costs and SRTM elevation), alongside a self-contained vector-tile map pipeline (MVT codec, single-file .mbf tile store, CustomPainter renderer), an offline geocoder built from the same OSM extract, and a turn-by-turn navigation engine with voice prompts and automatic rerouting. A ride-recording package adds Kalman-smoothed GPS, BLE heart rate/cadence/power sensors and GPX/TCX/FIT export. No account, no backend, no network at runtime.",
+    "features": [
+      "Offline routing: BRouter-in-Dart engine with multiple profiles, A* with turn costs and elevation",
+      "On-device vector maps: OSM-to-tiles builder and single-file .mbf store with custom renderer",
+      "Offline place search: tokenized inverted-index geocoder with proximity ranking",
+      "Turn-by-turn navigation with voice prompts, off-route detection and rerouting",
+      "Ride recording: Kalman-smoothed GPS, BLE sensors, barometric elevation, GPX/TCX/FIT export"
+    ],
+    "problem": "Navigation apps assume connectivity and accounts, which fails on remote trails and raises privacy and cost barriers. OpenRide runs the entire routing, map, search and recording stack on the phone from OpenStreetMap data — a user builds one offline bundle per region and rides with zero network dependency."
   }
 }
