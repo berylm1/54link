@@ -736,5 +736,22 @@
       "Ride recording: Kalman-smoothed GPS, BLE sensors, barometric elevation, GPX/TCX/FIT export"
     ],
     "problem": "Navigation apps assume connectivity and accounts, which fails on remote trails and raises privacy and cost barriers. OpenRide runs the entire routing, map, search and recording stack on the phone from OpenStreetMap data — a user builds one offline bundle per region and rides with zero network dependency."
+  },
+  "Concierge Engine": {
+    "repos": [
+      "concierge-engine"
+    ],
+    "title": "Concierge Engine — Premium Travel & Lifestyle Concierge OS",
+    "arch": "Go modular monolith core + Rust (policy engine, TigerBeetle ledger, ingestion) + Python AI concierge/WhatsApp + TypeScript web; K8s, Dapr, APISIX, Kafka, Temporal, Keycloak, Postgres RLS",
+    "overview": "Open-source, multi-tenant, API-first platform for premium travel and lifestyle concierge services, covering the full journey from acquisition and conversational registration to curation, payment and fulfilment. A ServiceRequest bundles service items across verticals (chauffeur, meet & greet, helicopter, jet, security, events, yacht) into one price, one payment, one timeline. Design partner: Taylor Travel Management Group (Amsterdam HQ, serving NL, DE, FR, IT, UK, UAE). Phase 1 (tenant core, web + WhatsApp capture, ground-vertical quote & booking engine, dispatch board, TigerBeetle-based payments, AI concierge with guardrails and human handoff) and Phase 2 (Mojaloop FSPIOP adapter, cross-border partner payout saga, corporate accounts, charter supply port, lakehouse analytics, AI v2 with PII redaction and judged evals) are both delivered.",
+    "features": [
+      "ServiceRequest atomic demand object across concierge verticals — one price, one payment, one timeline",
+      "Rust policy engine gating every AI action and reply (TIER-0..3); 5-stage output pipeline — the LLM never has the final word on money, identity or outbound text",
+      "TigerBeetle double-entry ledger for money truth, reconciled with Postgres business state via Temporal workflows",
+      "Event backbone from day one (outbox to Kafka) feeding audit, webhooks, analytics and AI training data",
+      "WhatsApp as a swappable channel adapter (BSP-configurable, e.g. Infobip/Twilio)",
+      "Mojaloop FSPIOP adapter with cross-border partner payout saga and partner fill-rate KPIs"
+    ],
+    "problem": "Premium concierge services are run on email, spreadsheets and disconnected booking tools — no open platform unifies demand, curation, guarded AI assistance, payments and cross-border partner settlement. Concierge Engine provides that operating system with money truth in a double-entry ledger and guardrails on every AI action."
   }
 }
